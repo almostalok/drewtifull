@@ -18,7 +18,9 @@ export type AestheticTag =
   | 'playful'
   | 'romantic'
   | 'vintage'
-  | 'dark';
+  | 'dark'
+  | 'y2k'
+  | 'retro';
 
 export type SectionType =
   | 'hero'
@@ -52,7 +54,26 @@ export interface HeroSectionData {
   heroPhoto?: string;
   badgeText?: string;
   audioHint?: string;
-  layout?: 'centered' | 'editorial-split' | 'film-cover' | 'scrapbook-header' | 'celestial';
+  layout?:
+    | 'centered'
+    | 'editorial-split'
+    | 'film-cover'
+    | 'scrapbook-header'
+    | 'celestial'
+    | 'soft-garden'
+    | 'film-diary'
+    | 'scrapbook'
+    | 'minimal-editorial'
+    | 'cute-cozy'
+    | 'vintage-newspaper'
+    | 'dreamy-night'
+    | 'polaroid-wall'
+    | 'pink-y2k'
+    | 'book-spread';
+  cursiveName?: string;
+  headlineSub?: string;
+  noteAnnotation?: string;
+  stickerStyle?: 'garden' | 'film' | 'scrapbook' | 'cute' | 'newspaper' | 'dreamy' | 'y2k' | 'book';
 }
 
 export interface LetterSectionData {
@@ -215,6 +236,11 @@ export interface TemplateTheme {
   fontFamilySerif: string;
   fontFamilySans: string;
   fontFamilyHand: string;
+  fontFamilyCursive?: string;
+  fontFamilyMarker?: string;
+  fontFamilyDoodle?: string;
+  fontFamilyY2K?: string;
+  fontFamilyTypewriter?: string;
   dark?: boolean;
 }
 
