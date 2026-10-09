@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ReasonsSectionData, TemplateTheme } from '@/lib/templates/types';
-import { Sparkles } from 'lucide-react';
+import { LinedNotepadCard, PastelPillsGroup } from '@/components/ui/HandDrawnStickers';
 
 interface ReasonsSectionProps {
   data: ReasonsSectionData;
@@ -11,7 +11,34 @@ interface ReasonsSectionProps {
 
 export function ReasonsSection({ data, theme }: ReasonsSectionProps) {
   const isDark = theme.dark;
+  const isThingsILove = data.title.toLowerCase().includes('things') || data.title.toLowerCase().includes('love');
+  const isPastelPillsStyle = theme.background.toLowerCase().includes('fce') || theme.background.toLowerCase().includes('fff0f5');
 
+  // If this is "Things I love about you" in Cute & Cozy pastel style:
+  if (isThingsILove && isPastelPillsStyle) {
+    const listItems = data.items.map((it) => it.title || it.text);
+    return (
+      <section style={{ padding: '4.5rem 1.5rem', maxWidth: '800px', margin: '0 auto' }}>
+        <PastelPillsGroup title={data.title} items={listItems} />
+      </section>
+    );
+  }
+
+  // If this is "Things I love about you" in Soft Garden / Scrapbook lined notebook card style:
+  if (isThingsILove) {
+    const listItems = data.items.map((it) => it.title || it.text);
+    return (
+      <section style={{ padding: '4.5rem 1.5rem', maxWidth: '800px', margin: '0 auto' }}>
+        <LinedNotepadCard
+          title={data.title}
+          items={listItems}
+          badgeColor={theme.accentSoft || '#F9EBE8'}
+        />
+      </section>
+    );
+  }
+
+  // Standard numbered card grid style (e.g., 3 Reasons Why...)
   return (
     <section
       style={{
