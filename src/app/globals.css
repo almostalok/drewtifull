@@ -1,5 +1,7 @@
 /* Drewtifull Bespoke Editorial Design Tokens & Styling */
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DynaPuff:wght@500;700&family=Gloria+Hallelujah&family=Indie+Flower&family=Patrick+Hand&family=Reenie+Beanie&family=Sacramento&family=Special+Elite&display=swap');
+
 :root {
   /* Warm editorial palette */
   --bg-cream: #FAF7F2;
@@ -38,6 +40,14 @@
   --font-display: var(--font-serif-playfair), 'Playfair Display', Georgia, serif;
   --font-body: var(--font-sans), 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-hand: var(--font-handwritten), 'Caveat', cursive;
+
+  /* Expressive Hand-Drawn & Creative Fonts */
+  --font-cursive: 'Sacramento', cursive;
+  --font-doodle: 'Patrick Hand', 'Caveat', cursive;
+  --font-marker: 'Gloria Hallelujah', 'Indie Flower', cursive;
+  --font-scribble: 'Reenie Beanie', cursive;
+  --font-y2k: 'DynaPuff', cursive;
+  --font-typewriter: 'Special Elite', monospace;
   
   /* Radii */
   --radius-sm: 6px;
@@ -304,3 +314,61 @@ button {
     display: inline !important;
   }
 }
+
+/* Creative & Handwritten Font Classes */
+.font-cursive {
+  font-family: var(--font-cursive);
+}
+
+.font-doodle {
+  font-family: var(--font-doodle);
+}
+
+.font-marker {
+  font-family: var(--font-marker);
+}
+
+.font-scribble {
+  font-family: var(--font-scribble);
+}
+
+.font-y2k {
+  font-family: var(--font-y2k);
+}
+
+.font-typewriter {
+  font-family: var(--font-typewriter);
+}
+
+/* Playful Sticker Micro-Animations */
+.handdrawn-doodle {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.28s ease;
+  user-select: none;
+}
+
+.handdrawn-doodle:hover {
+  transform: scale(1.1) rotate(4deg) !important;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.18));
+}
+
+@keyframes wiggleGentle {
+  0%, 100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+.animate-wiggle {
+  animation: wiggleGentle 4s ease-in-out infinite;
+}
+
+/* Y2K 3D Bubble Text Gradient */
+.y2k-bubble-text {
+  background: linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #C71585 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(2px 3px 0px rgba(255, 182, 193, 0.9)) drop-shadow(3px 5px 0px rgba(199, 21, 133, 0.4));
+}
+
