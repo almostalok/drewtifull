@@ -13,10 +13,6 @@ import {
   ArrowRight,
   Sparkles,
   ExternalLink,
-  Play,
-  Smartphone,
-  Gift,
-  Check,
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -109,6 +105,8 @@ export default function LandingPage() {
     { id: 'romantic', label: 'Romantic' },
     { id: 'vintage', label: 'Vintage' },
     { id: 'dark', label: 'Dark Sky' },
+    { id: 'y2k', label: 'Y2K' },
+    { id: 'retro', label: 'Retro News' },
   ];
 
   const occasionFilters: Array<{ id: string; label: string }> = [
@@ -539,7 +537,11 @@ export default function LandingPage() {
               }}
             >
               <WashiTape
-                color={occ.themeClass as any}
+                color={
+                  occ.themeClass === 'rose' || occ.themeClass === 'sage' || occ.themeClass === 'gold'
+                    ? occ.themeClass
+                    : 'neutral'
+                }
                 rotation={idx % 2 === 0 ? -1.5 : 2}
                 width="70px"
                 style={{ top: '-8px', right: '20px' }}

@@ -2,7 +2,11 @@
 
 import React, { useRef, useState } from 'react';
 import { PhotoItem } from '@/lib/templates/types';
-import { UploadCloud, Trash2, Star, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { UploadCloud, Trash2, Star, Sparkles } from 'lucide-react';
+
+function createPhotoId() {
+  return `photo_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+}
 
 interface PhotoTrayProps {
   photos: PhotoItem[];
@@ -71,7 +75,7 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
 
   const handlePresetAdd = (preset: { url: string; caption: string }) => {
     const newPhoto: PhotoItem = {
-      id: `photo_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      id: createPhotoId(),
       url: preset.url,
       caption: preset.caption,
       aspect: 'portrait',

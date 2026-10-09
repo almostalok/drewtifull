@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { SAMPLE_PROJECTS } from '@/lib/sampleProjects';
 
 // In-memory cache for API requests during dev/server sessions
-let memoryProjects = [...SAMPLE_PROJECTS];
+const memoryProjects = [...SAMPLE_PROJECTS];
 
 export async function GET() {
   return NextResponse.json({ projects: memoryProjects });

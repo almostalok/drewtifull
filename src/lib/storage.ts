@@ -1,4 +1,4 @@
-import { Project, Occasion } from './templates/types';
+import { Project, Occasion, SectionData } from './templates/types';
 import { SAMPLE_PROJECTS } from './sampleProjects';
 import { TEMPLATES } from './templates';
 
@@ -75,7 +75,7 @@ export function createNewProject(
   const clonedSections = JSON.parse(JSON.stringify(template.defaultSections));
 
   // Personalize hero and letter if present
-  clonedSections.forEach((sec: any) => {
+  clonedSections.forEach((sec: SectionData) => {
     if (sec.type === 'hero') {
       sec.subtitle = `for ${recipientName} ♡`;
     }

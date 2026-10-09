@@ -16,7 +16,6 @@ import {
   Trash2,
   QrCode,
   Heart,
-  Sparkles,
   RefreshCw,
 } from 'lucide-react';
 import { ShareModal } from '@/components/ui/ShareModal';
@@ -24,18 +23,13 @@ import { QrCodeModal } from '@/components/ui/QrCodeModal';
 import { WashiTape } from '@/components/ui/WashiTape';
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(getStoredProjects);
   const [activeShareProject, setActiveShareProject] = useState<Project | null>(null);
   const [activeQrProject, setActiveQrProject] = useState<Project | null>(null);
 
   const loadProjects = () => {
     setProjects(getStoredProjects());
   };
-
-  useEffect(() => {
-    loadProjects();
-  }, []);
 
   const handleDelete = (id: string, name: string) => {
     if (confirm(`Let this one go for "${name}"?`)) {

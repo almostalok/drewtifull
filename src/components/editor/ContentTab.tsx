@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Project, Occasion } from '@/lib/templates/types';
-import { Sparkles, Heart } from 'lucide-react';
+import { Project, LetterSectionData } from '@/lib/templates/types';
+import { Sparkles } from 'lucide-react';
 import { AiAssistantModal } from './AiAssistantModal';
 
 interface ContentTabProps {
   project: Project;
   onChange: (updated: Partial<Project>) => void;
-  onUpdateSection: (sectionId: string, updatedFields: any) => void;
+  onUpdateSection: (sectionId: string, updatedFields: Record<string, unknown>) => void;
 }
 
 export function ContentTab({
@@ -19,10 +19,8 @@ export function ContentTab({
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
   // Find letter section if present
-  const letterSection = project.sections.find((s) => s.type === 'letter');
-  const letterBody = letterSection
-    ? (letterSection as any).paragraphs?.join('\n\n') || ''
-    : '';
+  const letterSection = project.sections.find((s) => s.type === 'letter') as LetterSectionData | undefined;
+  const letterBody = letterSection?.paragraphs?.join('\n\n') || '';
 
   const handleLetterChange = (text: string) => {
     if (letterSection) {

@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
-import { useRouter } from 'next/navigation';
-import { Project, TemplateTheme, MusicTrack } from '@/lib/templates/types';
+import React, { useState, use } from 'react';
+import { Project } from '@/lib/templates/types';
 import { getProjectById, saveProject, publishProject } from '@/lib/storage';
 import { TEMPLATES } from '@/lib/templates';
 import { EditorHeader } from '@/components/editor/EditorHeader';
@@ -14,7 +13,7 @@ import { TemplateRenderer } from '@/components/renderer/TemplateRenderer';
 import { ShareModal } from '@/components/ui/ShareModal';
 import { QrCodeModal } from '@/components/ui/QrCodeModal';
 import confetti from 'canvas-confetti';
-import { Heart, Sparkles, Image as ImageIcon, Layers, Palette, Eye } from 'lucide-react';
+import { Sparkles, Layers, Palette } from 'lucide-react';
 
 export default function EditorPage({
   params,
@@ -23,25 +22,14 @@ export default function EditorPage({
 }) {
   const resolvedParams = use(params);
   const router = useRouter();
-  const [project, setProject] = useState<Project | null>(null);
+  const [project, setProject] = useState<Project | null>(() => {
+    return getProjectById(resolvedParams.id) || getProjectById('proj_aanchal_bday') || null;
+  });
   const [activeTab, setActiveTab] = useState<'content' | 'photos' | 'sections' | 'style'>('content');
   const [viewportMode, setViewportMode] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const [isSaving, setIsSaving] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
-
-  useEffect(() => {
-    const found = getProjectById(resolvedParams.id);
-    if (found) {
-      setProject(found);
-    } else {
-      // Fallback: search sample or redirect to dashboard
-      const defaultSample = getProjectById('proj_aanchal_bday');
-      if (defaultSample) {
-        setProject(defaultSample);
-      }
-    }
-  }, [resolvedParams.id]);
 
   if (!project) {
     return (
@@ -77,7 +65,7 @@ export default function EditorPage({
     setTimeout(() => setIsSaving(false), 400);
   };
 
-  const updateSection = (sectionId: string, updatedFields: any) => {
+  const updateSection = (sectionId: string, updatedFields: Record<string, unknown>) => {
     const updatedSections = project.sections.map((sec) =>
       sec.id === sectionId ? { ...sec, ...updatedFields } : sec
     );

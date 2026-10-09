@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useEffect, useState, use } from 'react';
+import React, { useState, use } from 'react';
 import { Project } from '@/lib/templates/types';
 import { getPublishedProjectBySlug } from '@/lib/storage';
 import { TEMPLATES } from '@/lib/templates';
 import { TemplateRenderer } from '@/components/renderer/TemplateRenderer';
-import { Sparkles, Heart } from 'lucide-react';
 import Link from 'next/link';
 
 export default function PublishedGiftPage({
@@ -14,16 +13,8 @@ export default function PublishedGiftPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = use(params);
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const found = getPublishedProjectBySlug(resolvedParams.slug);
-    if (found) {
-      setProject(found);
-    }
-    setLoading(false);
-  }, [resolvedParams.slug]);
+  const [project] = useState<Project | null>(() => getPublishedProjectBySlug(resolvedParams.slug));
+  const loading = false;
 
   if (loading) {
     return (
