@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Project, LetterSectionData } from '@/lib/templates/types';
+import { Project, LetterSectionData, Occasion } from '@/lib/templates/types';
 import { Sparkles } from 'lucide-react';
 import { AiAssistantModal } from './AiAssistantModal';
 

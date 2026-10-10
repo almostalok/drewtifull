@@ -1,19 +1,23 @@
 import { NextResponse } from 'next/server';
-import { SAMPLE_PROJECTS } from '@/lib/sampleProjects';
-
-// In-memory cache for API requests during dev/server sessions
-const memoryProjects = [...SAMPLE_PROJECTS];
+import { getAllProjects, createProject } from '@/lib/server/repository';
+import { CreateProjectSchema } from '@/lib/validation';
 
 export async function GET() {
-  return NextResponse.json({ projects: memoryProjects });
+  try {
+    const projects = getAllProjects();
+    return NextResponse.json({ projects });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || 'Failed to fetch projects' }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    memoryProjects.unshift(body);
-    return NextResponse.json({ success: true, project: body });
-  } catch {
-    return NextResponse.json({ error: 'Invalid project payload' }, { status: 400 });
+    const validated = CreateProjectSchema.parse(body);
+    const newProject = createProject(validated);
+    return NextResponse.json({ success: true, project: newProject }, { status: 201 });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || 'Invalid project payload' }, { status: 400 });
   }
 }

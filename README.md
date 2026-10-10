@@ -7,86 +7,89 @@
 
 ## What is Drewtifull?
 
-**Drewtifull** is a personalized digital-gift platform designed to feel like:  
+**Drewtifull** is a personalized digital-gift and occasion microsite platform designed to feel like:  
 **Pinterest × digital scrapbook × editorial web design × romantic internet × premium creative studio.**
 
-It is built for intimacy, warmth, and handmade memories—avoiding generic SaaS dashboards, sterile card generators, and cookie-cutter website builders.
+It is built for intimacy, warmth, and handmade memories—avoiding generic SaaS dashboards, sterile card generators, and cookie-cutter website builders. Users select a template, personalize the story, upload photos, preview across viewports, publish to a unique URL, and share a keepsake link with someone special.
 
 ---
 
-## ✨ Core Features
+## ✨ Features & Architecture
 
-1. **Editorial Landing Page & Showcase**:
-   - Emotional hero statement with warm off-white and cream paper palette.
-   - Scrapbook-style polaroid compositions with washi tape accents.
-   - Occasion selector: *Birthday, Anniversary, Proposal, Friendship, Graduation, Farewell, Just Because, Something Else*.
-   - **Template Explorer** with dual filters (Occasions + Aesthetics: *Soft, Cute, Minimal, Cinematic, Scrapbook, Editorial, Romantic, Vintage, Dark Sky*).
-   - Interactive live gift simulator switching between real gifts.
+### 1. 10 Bespoke Birthday Templates
+Individually art-directed with distinct color palettes, typography, responsive layouts, photo arrangements, and decorative language:
+- **01 — Soft Garden (`soft-garden`)**: Cream & sage botanical backgrounds, pressed wildflowers, wax seal stationery letter, polaroid collage.
+- **02 — Film Diary (`film-diary`)**: 35mm grain, deep charcoal palette, vintage timestamps, contact sheet film strips, memory timeline, and intimate letters.
+- **03 — Scrapbook Birthday (`scrapbook-birthday`)**: Layered paper, washi tape, doodle arrows, sticker ephemera, inside jokes, and memory collage.
+- **04 — Minimal Editorial (`minimal-editorial`)**: Alabaster whitespace, high-contrast serif typography, poetic pull quotes, and timeless quiet luxury.
+- **05 — Cute & Cozy (`cute-and-cozy`)**: Warm pastel peach & pink, teddy bear & cherry doodles, sweet wishes note, and soft rounded compositions.
+- **06 — Vintage Newspaper (`vintage-newspaper`)**: Aged newsprint masthead, front-page headline banners, custom issue date, timeline chronicles, and editorial dispatches.
+- **07 — Dreamy Night (`dreamy-night`)**: Velvet midnight sky, glowing constellations, celestial star map with photo star nodes, and golden script.
+- **08 — Polaroid Wall (`polaroid-wall`)**: Linen & cork neutral, tilted polaroids with handwritten captions, washi tape pins, and captioned memories.
+- **09 — Pink Y2K (`pink-y2k`)**: Hot pink, glossy magenta, 3D extruded bubble typography, sparkle disco badges, and "Reasons You're Iconic".
+- **10 — Book / Letter Style (`book-letter`)**: Antique deckled paper, two-page book spread, chapter headings, Roman numerals, and literary dedication.
 
-2. **12 Handcrafted Template Concepts**:
-   - **01 — Soft Garden**: Flowers, handwritten notes, and soft morning sunlight.
-   - **02 — Film Diary**: 35mm grain, vintage timestamps, and cinematic nostalgia.
-   - **03 — Scrapbook Birthday**: Washi tape, polaroid scraps, stickers, and inside jokes.
-   - **04 — Digital Love Letter**: Quiet editorial poetry, generous whitespace, and intimate letters.
-   - **05 — Our Story**: An interactive romantic journey from the day we met until today.
-   - **06 — Before I Ask**: A cinematic proposal progression with heart-confetti celebration.
-   - **07 — Our Little Universe**: Midnight skies, stardust coordinates, and celestial photo star nodes.
-   - **08 — My Favorite Human**: Memes, chaos, inside jokes, and unwavering loyalty.
-   - **09 — Just Because**: No anniversary, no holiday. Simply because I love you today.
-   - **10 — Cute & Cozy**: Warm sweaters, hot cocoa, doodle hearts, and soft memories.
-   - **11 — Memory Journal**: Linen covers, pressed petals, and honest handwritten reflections.
-   - **12 — Farewell Memories**: Miles apart but never distant. Celebrating the memories we keep.
+### 2. Information Architecture & Routes
+- `/` — Editorial marketing homepage with live interactive gift simulator and featured collections
+- `/templates` — Full template library with search and dual filters (Occasion + Aesthetic)
+- `/templates/[occasion]` — Occasion-specific gallery (Birthday, Anniversary, Proposal, Friendship, etc.)
+- `/templates/[occasion]/[templateId]` — Interactive template preview with device viewport switcher
+- `/create` — 3-step creation wizard (Occasion → Template → Personalize)
+- `/editor/[id]` — 3-panel visual editor (Words, Photos, Story Sections, Aesthetic), viewport switcher, undo/redo, real-time autosave
+- `/preview/[projectId]` — Fullscreen private project preview
+- `/p/[slug]` — Published public microsite with SSR data fetching, Open Graph social tags, and ambient soundtrack player
+- `/dashboard` — Studio dashboard with project cards, draft/published status, duplication, and quick sharing
+- `/dashboard/projects/[projectId]` — Project management, custom slug editor, availability checker, and analytics
+- `/login` & `/signup` — Creator authentication and guest session support
+- `/settings` — Creator profile, privacy settings, and search engine indexability defaults
+- `/privacy` & `/terms` — Privacy guarantee and terms of service
 
-3. **Creation Flow**:
-   - 3-step intuitive wizard: Choose Occasion → Pick a Feeling (Template) → Personalize (Recipient name, relationship, message) → Instant Studio.
-
-4. **Studio & Live Editor**:
-   - **Real-Time Synchronous Renderer**: Same engine powers the editor preview and the published gift.
-   - **Responsive Viewport Switcher**: Instantly preview desktop, tablet (768px), or mobile phone (390px) layouts.
-   - **Photo Tray**: Drag-and-drop file upload, quick aesthetic preset photos, handwritten captions, and "Set as Hero" selection.
-   - **Story Sections Manager**: Reorder (`↑`/`↓`), customize, and add new sections (*Stationery Letter, Polaroid Collage, 35mm Film Strip, Timeline, Reasons I Love You, Favorite Things, Proposal Reveal, Star Map, Quote*).
-   - **Style Atmosphere**: Custom color palettes and typography pairings.
-   - **AI Writing Assistant**: Non-destructive helper with 6 emotional modes (*Make it sweeter, More romantic, Make it funnier, More poetic, Make it shorter, More personal*).
-
-5. **Ambient Soundtrack Player**:
-   - Discreet floating badge on published gifts.
-   - Curated acoustic, lofi, waltz, and starlight music box tracks with volume controls.
-
-6. **Publishing & Sharing**:
-   - One-click publishing: "Send it into the world ♡".
-   - Celebratory canvas confetti explosion.
-   - Permanent shareable URL (`/p/[slug]`).
-   - One-click copy link, WhatsApp share, and native Web Share API.
-   - **Printable Keepsake QR Card Modal**: Generates high-res QR codes for physical greeting cards, gifts, and letters.
-
-7. **My Drewtifulls Studio Dashboard**:
-   - Visual project gallery with status tags (*Published* / *Draft*).
-   - Edit, preview in new tab, duplicate, share, print QR card, and delete actions.
+### 3. Server Architecture & Persistence
+- **Dual Persistence Architecture**: High-performance local JSON repository (`.data/projects.json`) for zero-config offline and development use, and Prisma ORM with PostgreSQL for production deployments.
+- **Object Storage**: Cloudflare R2 / S3-compatible image upload interface with local fallback.
+- **Validation**: Strict schema validation powered by Zod for projects, assets, and slugs.
+- **Collision-Safe Slugs**: Collision avoidance and uniqueness guarantees on publishing.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router, Turbopack, React 19, TypeScript)
-- **Styling**: Vanilla CSS tokens with bespoke paper grain, washi tape, and polaroid effects (`globals.css`)
-- **Typography**: Google Fonts via `next/font/google` (*Cormorant Garamond*, *Playfair Display*, *Plus Jakarta Sans*, *Caveat*)
+- **Framework**: Next.js App Router (Turbopack, React 19, TypeScript)
+- **Styling**: Vanilla CSS tokens with paper grain and tactile ephemera (`globals.css`)
+- **Typography**: Google Fonts via `next/font/google` (*Cormorant Garamond*, *Playfair Display*, *Plus Jakarta Sans*, *Caveat*, *DynaPuff*, *Special Elite*)
+- **Database / ORM**: PostgreSQL with Prisma ORM (`prisma/schema.prisma`) + local repository engine
+- **Validation**: Zod
+- **Testing**: Vitest with unit, integration, and E2E lifecycle test suites
 - **Icons**: `lucide-react`
-- **Celebration Effects**: `canvas-confetti`
-- **QR Code Generation**: `qrcode`
+- **Effects**: `canvas-confetti`, `qrcode`
 
 ---
 
 ## 🚀 Running Locally
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Start development server
+# 2. Start development server
 npm run dev
 
-# Build for production
+# 3. Run automated test suite
+npm test
+
+# 4. Run TypeScript check
+npx tsc --noEmit
+
+# 5. Build for production
 npm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📖 Documentation
+- [Design System & Tokens](design.md)
+- [REST API Specifications](docs/api.md)
+- [Implementation Checklist](docs/checklist.md)
+- [Environment Variables](.env.example)

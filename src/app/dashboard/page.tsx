@@ -86,7 +86,29 @@ export default function DashboardPage() {
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <Link
+            href="/templates"
+            style={{
+              color: '#544D47',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              fontWeight: 500,
+            }}
+          >
+            Templates
+          </Link>
+          <Link
+            href="/settings"
+            style={{
+              color: '#544D47',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              fontWeight: 500,
+            }}
+          >
+            Settings
+          </Link>
           <Link
             href="/create"
             style={{
@@ -99,6 +121,7 @@ export default function DashboardPage() {
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
+              textDecoration: 'none',
               boxShadow: '0 2px 8px rgba(42, 36, 33, 0.2)',
             }}
           >
@@ -323,7 +346,12 @@ export default function DashboardPage() {
                           marginTop: '2px',
                         }}
                       >
-                        For {project.recipientName}
+                        <Link
+                          href={`/dashboard/projects/${project.id}`}
+                          style={{ color: '#2A2421', textDecoration: 'none' }}
+                        >
+                          For {project.recipientName}
+                        </Link>
                       </h3>
                       <p
                         style={{

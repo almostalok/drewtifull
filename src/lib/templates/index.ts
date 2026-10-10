@@ -98,7 +98,7 @@ export const TEMPLATES: Template[] = [
         id: 'sg-ending',
         type: 'ending',
         message: 'Here’s to another year of you ♡',
-        subtext: 'You make life so beautiful.',
+        subtext: 'Forever blooming, forever loved.',
         showDrewtifullBranding: true,
       },
     ],
@@ -142,6 +142,34 @@ export const TEMPLATES: Template[] = [
         cursiveName: 'Aanchal',
       },
       {
+        id: 'fd-timeline',
+        type: 'timeline',
+        title: 'Roll Timeline // Chapter by Chapter',
+        subtitle: 'unfiltered memory frames through the seasons',
+        events: [
+          {
+            date: 'Frame 01 · Autumn 2024',
+            title: 'The day we first laughed together',
+            description: 'Sitting on the park steps drinking matcha, realizing we would never run out of things to say.',
+          },
+          {
+            date: 'Frame 08 · Summer 2025',
+            title: 'Golden Hour by the Water',
+            description: 'Wind in your hair, listening to old records on a portable speaker until twilight set in.',
+          },
+          {
+            date: 'Frame 18 · Winter 2025',
+            title: 'Midnight Diner Talks',
+            description: 'Sharing hot coffee and cold fries, planning imaginary trips to Kyoto and Paris.',
+          },
+          {
+            date: 'Frame 24 · Today',
+            title: 'Another year of your light',
+            description: 'Celebrating the rarest, warmest soul on earth on your special day.',
+          },
+        ],
+      },
+      {
         id: 'fd-filmstrip',
         type: 'filmStrip',
         title: 'memories on film',
@@ -167,6 +195,19 @@ export const TEMPLATES: Template[] = [
             frameNumber: 'EXP 03',
           },
         ],
+      },
+      {
+        id: 'fd-letter',
+        type: 'letter',
+        greeting: 'Dear Aanchal,',
+        paragraphs: [
+          'Photographs can freeze a second in amber, but they can never completely hold the sound of your laugh or the warmth you bring into a cold room.',
+          'Every candid frame of this year has you at the center of it. Thank you for making ordinary afternoons feel like cinematic moments.',
+          'Happy Birthday to my favorite human in every timeline.'
+        ],
+        closing: 'Always captured in my heart,',
+        handwrittenSignature: 'With all my love ♡',
+        paperStyle: 'parchment',
       },
       {
         id: 'fd-ending',
@@ -259,6 +300,19 @@ export const TEMPLATES: Template[] = [
         ],
       },
       {
+        id: 'sb-letter',
+        type: 'letter',
+        greeting: 'Hey Birthday Queen!',
+        paragraphs: [
+          'If I had a sticker for every time you made me smile this year, I would have run out of paper six months ago.',
+          'You are the friend who makes chaotic days feel easy and ordinary days feel like memories I want to tape down forever.',
+          'Eat all the cake, dance to your favorite songs, and never stop being your wild, kind, brilliant self!'
+        ],
+        closing: 'Taped together forever,',
+        handwrittenSignature: 'Your Bestie Always ♡',
+        paperStyle: 'lined',
+      },
+      {
         id: 'sb-ending',
         type: 'ending',
         message: 'Here’s to more chaos, more memories, more you. Happy Birthday ♡',
@@ -310,6 +364,26 @@ export const TEMPLATES: Template[] = [
         quoteText: 'Some people make the world feel softer, just by being in it.',
         author: 'For you',
         subtext: 'Words that remind me of you every day',
+      },
+      {
+        id: 'me-polaroids',
+        type: 'polaroidCollage',
+        title: 'Selected Moments',
+        subtitle: 'simplicity & warmth preserved',
+        polaroids: [
+          {
+            url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+            caption: 'stillness & golden light',
+            rotation: 0,
+            washiColor: 'neutral',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+            caption: 'candid afternoon smile',
+            rotation: 0,
+            washiColor: 'neutral',
+          },
+        ],
       },
       {
         id: 'me-letter',
@@ -405,6 +479,18 @@ export const TEMPLATES: Template[] = [
         ],
       },
       {
+        id: 'cc-letter',
+        type: 'letter',
+        greeting: 'Dear cutie,',
+        paragraphs: [
+          'Wishing the warmest, cuddliest, sweetest birthday to the one who makes everything feel like a warm hug.',
+          'May your year be filled with delicious treats, sunny afternoons, and all the little cozy moments your heart desires!'
+        ],
+        closing: 'All my hugs and love,',
+        handwrittenSignature: 'Forever your friend ♡',
+        paperStyle: 'lined',
+      },
+      {
         id: 'cc-ending',
         type: 'ending',
         message: 'Here’s to another year of you, my favorite human. Happy Birthday ♡',
@@ -474,6 +560,19 @@ export const TEMPLATES: Template[] = [
         ],
       },
       {
+        id: 'vn-letter',
+        type: 'letter',
+        greeting: 'Special Dispatch to the Birthday Person:',
+        paragraphs: [
+          'EXTRA! EXTRA! READ ALL ABOUT IT! Today marks another remarkable year of an extraordinary human being.',
+          'Sources report that your laughter continues to brighten every room, and your kindness remains headline news wherever you go.',
+          'Here is wishing you the grandest edition of life yet.'
+        ],
+        closing: 'From the Editorial Desk,',
+        handwrittenSignature: 'With Highest Regard ♡',
+        paperStyle: 'parchment',
+      },
+      {
         id: 'vn-ending',
         type: 'ending',
         message: 'ANOTHER YEAR OF YOU, AND THE WORLD KEEPS WINNING ♡',
@@ -526,6 +625,32 @@ export const TEMPLATES: Template[] = [
         quoteText: 'Two wandering souls, caught in each other’s gravity.',
         author: 'Written in the stars',
         subtext: 'Happy Birthday to my favorite constellation',
+      },
+      {
+        id: 'dn-starmap',
+        type: 'starMap',
+        title: 'Our Constellation of Moments',
+        subtitle: 'every star holds a memory with you',
+        starQuote: 'The night sky never looked so bright until you smiled.',
+        coordinatesText: 'RA 05h 35m / Dec -05° 23′ · Celestial Coordinates',
+        photosAsStars: [
+          { url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80', label: 'First Stargaze', x: 25, y: 35 },
+          { url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80', label: 'Moonlit Talk', x: 70, y: 45 },
+          { url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80', label: 'Midnight Wish', x: 45, y: 75 },
+        ],
+      },
+      {
+        id: 'dn-letter',
+        type: 'letter',
+        greeting: 'Beneath the Starlight,',
+        paragraphs: [
+          'They say the atoms in our bodies were forged in ancient stars millions of years ago.',
+          'If that is true, then finding you in this vast universe was not an accident—it was gravity.',
+          'Happy Birthday to the most radiant constellation in my sky.'
+        ],
+        closing: 'Orbiting your warmth always,',
+        handwrittenSignature: 'Yours across the cosmos ♡',
+        paperStyle: 'parchment',
       },
       {
         id: 'dn-ending',
@@ -593,7 +718,27 @@ export const TEMPLATES: Template[] = [
             rotation: 2.2,
             washiColor: 'rose',
           },
+          {
+            url: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80',
+            caption: 'unplanned road trip adventures',
+            date: 'Winter',
+            rotation: -1.8,
+            washiColor: 'sage',
+          },
         ],
+      },
+      {
+        id: 'pw-letter',
+        type: 'letter',
+        greeting: 'Pinned to the wall with love:',
+        paragraphs: [
+          'Looking up at all these memories, I am reminded of how lucky I am to share life with you.',
+          'You bring color to grey days and make every room warmer just by stepping into it.',
+          'Here is to another year of unforgettable Polaroids!'
+        ],
+        closing: 'Always pinned in my heart,',
+        handwrittenSignature: 'With so much love ♡',
+        paperStyle: 'lined',
       },
       {
         id: 'pw-ending',
@@ -644,13 +789,47 @@ export const TEMPLATES: Template[] = [
       {
         id: 'y2k-reasons',
         type: 'reasons',
-        title: 'Things I love about you',
+        title: 'Reasons You Are Iconic',
         subtitle: 'certified top tier qualities',
         items: [
           { number: 1, title: 'Unmatched energy', text: 'You bring the sparkle everywhere you go.', doodle: '🪩' },
           { number: 2, title: 'Iconic playlists', text: 'Only the best throwback bangers.', doodle: '💿' },
           { number: 3, title: 'Chaos coordinator', text: 'Turning every plan into an unforgettable memory.', doodle: '💖' },
         ],
+      },
+      {
+        id: 'y2k-polaroids',
+        type: 'polaroidCollage',
+        title: 'Iconic Moments on Display',
+        subtitle: 'pure main character energy',
+        polaroids: [
+          {
+            url: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+            caption: 'living my best 2000s life',
+            date: '2026',
+            rotation: -2,
+            washiColor: 'rose',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+            caption: 'glitter, gloss, and smiles',
+            date: 'B-Day',
+            rotation: 3,
+            washiColor: 'gold',
+          },
+        ],
+      },
+      {
+        id: 'y2k-letter',
+        type: 'letter',
+        greeting: 'To the Most Iconic Human:',
+        paragraphs: [
+          'Happy Birthday to the one who brings 100% main character energy to every single day.',
+          'Never dim your sparkle, keep playing your tunes loud, and stay as effortlessly iconic as you are!',
+        ],
+        closing: 'Stay iconic,',
+        handwrittenSignature: 'Your Number One Fan ♡',
+        paperStyle: 'plain',
       },
       {
         id: 'y2k-ending',
@@ -699,6 +878,29 @@ export const TEMPLATES: Template[] = [
         cursiveName: 'Aanchal',
       },
       {
+        id: 'bl-timeline',
+        type: 'timeline',
+        title: 'Table of Contents // The Chapters',
+        subtitle: 'the story so far',
+        events: [
+          {
+            date: 'Chapter I',
+            title: 'How It Began',
+            description: 'A fortuitous beginning that turned two strangers into inseparable confidants.',
+          },
+          {
+            date: 'Chapter II',
+            title: 'Favourite Shared Moments',
+            description: 'Endless evenings lost in conversation, pages turned together in quiet comfort.',
+          },
+          {
+            date: 'Chapter III',
+            title: 'Looking Forward',
+            description: 'New unwritten chapters awaiting your wisdom, courage, and radiant smile.',
+          },
+        ],
+      },
+      {
         id: 'bl-letter',
         type: 'letter',
         greeting: 'Dear Aanchal,',
@@ -729,17 +931,17 @@ export const TEMPLATES: Template[] = [
     name: 'Our Story',
     tagline: 'An interactive romantic journey from the day we met until today',
     occasion: 'anniversary',
-    aesthetic: ['editorial', 'romantic', 'cinematic'],
-    description: 'Walk through the chapters of your love story: the first spark, the dates, and where you are headed next.',
+    aesthetic: ['romantic', 'editorial'],
+    description: 'A timeline-driven love story template celebrating milestones, inside jokes, and quiet moments.',
     previewImage: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
     theme: {
-      background: '#F7F3ED',
-      foreground: '#24201D',
-      accent: '#C46D4E',
-      accentSoft: '#F6EBE5',
-      paperTone: '#FDFBF7',
+      background: '#FDF7F4',
+      foreground: '#2C221E',
+      accent: '#B95B3B',
+      accentSoft: '#F8E7E0',
+      paperTone: '#FFFFFF',
       cardBackground: '#FFFFFF',
-      borderStyle: '1px solid rgba(196, 109, 78, 0.2)',
+      borderStyle: '1px solid rgba(185, 91, 59, 0.2)',
       fontFamilySerif: 'var(--font-serif)',
       fontFamilySans: 'var(--font-body)',
       fontFamilyHand: 'var(--font-cursive)',
@@ -749,18 +951,54 @@ export const TEMPLATES: Template[] = [
       {
         id: 'os-hero',
         type: 'hero',
-        title: 'Two Years with You',
-        subtitle: 'every chapter better than the last',
-        dateText: '730 days of us',
-        heroPhoto: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=80',
-        badgeText: 'Our Timeline',
+        title: 'Our Story,',
+        subtitle: 'every chapter with you has been my favorite.',
+        dateText: 'Anniversary Edition',
+        heroPhoto: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80',
+        badgeText: 'Years in Love ♡',
         layout: 'editorial-split',
+        cursiveName: 'My Love',
+      },
+      {
+        id: 'os-timeline',
+        type: 'timeline',
+        title: 'From Then to Now',
+        subtitle: 'the milestones that made us',
+        events: [
+          {
+            date: 'The First Hello',
+            title: 'Where it all started',
+            description: 'A rainy afternoon and a conversation that never stopped.',
+          },
+          {
+            date: 'One Year In',
+            title: 'Building our world',
+            description: 'Shared apartments, burnt dinners, and laughing until crying.',
+          },
+          {
+            date: 'Today',
+            title: 'Still my favorite person',
+            description: 'Loving you is the easiest choice I make every single morning.',
+          },
+        ],
+      },
+      {
+        id: 'os-letter',
+        type: 'letter',
+        greeting: 'To my forever,',
+        paragraphs: [
+          'Looking back at every year with you makes me realize that home is not a place—it is you.',
+          'Happy anniversary to my best friend and the love of my life.'
+        ],
+        closing: 'Yours for eternity,',
+        handwrittenSignature: 'Forever & Always ♡',
+        paperStyle: 'lined',
       },
       {
         id: 'os-ending',
         type: 'ending',
-        message: 'The best chapters of our story are the ones we haven’t written yet.',
-        subtext: 'Happy Anniversary, my darling.',
+        message: 'To all our tomorrows ♡',
+        subtext: 'Happy Anniversary my love.',
         showDrewtifullBranding: true,
       },
     ],
@@ -768,51 +1006,57 @@ export const TEMPLATES: Template[] = [
   {
     id: 'before-i-ask',
     name: 'Before I Ask',
-    tagline: 'A cinematic progression culminating in the most important question',
+    tagline: 'A cinematic proposal progression with heart-confetti celebration',
     occasion: 'proposal',
-    aesthetic: ['cinematic', 'romantic', 'editorial'],
-    description: 'Builds emotional anticipation step by step through memories before presenting the big question.',
+    aesthetic: ['romantic', 'cinematic'],
+    description: 'An emotional progression leading to the biggest question of your lives.',
     previewImage: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80',
     theme: {
-      background: '#F9F5F0',
-      foreground: '#231F1D',
-      accent: '#B8863A',
-      accentSoft: '#FAF3E5',
-      paperTone: '#FFFFFF',
-      cardBackground: '#FFFFFF',
-      borderStyle: '1px solid rgba(184, 134, 58, 0.25)',
+      background: '#0E0C0B',
+      foreground: '#FAF5EE',
+      accent: '#E5C378',
+      accentSoft: '#262018',
+      paperTone: '#171412',
+      cardBackground: '#171412',
+      borderStyle: '1px solid rgba(229, 195, 120, 0.3)',
       fontFamilySerif: 'var(--font-serif)',
       fontFamilySans: 'var(--font-body)',
       fontFamilyHand: 'var(--font-cursive)',
+      dark: true,
     },
     defaultMusicTrack: 'starlight-musicbox',
     defaultSections: [
       {
         id: 'bia-hero',
         type: 'hero',
-        title: 'There is something I need to ask you...',
-        subtitle: 'take a breath and scroll slowly with me ♡',
-        dateText: 'A very special moment',
+        title: 'Before I ask...',
+        subtitle: 'I want you to know why you are the only one for me.',
+        dateText: 'The Beginning of Forever',
         heroPhoto: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1000&q=80',
-        badgeText: 'Listen closely',
-        layout: 'centered',
+        badgeText: 'Forever Starts Today 💍',
+        layout: 'celestial',
+        cursiveName: 'My One & Only',
+      },
+      {
+        id: 'bia-reveal',
+        type: 'proposalReveal',
+        introTitle: 'Before I take this knee...',
+        memories: [
+          { text: 'From the first night we talked until sunrise...' },
+          { text: 'To every quiet breakfast where I realized I never want to wake up without you...' },
+        ],
+        suspenseText: 'There is only one question left to ask.',
+        questionText: 'Will you marry me?',
+        celebrationTitle: 'SHE SAID YES! ♡',
+        celebrationMessage: 'Here is to a lifetime of adventures, late night talks, and holding hands forever.',
       },
       {
         id: 'bia-ending',
         type: 'ending',
-        message: 'Forever and always, from this day forward.',
-        subtext: 'Our next chapter starts now ♡',
+        message: 'Forever begins today ♡',
+        subtext: 'Two souls, one life together.',
         showDrewtifullBranding: true,
       },
     ],
   },
 ];
-
-export function getTemplateById(id: string): Template | undefined {
-  return TEMPLATES.find((t) => t.id === id);
-}
-
-export function getTemplatesByOccasion(occasion: string): Template[] {
-  if (occasion === 'all') return TEMPLATES;
-  return TEMPLATES.filter((t) => t.occasion === occasion);
-}

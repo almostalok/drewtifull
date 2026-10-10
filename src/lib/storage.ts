@@ -12,7 +12,6 @@ export function getStoredProjects(): Project[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) {
-      // Seed with initial sample projects
       localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE_PROJECTS));
       return SAMPLE_PROJECTS;
     }
@@ -44,7 +43,36 @@ export function saveProject(project: Project): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
   } catch (e) {
-    console.error('Failed to save project:', e);
+    console.error('Failed to save project to localStorage:', e);
+  }
+
+  // Non-blocking sync with server repository
+  try {
+    fetch(`/api/projects/${project.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(project),
+    })
+      .then((res) => {
+        if (res.status === 404) {
+          // If not found on server, create it
+          return fetch('/api/projects', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              templateId: project.templateId,
+              recipientName: project.recipientName,
+              occasion: project.occasion,
+              relationship: project.relationship,
+            }),
+          });
+        }
+      })
+      .catch(() => {
+        // Offline / background fallback
+      });
+  } catch {
+    // Network errors are non-fatal for local state
   }
 }
 
@@ -55,8 +83,7 @@ export function getProjectById(id: string): Project | undefined {
 
 export function getPublishedProjectBySlug(slug: string): Project | undefined {
   const projects = getStoredProjects();
-  // match either slug or id
-  return projects.find((p) => p.slug === slug || p.id === slug);
+  return projects.find((p) => (p.slug === slug || p.id === slug) && p.status === 'published');
 }
 
 export function createNewProject(
@@ -104,23 +131,71 @@ export function createNewProject(
   };
 
   saveProject(newProject);
+
+  // Sync to server
+  try {
+    fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        templateId: newProject.templateId,
+        recipientName: newProject.recipientName,
+        occasion: newProject.occasion,
+        relationship: newProject.relationship,
+        customMessage,
+      }),
+    }).catch(() => {});
+  } catch {}
+
   return newProject;
 }
 
-export function publishProject(id: string): Project | undefined {
+export function publishProject(id: string, customSlug?: string): Project | undefined {
   const project = getProjectById(id);
   if (!project) return undefined;
 
   const published: Project = {
     ...project,
+    slug: customSlug || project.slug,
     status: 'published',
-    publishedAt: new Date().toISOString(),
+    publishedAt: project.publishedAt || new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    views: project.views || 1,
+    views: Math.max(1, project.views || 1),
+    shareUrl: `/p/${customSlug || project.slug}`,
   };
 
   saveProject(published);
+
+  try {
+    fetch(`/api/projects/${id}/publish`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug: published.slug }),
+    }).catch(() => {});
+  } catch {}
+
   return published;
+}
+
+export function unpublishProject(id: string): Project | undefined {
+  const project = getProjectById(id);
+  if (!project) return undefined;
+
+  const unpublished: Project = {
+    ...project,
+    status: 'draft',
+    updatedAt: new Date().toISOString(),
+  };
+
+  saveProject(unpublished);
+
+  try {
+    fetch(`/api/projects/${id}/unpublish`, {
+      method: 'POST',
+    }).catch(() => {});
+  } catch {}
+
+  return unpublished;
 }
 
 export function deleteProject(id: string): void {
@@ -128,6 +203,12 @@ export function deleteProject(id: string): void {
   const current = getStoredProjects();
   const filtered = current.filter((p) => p.id !== id);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+
+  try {
+    fetch(`/api/projects/${id}`, {
+      method: 'DELETE',
+    }).catch(() => {});
+  } catch {}
 }
 
 export function duplicateProject(id: string): Project | undefined {
@@ -147,5 +228,12 @@ export function duplicateProject(id: string): Project | undefined {
   };
 
   saveProject(copy);
+
+  try {
+    fetch(`/api/projects/${id}/duplicate`, {
+      method: 'POST',
+    }).catch(() => {});
+  } catch {}
+
   return copy;
 }

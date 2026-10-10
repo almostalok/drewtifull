@@ -169,16 +169,17 @@ export default function LandingPage() {
           >
             My Gifts
           </Link>
-          <a
-            href="#templates"
+          <Link
+            href="/templates"
             style={{
               fontSize: '0.92rem',
               color: '#5A524B',
               fontWeight: 500,
+              textDecoration: 'none',
             }}
           >
             Templates
-          </a>
+          </Link>
           <Link
             href="/create"
             style={{
@@ -285,8 +286,8 @@ export default function LandingPage() {
                 <ArrowRight size={18} />
               </Link>
 
-              <a
-                href="#templates"
+              <Link
+                href="/templates"
                 style={{
                   backgroundColor: '#FFFFFF',
                   border: '1px solid rgba(60, 45, 35, 0.15)',
@@ -301,7 +302,7 @@ export default function LandingPage() {
                 }}
               >
                 Explore templates
-              </a>
+              </Link>
             </div>
 
             {/* Handwritten Note Accent */}
@@ -1101,10 +1102,12 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '20px', fontSize: '0.9rem', color: '#6A625A' }}>
-          <Link href="/dashboard">My Studio</Link>
-          <a href="#templates">Templates</a>
-          <Link href="/create">Create Gift</Link>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', fontSize: '0.9rem', color: '#6A625A' }}>
+          <Link href="/dashboard" style={{ color: '#6A625A', textDecoration: 'none' }}>My Studio</Link>
+          <Link href="/templates" style={{ color: '#6A625A', textDecoration: 'none' }}>Templates</Link>
+          <Link href="/create" style={{ color: '#6A625A', textDecoration: 'none' }}>Create Gift</Link>
+          <Link href="/privacy" style={{ color: '#6A625A', textDecoration: 'none' }}>Privacy</Link>
+          <Link href="/terms" style={{ color: '#6A625A', textDecoration: 'none' }}>Terms</Link>
         </div>
       </footer>
     </div>

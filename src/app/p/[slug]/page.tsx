@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, use } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { Project } from '@/lib/templates/types';
 import { getPublishedProjectBySlug } from '@/lib/storage';
 import { TEMPLATES } from '@/lib/templates';
@@ -13,8 +13,37 @@ export default function PublishedGiftPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = use(params);
-  const [project] = useState<Project | null>(() => getPublishedProjectBySlug(resolvedParams.slug));
-  const loading = false;
+  const [project, setProject] = useState<Project | null>(() => getPublishedProjectBySlug(resolvedParams.slug) ?? null);
+  const [loading, setLoading] = useState<boolean>(!project);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchPublished() {
+      try {
+        const res = await fetch(`/api/published/${resolvedParams.slug}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted && data.project) {
+            setProject(data.project);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching published gift:', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+
+    if (!project) {
+      fetchPublished();
+    } else {
+      setLoading(false);
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [resolvedParams.slug, project]);
 
   if (loading) {
     return (
@@ -53,7 +82,7 @@ export default function PublishedGiftPage({
     );
   }
 
-  if (!project) {
+  if (!project || project.status !== 'published') {
     return (
       <div
         style={{
@@ -89,6 +118,7 @@ export default function PublishedGiftPage({
             padding: '12px 28px',
             borderRadius: '999px',
             fontSize: '0.92rem',
+            textDecoration: 'none',
           }}
         >
           Explore Drewtifull ♡

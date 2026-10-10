@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, use } from 'react';
+import React, { useState, useEffect, useCallback, use } from 'react';
+import { useRouter } from 'next/navigation';
 import { Project } from '@/lib/templates/types';
 import { getProjectById, saveProject, publishProject } from '@/lib/storage';
 import { TEMPLATES } from '@/lib/templates';
@@ -13,7 +14,7 @@ import { TemplateRenderer } from '@/components/renderer/TemplateRenderer';
 import { ShareModal } from '@/components/ui/ShareModal';
 import { QrCodeModal } from '@/components/ui/QrCodeModal';
 import confetti from 'canvas-confetti';
-import { Sparkles, Layers, Palette } from 'lucide-react';
+import { Sparkles, Layers, Palette, Edit3, Eye, SlidersHorizontal } from 'lucide-react';
 
 export default function EditorPage({
   params,
@@ -22,14 +23,102 @@ export default function EditorPage({
 }) {
   const resolvedParams = use(params);
   const router = useRouter();
+
   const [project, setProject] = useState<Project | null>(() => {
     return getProjectById(resolvedParams.id) || getProjectById('proj_aanchal_bday') || null;
   });
+
+  // History stack for Undo and Redo
+  const [history, setHistory] = useState<Project[]>(() => (project ? [project] : []));
+  const [historyIndex, setHistoryIndex] = useState<number>(0);
+
   const [activeTab, setActiveTab] = useState<'content' | 'photos' | 'sections' | 'style'>('content');
   const [viewportMode, setViewportMode] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const [isSaving, setIsSaving] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+  const [isMobilePanelOpen, setIsMobilePanelOpen] = useState(true);
+
+  // Fetch project from server if not found in local storage
+  useEffect(() => {
+    if (!project) {
+      fetch(`/api/projects/${resolvedParams.id}`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (data?.project) {
+            setProject(data.project);
+            setHistory([data.project]);
+            setHistoryIndex(0);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [resolvedParams.id, project]);
+
+  // Update project helper with history snapshot
+  const updateProject = useCallback(
+    (updates: Partial<Project>, recordHistory = true) => {
+      if (!project) return;
+      setIsSaving(true);
+      const updated: Project = {
+        ...project,
+        ...updates,
+        updatedAt: new Date().toISOString(),
+      };
+
+      setProject(updated);
+      saveProject(updated);
+
+      if (recordHistory) {
+        setHistory((prev) => {
+          const trimmed = prev.slice(0, historyIndex + 1);
+          return [...trimmed, updated];
+        });
+        setHistoryIndex((prev) => prev + 1);
+      }
+
+      setTimeout(() => setIsSaving(false), 500);
+    },
+    [project, historyIndex]
+  );
+
+  // Undo and Redo handlers
+  const handleUndo = useCallback(() => {
+    if (historyIndex > 0) {
+      const prevProject = history[historyIndex - 1];
+      setHistoryIndex((prev) => prev - 1);
+      setProject(prevProject);
+      saveProject(prevProject);
+    }
+  }, [historyIndex, history]);
+
+  const handleRedo = useCallback(() => {
+    if (historyIndex < history.length - 1) {
+      const nextProject = history[historyIndex + 1];
+      setHistoryIndex((prev) => prev + 1);
+      setProject(nextProject);
+      saveProject(nextProject);
+    }
+  }, [historyIndex, history]);
+
+  // Keyboard shortcut listener for Ctrl+Z and Ctrl+Y
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        handleUndo();
+      } else if (
+        ((e.ctrlKey || e.metaKey) && e.key === 'y') ||
+        ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'Z')
+      ) {
+        e.preventDefault();
+        handleRedo();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleUndo, handleRedo]);
 
   if (!project) {
     return (
@@ -52,18 +141,6 @@ export default function EditorPage({
 
   const template =
     TEMPLATES.find((t) => t.id === project.templateId) || TEMPLATES[0];
-
-  const updateProject = (updates: Partial<Project>) => {
-    setIsSaving(true);
-    const updated = {
-      ...project,
-      ...updates,
-      updatedAt: new Date().toISOString(),
-    };
-    setProject(updated);
-    saveProject(updated);
-    setTimeout(() => setIsSaving(false), 400);
-  };
 
   const updateSection = (sectionId: string, updatedFields: Record<string, unknown>) => {
     const updatedSections = project.sections.map((sec) =>
@@ -117,22 +194,27 @@ export default function EditorPage({
         onPublish={handlePublish}
         onOpenShareModal={() => setIsShareModalOpen(true)}
         isSaving={isSaving}
+        canUndo={historyIndex > 0}
+        canRedo={historyIndex < history.length - 1}
+        onUndo={handleUndo}
+        onRedo={handleRedo}
       />
 
       {/* Main Workspace: Left Controls + Center Live Preview */}
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', backgroundColor: '#F3EFEA' }}>
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', backgroundColor: '#F3EFEA', position: 'relative' }}>
         {/* Left Side: Editorial Creator Controls */}
         <aside
+          className="editor-sidebar"
           style={{
             width: '420px',
             maxWidth: '100%',
             backgroundColor: '#FAF7F2',
             borderRight: '1px solid rgba(60, 45, 35, 0.1)',
-            display: 'flex',
+            display: isMobilePanelOpen ? 'flex' : 'none',
             flexDirection: 'column',
             overflow: 'hidden',
             flexShrink: 0,
-            zIndex: 10,
+            zIndex: 20,
           }}
         >
           {/* Tabs navigation */}
@@ -149,11 +231,14 @@ export default function EditorPage({
               onClick={() => setActiveTab('content')}
               style={{
                 padding: '12px 6px',
+                border: 'none',
+                backgroundColor: 'transparent',
                 borderBottom: activeTab === 'content' ? '2px solid #C97A6E' : 'none',
                 color: activeTab === 'content' ? '#C97A6E' : '#7A726A',
                 fontSize: '0.82rem',
                 fontWeight: 600,
                 textAlign: 'center',
+                cursor: 'pointer',
               }}
             >
               Words
@@ -164,11 +249,14 @@ export default function EditorPage({
               onClick={() => setActiveTab('photos')}
               style={{
                 padding: '12px 6px',
+                border: 'none',
+                backgroundColor: 'transparent',
                 borderBottom: activeTab === 'photos' ? '2px solid #C97A6E' : 'none',
                 color: activeTab === 'photos' ? '#C97A6E' : '#7A726A',
                 fontSize: '0.82rem',
                 fontWeight: 600,
                 textAlign: 'center',
+                cursor: 'pointer',
               }}
             >
               Photos
@@ -179,11 +267,14 @@ export default function EditorPage({
               onClick={() => setActiveTab('sections')}
               style={{
                 padding: '12px 6px',
+                border: 'none',
+                backgroundColor: 'transparent',
                 borderBottom: activeTab === 'sections' ? '2px solid #C97A6E' : 'none',
                 color: activeTab === 'sections' ? '#C97A6E' : '#7A726A',
                 fontSize: '0.82rem',
                 fontWeight: 600,
                 textAlign: 'center',
+                cursor: 'pointer',
               }}
             >
               Story
@@ -194,11 +285,14 @@ export default function EditorPage({
               onClick={() => setActiveTab('style')}
               style={{
                 padding: '12px 6px',
+                border: 'none',
+                backgroundColor: 'transparent',
                 borderBottom: activeTab === 'style' ? '2px solid #C97A6E' : 'none',
                 color: activeTab === 'style' ? '#C97A6E' : '#7A726A',
                 fontSize: '0.82rem',
                 fontWeight: 600,
                 textAlign: 'center',
+                cursor: 'pointer',
               }}
             >
               Aesthetic

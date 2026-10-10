@@ -1,0 +1,97 @@
+// Prisma schema for Drewtifull
+// Configured for PostgreSQL with local development flexibility
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  avatarUrl String?
+  projects  Project[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("users")
+}
+
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Project {
+  id                 String         @id @default(cuid())
+  ownerId            String?
+  owner              User?          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  projectName        String?
+  recipientName      String
+  creatorName        String?
+  relationship       String         @default("Special Someone")
+  occasion           String         @default("birthday")
+  templateId         String
+  status             ProjectStatus  @default(DRAFT)
+  slug               String         @unique
+  date               String?
+  views              Int            @default(0)
+  
+  // JSON validated project state
+  contentJson        Json           // Sections, text, layout
+  themeCustomization Json?          // Color & font overrides
+  musicTrack         Json?          // Audio track config
+  privacySettings    Json?          // Password, search engine indexable
+  
+  assets             ProjectAsset[]
+  
+  publishedAt        DateTime?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  @@index([ownerId])
+  @@index([slug])
+  @@index([status])
+  @@map("projects")
+}
+
+model ProjectAsset {
+  id               String   @id @default(cuid())
+  projectId        String
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  storageKey       String
+  url              String
+  originalFilename String?
+  mimeType         String
+  fileSize         Int
+  width            Int?
+  height           Int?
+  caption          String?
+  isHero           Boolean  @default(false)
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+
+  @@index([projectId])
+  @@map("project_assets")
+}
+
+model TemplateRegistry {
+  id                String   @id
+  name              String
+  occasion          String
+  description       String
+  tagline           String?
+  aestheticTags     String[]
+  previewImage      String
+  configuration     Json
+  isPublished       Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("templates")
+}

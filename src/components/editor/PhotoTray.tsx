@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { PhotoItem } from '@/lib/templates/types';
-import { UploadCloud, Trash2, Star, Sparkles } from 'lucide-react';
+import { UploadCloud, Trash2, Star, Sparkles, ArrowUp, ArrowDown, Crop, AlertCircle } from 'lucide-react';
 
 function createPhotoId() {
   return `photo_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
@@ -10,6 +10,7 @@ function createPhotoId() {
 
 interface PhotoTrayProps {
   photos: PhotoItem[];
+  projectId?: string;
   onChange: (photos: PhotoItem[]) => void;
   onSetHero: (url: string) => void;
 }
@@ -42,21 +43,69 @@ const PRESET_MEMORIES: Array<{ title: string; url: string; caption: string }> = 
   },
 ];
 
-export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
+export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayProps) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const handleFiles = (files: FileList | null) => {
+  const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
+    setUploadError(null);
 
-    Array.from(files).forEach((file) => {
-      if (!file.type.startsWith('image/')) return;
+    const fileList = Array.from(files);
 
+    for (const file of fileList) {
+      if (!file.type.startsWith('image/')) {
+        setUploadError('Only image files (JPG, PNG, WebP) are supported.');
+        continue;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        setUploadError(`"${file.name}" exceeds the 10MB limit.`);
+        continue;
+      }
+
+      // If projectId exists, attempt real server upload
+      if (projectId) {
+        setIsUploading(true);
+        try {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('caption', file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '));
+
+          const res = await fetch(`/api/projects/${projectId}/assets/upload`, {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const newPhoto: PhotoItem = {
+              id: data.asset.id || createPhotoId(),
+              url: data.asset.url,
+              caption: data.asset.caption,
+              aspect: 'portrait',
+              isHero: photos.length === 0,
+            };
+            const updated = [...photos, newPhoto];
+            onChange(updated);
+            if (photos.length === 0) onSetHero(data.asset.url);
+            setIsUploading(false);
+            continue;
+          }
+        } catch {
+          // Fall back to client data URL
+        }
+        setIsUploading(false);
+      }
+
+      // Local FileReader fallback
       const reader = new FileReader();
       reader.onload = (e) => {
         const resultUrl = e.target?.result as string;
         const newPhoto: PhotoItem = {
-          id: `photo_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+          id: createPhotoId(),
           url: resultUrl,
           caption: file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
           aspect: 'portrait',
@@ -70,7 +119,7 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
         }
       };
       reader.readAsDataURL(file);
-    });
+    }
   };
 
   const handlePresetAdd = (preset: { url: string; caption: string }) => {
@@ -100,8 +149,43 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
     onChange(updated);
   };
 
+  const handleAspectChange = (id: string, aspect: 'portrait' | 'landscape' | 'square') => {
+    const updated = photos.map((p) =>
+      p.id === id ? { ...p, aspect } : p
+    );
+    onChange(updated);
+  };
+
+  const handleMove = (index: number, direction: 'up' | 'down') => {
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= photos.length) return;
+    const reordered = [...photos];
+    const [moved] = reordered.splice(index, 1);
+    reordered.splice(targetIndex, 0, moved);
+    onChange(reordered);
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      {/* Upload Error Banner */}
+      {uploadError && (
+        <div
+          style={{
+            backgroundColor: '#FDECEB',
+            color: '#B94B3B',
+            padding: '10px 14px',
+            borderRadius: '8px',
+            fontSize: '0.85rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
+          <AlertCircle size={16} />
+          <span>{uploadError}</span>
+        </div>
+      )}
+
       {/* Large Drop Zone */}
       <div
         onDragOver={(e) => {
@@ -131,7 +215,7 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
           ref={fileInputRef}
           type="file"
           multiple
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp,image/gif"
           style={{ display: 'none' }}
           onChange={(e) => handleFiles(e.target.files)}
         />
@@ -161,10 +245,10 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
             marginBottom: '4px',
           }}
         >
-          Bring your memories.
+          {isUploading ? 'Uploading to memory vault...' : 'Bring your memories.'}
         </h4>
         <p style={{ fontSize: '0.82rem', color: '#8A8077', maxWidth: '280px', margin: '0 auto' }}>
-          Drop your favorite photos here or tap to select from device. We will automatically arrange them.
+          Drop photos here or tap to pick from device (max 10MB each).
         </p>
       </div>
 
@@ -196,6 +280,7 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
                 padding: '4px 10px',
                 fontSize: '0.78rem',
                 color: '#4A423B',
+                cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '4px',
@@ -222,76 +307,164 @@ export function PhotoTray({ photos, onChange, onSetHero }: PhotoTrayProps) {
             Photos in this gift ({photos.length})
           </h5>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {photos.map((photo) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {photos.map((photo, idx) => (
               <div
                 key={photo.id}
                 style={{
                   backgroundColor: '#FFFFFF',
                   border: '1px solid rgba(60, 45, 35, 0.1)',
-                  borderRadius: '8px',
-                  padding: '10px',
+                  borderRadius: '10px',
+                  padding: '12px',
                   display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
+                  flexDirection: 'column',
+                  gap: '8px',
                 }}
               >
-                <div
-                  style={{
-                    width: '52px',
-                    height: '52px',
-                    borderRadius: '4px',
-                    overflow: 'hidden',
-                    flexShrink: 0,
-                    backgroundColor: '#F3EFEA',
-                  }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={photo.url}
-                    alt={photo.caption || 'Memory'}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                </div>
-
-                <div style={{ flex: 1 }}>
-                  <input
-                    type="text"
-                    value={photo.caption || ''}
-                    placeholder="Add a handwritten caption..."
-                    onChange={(e) => handleCaptionChange(photo.id, e.target.value)}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div
                     style={{
-                      width: '100%',
-                      padding: '4px 8px',
-                      border: '1px solid rgba(60, 45, 35, 0.12)',
-                      borderRadius: '4px',
-                      fontSize: '0.85rem',
-                      fontFamily: 'var(--font-hand)',
-                      color: '#2A2421',
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                      backgroundColor: '#F3EFEA',
+                      position: 'relative',
                     }}
-                  />
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={photo.url}
+                      alt={photo.caption || 'Memory'}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                    {photo.isHero && (
+                      <span
+                        style={{
+                          position: 'absolute',
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          backgroundColor: '#B9863B',
+                          color: '#FFFFFF',
+                          fontSize: '0.6rem',
+                          textAlign: 'center',
+                          padding: '1px 0',
+                          fontWeight: 600,
+                        }}
+                      >
+                        HERO
+                      </span>
+                    )}
+                  </div>
+
+                  <div style={{ flex: 1 }}>
+                    <input
+                      type="text"
+                      value={photo.caption || ''}
+                      placeholder="Add a handwritten caption..."
+                      onChange={(e) => handleCaptionChange(photo.id, e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '6px 10px',
+                        border: '1px solid rgba(60, 45, 35, 0.12)',
+                        borderRadius: '6px',
+                        fontSize: '0.85rem',
+                        fontFamily: 'var(--font-hand)',
+                        color: '#2A2421',
+                        backgroundColor: '#FAF7F2',
+                      }}
+                    />
+                  </div>
+
+                  {/* Actions: Move Up, Move Down, Set Hero, Delete */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                    <button
+                      type="button"
+                      disabled={idx === 0}
+                      onClick={() => handleMove(idx, 'up')}
+                      title="Move Up"
+                      style={{
+                        color: idx === 0 ? '#D6D0CA' : '#544D47',
+                        padding: '4px',
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: idx === 0 ? 'default' : 'pointer',
+                      }}
+                    >
+                      <ArrowUp size={14} />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={idx === photos.length - 1}
+                      onClick={() => handleMove(idx, 'down')}
+                      title="Move Down"
+                      style={{
+                        color: idx === photos.length - 1 ? '#D6D0CA' : '#544D47',
+                        padding: '4px',
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: idx === photos.length - 1 ? 'default' : 'pointer',
+                      }}
+                    >
+                      <ArrowDown size={14} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onSetHero(photo.url)}
+                      title="Set as Hero cover photo"
+                      style={{
+                        color: photo.isHero ? '#B9863B' : '#B5ACA4',
+                        padding: '4px',
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Star size={16} fill={photo.isHero ? '#B9863B' : 'none'} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(photo.id)}
+                      title="Remove this photo"
+                      style={{
+                        color: '#B5ACA4',
+                        padding: '4px',
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => onSetHero(photo.url)}
-                  title="Make this the Hero cover photo"
-                  style={{
-                    color: photo.isHero ? '#B9863B' : '#B5ACA4',
-                    padding: '6px',
-                  }}
-                >
-                  <Star size={16} fill={photo.isHero ? '#B9863B' : 'none'} />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleDelete(photo.id)}
-                  title="Remove this photo"
-                  style={{ color: '#B5ACA4', padding: '6px' }}
-                >
-                  <Trash2 size={16} />
-                </button>
+                {/* Aspect ratio control */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: '#8A8077' }}>
+                  <span>Ratio:</span>
+                  {(['portrait', 'landscape', 'square'] as const).map((asp) => (
+                    <button
+                      key={asp}
+                      type="button"
+                      onClick={() => handleAspectChange(photo.id, asp)}
+                      style={{
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        border: '1px solid',
+                        borderColor: (photo.aspect || 'portrait') === asp ? '#2A2421' : 'rgba(60, 45, 35, 0.12)',
+                        backgroundColor: (photo.aspect || 'portrait') === asp ? '#2A2421' : '#FFFFFF',
+                        color: (photo.aspect || 'portrait') === asp ? '#FFFFFF' : '#6E655E',
+                        fontSize: '0.72rem',
+                        cursor: 'pointer',
+                        textTransform: 'capitalize',
+                      }}
+                    >
+                      {asp}
+                    </button>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
