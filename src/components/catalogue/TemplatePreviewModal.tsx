@@ -4,12 +4,24 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { X, ExternalLink, ArrowRight } from 'lucide-react';
 import { CatalogueTemplateItem } from './types';
-import { TemplatePreviewRenderer } from './TemplatePreviews';
 
 interface TemplatePreviewModalProps {
   template: CatalogueTemplateItem | null;
   onClose: () => void;
 }
+
+const THUMBNAIL_MAP: Record<string, string> = {
+  'soft-garden': '/templates/soft_garden.jpg',
+  'film-diary': '/templates/film_diary.jpg',
+  'scrapbook-birthday': '/templates/scrapbook_birthday.jpg',
+  'minimal-editorial': '/templates/minimal_editorial.jpg',
+  'cute-and-cozy': '/templates/cute_cozy.jpg',
+  'vintage-newspaper': '/templates/vintage_newspaper.jpg',
+  'dreamy-night': '/templates/dreamy_night.jpg',
+  'polaroid-wall': '/templates/polaroid_wall.jpg',
+  'pink-y2k': '/templates/pink_y2k.jpg',
+  'book-letter': '/templates/book_letter.jpg',
+};
 
 export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModalProps) {
   useEffect(() => {
@@ -29,6 +41,10 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
   }, [template, onClose]);
 
   if (!template) return null;
+
+  const imgSrc =
+    THUMBNAIL_MAP[template.id] ||
+    `/templates/${template.id.replace(/-/g, '_')}.jpg`;
 
   return (
     <div
@@ -52,12 +68,12 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
           borderRadius: '24px',
           border: '1px solid #EADBD3',
           boxShadow: '0 24px 60px rgba(0, 0, 0, 0.2)',
-          maxWidth: '720px',
+          maxWidth: '540px',
           width: '100%',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          maxHeight: '90vh',
+          maxHeight: '92vh',
           animation: 'scaleUp 0.22s ease',
         }}
         onClick={(e) => e.stopPropagation()}
@@ -65,7 +81,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
         {/* Modal Header */}
         <div
           style={{
-            padding: '20px 24px',
+            padding: '16px 20px',
             borderBottom: '1px solid #EADBD3',
             display: 'flex',
             alignItems: 'center',
@@ -78,7 +94,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
               <h2
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.35rem',
+                  fontSize: '1.25rem',
                   color: '#292321',
                   margin: 0,
                   fontWeight: 600,
@@ -88,7 +104,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
               </h2>
               <span
                 style={{
-                  fontSize: '0.75rem',
+                  fontSize: '0.72rem',
                   backgroundColor: '#F5DCD5',
                   color: '#A84D58',
                   borderRadius: '999px',
@@ -99,7 +115,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
                 Birthday
               </span>
             </div>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.86rem', color: '#81746D' }}>
+            <p style={{ margin: '3px 0 0 0', fontSize: '0.82rem', color: '#81746D' }}>
               {template.description}
             </p>
           </div>
@@ -125,6 +141,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = 'transparent';
             }}
+            aria-label="Close modal"
           >
             <X size={20} />
           </button>
@@ -133,21 +150,21 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
         {/* Modal Preview Body */}
         <div
           style={{
-            padding: '24px',
+            padding: '20px',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '20px',
+            gap: '16px',
             backgroundColor: '#FAF5ED',
           }}
         >
-          {/* Card preview representation in large view */}
+          {/* Card preview image in crisp large view */}
           <div
             style={{
               width: '100%',
-              maxWidth: '380px',
-              aspectRatio: '4 / 4.6',
+              maxWidth: '360px',
+              aspectRatio: '184 / 170',
               borderRadius: '16px',
               overflow: 'hidden',
               boxShadow: '0 12px 32px rgba(41, 35, 33, 0.12)',
@@ -155,21 +172,31 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
               backgroundColor: '#FFFFFF',
             }}
           >
-            <TemplatePreviewRenderer templateId={template.id} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imgSrc}
+              alt={template.fullName}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
           </div>
 
           {/* Tags list */}
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' }}>
             {template.tags.map((t) => (
               <span
                 key={t}
                 style={{
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   color: '#544D47',
                   backgroundColor: '#FFFFFF',
                   border: '1px solid #EADBD3',
                   borderRadius: '999px',
-                  padding: '4px 12px',
+                  padding: '3px 10px',
                 }}
               >
                 {t}
@@ -181,7 +208,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
         {/* Modal Footer Actions */}
         <div
           style={{
-            padding: '16px 24px',
+            padding: '14px 20px',
             borderTop: '1px solid #EADBD3',
             display: 'flex',
             alignItems: 'center',
@@ -193,7 +220,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
             href={`/templates/birthday/${template.id}`}
             style={{
               color: '#544D47',
-              fontSize: '0.88rem',
+              fontSize: '0.86rem',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
@@ -201,7 +228,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
               fontWeight: 500,
             }}
           >
-            <span>Open full live demo</span>
+            <span>Open live demo</span>
             <ExternalLink size={14} />
           </Link>
 
@@ -211,8 +238,8 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
               backgroundColor: '#292321',
               color: '#FFF8F2',
               borderRadius: '999px',
-              padding: '10px 24px',
-              fontSize: '0.88rem',
+              padding: '9px 20px',
+              fontSize: '0.86rem',
               fontWeight: 500,
               textDecoration: 'none',
               display: 'inline-flex',
@@ -222,7 +249,7 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
             }}
           >
             <span>Use this template</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={15} />
           </Link>
         </div>
       </div>

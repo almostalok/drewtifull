@@ -31,20 +31,22 @@ export function CatalogueFilters({ activeFilter, onFilterChange }: CatalogueFilt
   return (
     <div
       style={{
-        maxWidth: '1560px',
+        maxWidth: '1440px',
         margin: '0 auto',
-        padding: '16px 36px 24px 36px',
+        padding: '2px 44px 10px 44px',
         overflowX: 'auto',
         scrollbarWidth: 'none',
         msOverflowStyle: 'none',
         WebkitOverflowScrolling: 'touch',
+        width: '100%',
+        boxSizing: 'border-box',
       }}
     >
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: '8px',
           minWidth: 'max-content',
         }}
       >
@@ -57,8 +59,8 @@ export function CatalogueFilters({ activeFilter, onFilterChange }: CatalogueFilt
               onClick={() => onFilterChange(f.id)}
               style={{
                 borderRadius: '999px',
-                padding: '8px 18px',
-                fontSize: '0.86rem',
+                padding: '5px 15px',
+                fontSize: '0.82rem',
                 fontWeight: isActive ? 500 : 400,
                 color: isActive ? '#FFF8F2' : '#4A3E39',
                 backgroundColor: isActive ? '#292321' : '#FFF8F2',
@@ -66,13 +68,13 @@ export function CatalogueFilters({ activeFilter, onFilterChange }: CatalogueFilt
                 cursor: 'pointer',
                 transition: 'all 0.15s ease',
                 boxShadow: isActive
-                  ? '0 2px 8px rgba(41, 35, 33, 0.2)'
-                  : '0 1px 3px rgba(41, 35, 33, 0.03)',
+                  ? '0 2px 6px rgba(41, 35, 33, 0.18)'
+                  : '0 1px 2px rgba(41, 35, 33, 0.02)',
                 whiteSpace: 'nowrap',
               }}
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.backgroundColor = '#F5ECE5';
+                  e.currentTarget.style.backgroundColor = '#F8EEE6';
                   e.currentTarget.style.borderColor = '#DBCAC0';
                 }
               }}

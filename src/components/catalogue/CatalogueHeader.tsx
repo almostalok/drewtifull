@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Search, Gift, Heart, Menu, X } from 'lucide-react';
+import { Search, Gift, Menu, X } from 'lucide-react';
 
 interface CatalogueHeaderProps {
   searchQuery: string;
@@ -18,13 +18,15 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        backgroundColor: 'rgba(255, 248, 242, 0.94)',
+        backgroundColor: 'rgba(255, 248, 242, 0.96)',
         backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(234, 219, 211, 0.7)',
-        padding: '14px 28px',
+        borderBottom: '1px solid rgba(234, 219, 211, 0.75)',
+        padding: '8px 44px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        height: '52px',
+        boxSizing: 'border-box',
         transition: 'all 0.2s ease',
       }}
     >
@@ -34,23 +36,25 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
           href="/"
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '1.75rem',
+            fontSize: '1.65rem',
             color: '#292321',
             letterSpacing: '-0.025em',
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: '5px',
             fontWeight: 400,
+            lineHeight: 1,
           }}
         >
           <span>drewtifull</span>
           <span
             style={{
               color: '#F28F91',
-              fontSize: '1.25rem',
+              fontSize: '1.2rem',
               transform: 'translateY(-1px)',
               display: 'inline-block',
+              fontWeight: 300,
             }}
           >
             ♡
@@ -70,7 +74,7 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <Link
           href="/"
           style={{
-            fontSize: '0.92rem',
+            fontSize: '0.9rem',
             color: '#81746D',
             textDecoration: 'none',
             fontWeight: 400,
@@ -85,11 +89,11 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
           <Link
             href="/templates"
             style={{
-              fontSize: '0.92rem',
+              fontSize: '0.9rem',
               color: '#292321',
               textDecoration: 'none',
               fontWeight: 500,
-              paddingBottom: '4px',
+              paddingBottom: '3px',
             }}
           >
             Templates
@@ -97,7 +101,7 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
           <span
             style={{
               position: 'absolute',
-              bottom: '-2px',
+              bottom: '-3px',
               width: '100%',
               height: '2px',
               backgroundColor: '#F28F91',
@@ -109,7 +113,7 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <Link
           href="/#how-it-works"
           style={{
-            fontSize: '0.92rem',
+            fontSize: '0.9rem',
             color: '#81746D',
             textDecoration: 'none',
             fontWeight: 400,
@@ -122,7 +126,7 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <Link
           href="/#pricing"
           style={{
-            fontSize: '0.92rem',
+            fontSize: '0.9rem',
             color: '#81746D',
             textDecoration: 'none',
             fontWeight: 400,
@@ -134,7 +138,7 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
       </nav>
 
       {/* Right: Search, Gift Icon, Sign In, and Dark Rounded CTA */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         {/* Search Input Box */}
         <div
           className="hide-on-mobile"
@@ -145,9 +149,9 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
           }}
         >
           <Search
-            size={15}
+            size={14}
             color="#A89C94"
-            style={{ position: 'absolute', left: '14px', pointerEvents: 'none' }}
+            style={{ position: 'absolute', left: '12px', pointerEvents: 'none' }}
           />
           <input
             type="text"
@@ -158,11 +162,11 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
               backgroundColor: '#FFF8F2',
               border: '1px solid #EADBD3',
               borderRadius: '999px',
-              padding: '8px 16px 8px 36px',
-              fontSize: '0.85rem',
+              padding: '6px 14px 6px 32px',
+              fontSize: '0.82rem',
               color: '#292321',
               outline: 'none',
-              width: '190px',
+              width: '180px',
               transition: 'all 0.2s ease',
             }}
           />
@@ -172,26 +176,28 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <Link
           href="/templates/birthday"
           title="Browse occasions"
+          className="hide-on-mobile"
           style={{
             color: '#81746D',
-            padding: '6px',
+            padding: '4px',
             display: 'flex',
             alignItems: 'center',
             textDecoration: 'none',
           }}
         >
-          <Gift size={18} />
+          <Gift size={17} />
         </Link>
 
         {/* Sign in */}
         <Link
           href="/login"
+          className="hide-on-mobile"
           style={{
-            fontSize: '0.88rem',
+            fontSize: '0.86rem',
             color: '#292321',
             textDecoration: 'none',
             fontWeight: 400,
-            marginLeft: '4px',
+            marginLeft: '2px',
           }}
         >
           Sign in
@@ -200,18 +206,19 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         {/* Dark Rounded CTA: Create something ♡ */}
         <Link
           href="/create"
+          className="hide-on-mobile"
           style={{
             backgroundColor: '#292321',
             color: '#FFFFFF',
             borderRadius: '999px',
-            padding: '9px 20px',
-            fontSize: '0.86rem',
+            padding: '7px 18px',
+            fontSize: '0.84rem',
             fontWeight: 500,
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '6px',
-            boxShadow: '0 2px 10px rgba(41, 35, 33, 0.15)',
+            gap: '5px',
+            boxShadow: '0 2px 8px rgba(41, 35, 33, 0.15)',
             transition: 'background-color 0.15s ease, transform 0.15s ease',
           }}
         >
@@ -229,8 +236,10 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
             border: 'none',
             color: '#292321',
             cursor: 'pointer',
-            padding: '4px',
+            padding: '6px',
+            borderRadius: '6px',
           }}
+          aria-label="Toggle mobile menu"
         >
           {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -249,8 +258,9 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
             padding: '20px 24px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '16px',
+            gap: '14px',
             boxShadow: '0 10px 25px rgba(0,0,0,0.06)',
+            zIndex: 100,
           }}
         >
           <input
@@ -262,15 +272,33 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
               backgroundColor: '#FFFFFF',
               border: '1px solid #EADBD3',
               borderRadius: '999px',
-              padding: '10px 16px',
-              fontSize: '0.9rem',
+              padding: '8px 16px',
+              fontSize: '0.88rem',
               color: '#292321',
             }}
           />
-          <Link href="/" style={{ color: '#292321', textDecoration: 'none', fontSize: '1rem' }}>Home</Link>
-          <Link href="/templates" style={{ color: '#F28F91', fontWeight: 600, textDecoration: 'none', fontSize: '1rem' }}>Templates</Link>
-          <Link href="/dashboard" style={{ color: '#292321', textDecoration: 'none', fontSize: '1rem' }}>My Studio</Link>
-          <Link href="/login" style={{ color: '#292321', textDecoration: 'none', fontSize: '1rem' }}>Sign In</Link>
+          <Link href="/" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>Home</Link>
+          <Link href="/templates" style={{ color: '#F28F91', fontWeight: 600, textDecoration: 'none', fontSize: '0.95rem' }}>Templates</Link>
+          <Link href="/#how-it-works" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>How it works</Link>
+          <Link href="/#pricing" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>Pricing</Link>
+          <Link href="/login" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>Sign In</Link>
+          <Link
+            href="/create"
+            style={{
+              backgroundColor: '#292321',
+              color: '#FFFFFF',
+              borderRadius: '999px',
+              padding: '10px 18px',
+              fontSize: '0.9rem',
+              fontWeight: 500,
+              textDecoration: 'none',
+              textAlign: 'center',
+              display: 'block',
+              marginTop: '4px',
+            }}
+          >
+            Create something ♡
+          </Link>
         </div>
       )}
     </header>

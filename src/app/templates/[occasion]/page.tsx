@@ -6,6 +6,7 @@ import { TEMPLATES } from '@/lib/templates';
 import { Occasion } from '@/lib/templates/types';
 import { ArrowLeft, ArrowRight, Eye, Sparkles } from 'lucide-react';
 import { WashiTape } from '@/components/ui/WashiTape';
+import TemplatesCataloguePage from '@/app/templates/page';
 
 const OCCASION_TITLES: Record<string, { title: string; subtitle: string; icon: string }> = {
   birthday: {
@@ -52,6 +53,11 @@ export default function OccasionTemplatesPage({
 }) {
   const resolvedParams = use(params);
   const occKey = resolvedParams.occasion.toLowerCase();
+
+  if (occKey === 'birthday') {
+    return <TemplatesCataloguePage />;
+  }
+
   const occInfo = OCCASION_TITLES[occKey] || {
     title: `${resolvedParams.occasion.charAt(0).toUpperCase() + resolvedParams.occasion.slice(1)} Templates`,
     subtitle: 'Personalized digital gift templates made with love.',
