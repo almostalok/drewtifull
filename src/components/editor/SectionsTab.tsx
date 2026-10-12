@@ -41,13 +41,13 @@ const SECTION_OPTIONS: Array<{
       subtitle: 'stuck together with love',
       polaroids: [
         {
-          url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80',
+          url: '/memories/anniversary_laugh.jpg',
           caption: 'the best day together',
           rotation: -2.5,
           washiColor: 'rose',
         },
         {
-          url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+          url: '/memories/friendship_picnic.jpg',
           caption: 'endless laughs',
           rotation: 3,
           washiColor: 'sage',
@@ -67,7 +67,7 @@ const SECTION_OPTIONS: Array<{
       filmFormat: '35mm',
       frames: [
         {
-          url: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=800&q=80',
+          url: '/memories/cozy_coffee.jpg',
           caption: 'candid afternoon',
           timestamp: '16:40:12',
           frameNumber: 'EXP 01',
@@ -171,8 +171,9 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
             fontSize: '0.82rem',
             textTransform: 'uppercase',
             letterSpacing: '0.08em',
-            color: '#8A8077',
+            color: 'var(--ink-secondary)',
             marginBottom: '12px',
+            fontWeight: 600,
           }}
         >
           Active Story Sections ({sections.length})
@@ -182,34 +183,35 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
           {sections.map((sec, idx) => (
             <div
               key={sec.id || idx}
+              className="glass-card"
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid rgba(60, 45, 35, 0.12)',
-                borderRadius: '8px',
-                padding: '10px 14px',
+                padding: '12px 16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}
             >
-              <div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <span
                   style={{
-                    fontSize: '0.8rem',
-                    textTransform: 'uppercase',
-                    color: '#C97A6E',
+                    fontSize: '0.78rem',
+                    color: 'var(--accent-terracotta)',
                     fontFamily: 'monospace',
-                    marginRight: '8px',
+                    fontWeight: 600,
+                    marginRight: '10px',
+                    padding: '2px 6px',
+                    borderRadius: '6px',
+                    backgroundColor: 'rgba(200, 101, 82, 0.1)',
                   }}
                 >
                   0{idx + 1}
                 </span>
                 <span
                   style={{
-                    fontFamily: 'var(--font-serif)',
+                    fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
                     fontSize: '1.05rem',
-                    fontWeight: 500,
-                    color: '#2A2421',
+                    fontWeight: 600,
+                    color: 'var(--ink-primary)',
                     textTransform: 'capitalize',
                   }}
                 >
@@ -223,8 +225,12 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
                   onClick={() => handleMove(idx, 'up')}
                   disabled={idx === 0}
                   style={{
-                    padding: '4px',
-                    color: idx === 0 ? '#DDD6CE' : '#7A726A',
+                    padding: '5px',
+                    color: idx === 0 ? 'rgba(160, 145, 135, 0.35)' : 'var(--ink-secondary)',
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: idx === 0 ? 'default' : 'pointer',
+                    transition: 'color 0.15s ease',
                   }}
                   title="Move Up"
                 >
@@ -236,8 +242,12 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
                   onClick={() => handleMove(idx, 'down')}
                   disabled={idx === sections.length - 1}
                   style={{
-                    padding: '4px',
-                    color: idx === sections.length - 1 ? '#DDD6CE' : '#7A726A',
+                    padding: '5px',
+                    color: idx === sections.length - 1 ? 'rgba(160, 145, 135, 0.35)' : 'var(--ink-secondary)',
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: idx === sections.length - 1 ? 'default' : 'pointer',
+                    transition: 'color 0.15s ease',
                   }}
                   title="Move Down"
                 >
@@ -248,7 +258,15 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
                   <button
                     type="button"
                     onClick={() => handleRemove(idx)}
-                    style={{ padding: '4px', color: '#B5ACA4', marginLeft: '4px' }}
+                    style={{
+                      padding: '5px',
+                      color: 'rgba(160, 145, 135, 0.6)',
+                      marginLeft: '4px',
+                      border: 'none',
+                      background: 'transparent',
+                      cursor: 'pointer',
+                      transition: 'color 0.15s ease',
+                    }}
                     title="Remove Section"
                   >
                     <Trash2 size={15} />
@@ -267,8 +285,9 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
             fontSize: '0.82rem',
             textTransform: 'uppercase',
             letterSpacing: '0.08em',
-            color: '#8A8077',
+            color: 'var(--ink-secondary)',
             marginBottom: '12px',
+            fontWeight: 600,
           }}
         >
           Add to the story
@@ -280,32 +299,46 @@ export function SectionsTab({ sections, onChange }: SectionsTabProps) {
               key={opt.type}
               type="button"
               onClick={() => handleAdd(opt.createDefault)}
+              className="glass-card"
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid rgba(60, 45, 35, 0.12)',
-                borderRadius: '8px',
-                padding: '12px 14px',
+                padding: '14px 16px',
                 textAlign: 'left',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                transition: 'border-color 0.2s ease, transform 0.15s ease',
+                cursor: 'pointer',
+                transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
               <div>
                 <p
                   style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: '1rem',
+                    fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+                    fontSize: '1.02rem',
                     fontWeight: 600,
-                    color: '#2A2421',
+                    color: 'var(--ink-primary)',
+                    marginBottom: '2px',
                   }}
                 >
                   {opt.label}
                 </p>
-                <p style={{ fontSize: '0.78rem', color: '#8A8077' }}>{opt.desc}</p>
+                <p style={{ fontSize: '0.78rem', color: 'var(--ink-secondary)' }}>{opt.desc}</p>
               </div>
-              <Plus size={16} color="#C97A6E" />
+              <div
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(200, 101, 82, 0.1)',
+                  color: 'var(--accent-terracotta)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: 'var(--neumo-shadow-card)',
+                }}
+              >
+                <Plus size={16} />
+              </div>
             </button>
           ))}
         </div>

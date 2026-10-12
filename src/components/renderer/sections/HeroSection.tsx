@@ -204,7 +204,7 @@ export function HeroSection({
                 <WashiTape color="rose" rotation={-2} width="110px" style={{ top: '-10px', left: '50%', transform: 'translateX(-50%)' }} />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={data.heroPhoto || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80'}
+                  src={data.heroPhoto || '/memories/hero_portrait.jpg'}
                   alt={displayName}
                   style={{
                     width: '100%',
@@ -346,7 +346,7 @@ export function HeroSection({
                   </div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={data.heroPhoto || 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1000&q=80'}
+                    src={data.heroPhoto || '/memories/cozy_coffee.jpg'}
                     alt={displayName}
                     style={{
                       width: '100%',
@@ -487,7 +487,7 @@ export function HeroSection({
                 <WashiTape color="sage" rotation={2} width="90px" style={{ top: '-10px', left: '40px' }} />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={data.heroPhoto || 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80'}
+                  src={data.heroPhoto || '/memories/golden_beach.jpg'}
                   alt={displayName}
                   style={{
                     width: '100%',
@@ -704,7 +704,7 @@ export function HeroSection({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={data.heroPhoto || 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80'}
+                  src={data.heroPhoto || '/memories/anniversary_laugh.jpg'}
                   alt={displayName}
                   style={{
                     width: '100%',
@@ -855,7 +855,7 @@ export function HeroSection({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={data.heroPhoto || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80'}
+                  src={data.heroPhoto || '/memories/birthday_cake.jpg'}
                   alt={displayName}
                   style={{
                     width: '100%',
@@ -966,7 +966,7 @@ export function HeroSection({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={data.heroPhoto || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80'}
+                  src={data.heroPhoto || '/memories/friendship_picnic.jpg'}
                   alt={displayName}
                   style={{
                     width: '100%',
@@ -1032,7 +1032,7 @@ export function HeroSection({
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={data.heroPhoto || 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80'}
+                src={data.heroPhoto || '/memories/wildflowers_note.jpg'}
                 alt={displayName}
                 style={{
                   width: '100%',
@@ -1141,7 +1141,7 @@ export function HeroSection({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={data.heroPhoto || 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80'}
+                  src={data.heroPhoto || '/memories/graduation_smile.jpg'}
                   alt={displayName}
                   style={{
                     width: '100%',
@@ -1258,7 +1258,7 @@ export function HeroSection({
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={data.heroPhoto || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80'}
+                src={data.heroPhoto || '/memories/farewell_train.jpg'}
                 alt={displayName}
                 style={{
                   width: '100%',

@@ -18,28 +18,38 @@ interface PhotoTrayProps {
 const PRESET_MEMORIES: Array<{ title: string; url: string; caption: string }> = [
   {
     title: 'Golden Hour Smile',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+    url: '/memories/hero_portrait.jpg',
     caption: 'warmest golden hour glow',
   },
   {
     title: 'Coffee Date',
-    url: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80',
+    url: '/memories/cozy_coffee.jpg',
     caption: 'morning talks & flat whites',
   },
   {
     title: 'Laughing Together',
-    url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80',
+    url: '/memories/friendship_picnic.jpg',
     caption: 'uncontrollable laughter',
   },
   {
     title: 'Flower Field',
-    url: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=80',
+    url: '/memories/wildflowers_note.jpg',
     caption: 'walking in the blooms',
   },
   {
     title: 'Film Candid',
-    url: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=800&q=80',
+    url: '/memories/anniversary_laugh.jpg',
     caption: 'unfiltered memory',
+  },
+  {
+    title: 'Sunset Beach',
+    url: '/memories/golden_beach.jpg',
+    caption: 'golden hour ocean waves',
+  },
+  {
+    title: 'Birthday Celebration',
+    url: '/memories/birthday_cake.jpg',
+    caption: 'birthday wish & candle glow',
   },
 ];
 
@@ -186,7 +196,7 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
         </div>
       )}
 
-      {/* Large Drop Zone */}
+      {/* Large Drop Zone: Tactile Neumorphic Inset Cushion */}
       <div
         onDragOver={(e) => {
           e.preventDefault();
@@ -201,14 +211,17 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
         onClick={() => fileInputRef.current?.click()}
         style={{
           border: isDragging
-            ? '2px dashed #C97A6E'
-            : '2px dashed rgba(60, 45, 35, 0.2)',
-          backgroundColor: isDragging ? '#FDF4F2' : '#FFFFFF',
-          borderRadius: '14px',
-          padding: '28px 18px',
+            ? '2px dashed var(--accent-terracotta)'
+            : '2px dashed rgba(200, 101, 82, 0.35)',
+          backgroundColor: isDragging ? 'rgba(200, 101, 82, 0.08)' : 'rgba(255, 255, 255, 0.65)',
+          boxShadow: 'var(--neumo-shadow-inset)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderRadius: '16px',
+          padding: '30px 20px',
           textAlign: 'center',
           cursor: 'pointer',
-          transition: 'all 0.2s ease',
+          transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <input
@@ -222,32 +235,33 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
 
         <div
           style={{
-            width: '48px',
-            height: '48px',
+            width: '52px',
+            height: '52px',
             borderRadius: '50%',
-            backgroundColor: '#F9EBE8',
-            color: '#C97A6E',
+            backgroundColor: 'rgba(200, 101, 82, 0.12)',
+            color: 'var(--accent-terracotta)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 12px auto',
+            margin: '0 auto 14px auto',
+            boxShadow: '0 4px 12px rgba(200, 101, 82, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
           }}
         >
-          <UploadCloud size={24} />
+          <UploadCloud size={26} />
         </div>
 
         <h4
           style={{
-            fontFamily: 'var(--font-serif)',
+            fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
             fontSize: '1.25rem',
-            color: '#2A2421',
+            color: 'var(--ink-primary)',
             fontWeight: 500,
             marginBottom: '4px',
           }}
         >
           {isUploading ? 'Uploading to memory vault...' : 'Bring your memories.'}
         </h4>
-        <p style={{ fontSize: '0.82rem', color: '#8A8077', maxWidth: '280px', margin: '0 auto' }}>
+        <p style={{ fontSize: '0.82rem', color: 'var(--ink-secondary)', maxWidth: '280px', margin: '0 auto' }}>
           Drop photos here or tap to pick from device (max 10MB each).
         </p>
       </div>
@@ -260,30 +274,29 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
             alignItems: 'center',
             gap: '6px',
             fontSize: '0.8rem',
-            color: '#8A8077',
-            marginBottom: '8px',
+            color: 'var(--ink-secondary)',
+            marginBottom: '10px',
           }}
         >
-          <Sparkles size={14} color="#C97A6E" />
+          <Sparkles size={14} color="var(--accent-terracotta)" />
           <span>Quick aesthetic presets for testing:</span>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
           {PRESET_MEMORIES.map((preset, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => handlePresetAdd(preset)}
+              className="glass-pill"
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid rgba(60, 45, 35, 0.12)',
-                borderRadius: '999px',
-                padding: '4px 10px',
+                padding: '5px 12px',
                 fontSize: '0.78rem',
-                color: '#4A423B',
+                color: 'var(--ink-primary)',
                 cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '4px',
+                gap: '5px',
+                fontWeight: 500,
               }}
             >
               + {preset.title}
@@ -300,8 +313,9 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
               fontSize: '0.82rem',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
-              color: '#8A8077',
-              marginBottom: '10px',
+              color: 'var(--ink-secondary)',
+              marginBottom: '12px',
+              fontWeight: 600,
             }}
           >
             Photos in this gift ({photos.length})
@@ -311,26 +325,26 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
             {photos.map((photo, idx) => (
               <div
                 key={photo.id}
+                className="glass-card"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid rgba(60, 45, 35, 0.1)',
-                  borderRadius: '10px',
-                  padding: '12px',
+                  padding: '14px',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '8px',
+                  gap: '10px',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div
                     style={{
-                      width: '56px',
-                      height: '56px',
-                      borderRadius: '6px',
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '8px',
                       overflow: 'hidden',
                       flexShrink: 0,
-                      backgroundColor: '#F3EFEA',
+                      backgroundColor: 'rgba(235, 227, 218, 0.8)',
                       position: 'relative',
+                      boxShadow: 'var(--neumo-shadow-card)',
+                      border: '1px solid rgba(255, 255, 255, 0.8)',
                     }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -346,12 +360,13 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          backgroundColor: '#B9863B',
+                          backgroundColor: 'var(--accent-amber)',
                           color: '#FFFFFF',
                           fontSize: '0.6rem',
                           textAlign: 'center',
                           padding: '1px 0',
-                          fontWeight: 600,
+                          fontWeight: 700,
+                          letterSpacing: '0.05em',
                         }}
                       >
                         HERO
@@ -362,38 +377,36 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
                   <div style={{ flex: 1 }}>
                     <input
                       type="text"
+                      className="glass-input"
                       value={photo.caption || ''}
                       placeholder="Add a handwritten caption..."
                       onChange={(e) => handleCaptionChange(photo.id, e.target.value)}
                       style={{
                         width: '100%',
-                        padding: '6px 10px',
-                        border: '1px solid rgba(60, 45, 35, 0.12)',
-                        borderRadius: '6px',
-                        fontSize: '0.85rem',
+                        padding: '8px 12px',
+                        fontSize: '0.92rem',
                         fontFamily: 'var(--font-hand)',
-                        color: '#2A2421',
-                        backgroundColor: '#FAF7F2',
                       }}
                     />
                   </div>
 
                   {/* Actions: Move Up, Move Down, Set Hero, Delete */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                     <button
                       type="button"
                       disabled={idx === 0}
                       onClick={() => handleMove(idx, 'up')}
                       title="Move Up"
                       style={{
-                        color: idx === 0 ? '#D6D0CA' : '#544D47',
-                        padding: '4px',
+                        color: idx === 0 ? 'rgba(160, 145, 135, 0.35)' : 'var(--ink-secondary)',
+                        padding: '5px',
                         border: 'none',
                         background: 'transparent',
                         cursor: idx === 0 ? 'default' : 'pointer',
+                        transition: 'color 0.15s ease',
                       }}
                     >
-                      <ArrowUp size={14} />
+                      <ArrowUp size={15} />
                     </button>
                     <button
                       type="button"
@@ -401,39 +414,42 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
                       onClick={() => handleMove(idx, 'down')}
                       title="Move Down"
                       style={{
-                        color: idx === photos.length - 1 ? '#D6D0CA' : '#544D47',
-                        padding: '4px',
+                        color: idx === photos.length - 1 ? 'rgba(160, 145, 135, 0.35)' : 'var(--ink-secondary)',
+                        padding: '5px',
                         border: 'none',
                         background: 'transparent',
                         cursor: idx === photos.length - 1 ? 'default' : 'pointer',
+                        transition: 'color 0.15s ease',
                       }}
                     >
-                      <ArrowDown size={14} />
+                      <ArrowDown size={15} />
                     </button>
                     <button
                       type="button"
                       onClick={() => onSetHero(photo.url)}
                       title="Set as Hero cover photo"
                       style={{
-                        color: photo.isHero ? '#B9863B' : '#B5ACA4',
-                        padding: '4px',
+                        color: photo.isHero ? 'var(--accent-amber)' : 'rgba(160, 145, 135, 0.6)',
+                        padding: '5px',
                         border: 'none',
                         background: 'transparent',
                         cursor: 'pointer',
+                        transition: 'color 0.15s ease',
                       }}
                     >
-                      <Star size={16} fill={photo.isHero ? '#B9863B' : 'none'} />
+                      <Star size={16} fill={photo.isHero ? 'var(--accent-amber)' : 'none'} />
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDelete(photo.id)}
                       title="Remove this photo"
                       style={{
-                        color: '#B5ACA4',
-                        padding: '4px',
+                        color: 'rgba(160, 145, 135, 0.6)',
+                        padding: '5px',
                         border: 'none',
                         background: 'transparent',
                         cursor: 'pointer',
+                        transition: 'color 0.15s ease',
                       }}
                     >
                       <Trash2 size={15} />
@@ -442,28 +458,34 @@ export function PhotoTray({ photos, projectId, onChange, onSetHero }: PhotoTrayP
                 </div>
 
                 {/* Aspect ratio control */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: '#8A8077' }}>
-                  <span>Ratio:</span>
-                  {(['portrait', 'landscape', 'square'] as const).map((asp) => (
-                    <button
-                      key={asp}
-                      type="button"
-                      onClick={() => handleAspectChange(photo.id, asp)}
-                      style={{
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        border: '1px solid',
-                        borderColor: (photo.aspect || 'portrait') === asp ? '#2A2421' : 'rgba(60, 45, 35, 0.12)',
-                        backgroundColor: (photo.aspect || 'portrait') === asp ? '#2A2421' : '#FFFFFF',
-                        color: (photo.aspect || 'portrait') === asp ? '#FFFFFF' : '#6E655E',
-                        fontSize: '0.72rem',
-                        cursor: 'pointer',
-                        textTransform: 'capitalize',
-                      }}
-                    >
-                      {asp}
-                    </button>
-                  ))}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.78rem', color: 'var(--ink-secondary)' }}>
+                  <span style={{ fontWeight: 500 }}>Ratio:</span>
+                  {(['portrait', 'landscape', 'square'] as const).map((asp) => {
+                    const isSelected = (photo.aspect || 'portrait') === asp;
+                    return (
+                      <button
+                        key={asp}
+                        type="button"
+                        onClick={() => handleAspectChange(photo.id, asp)}
+                        className={isSelected ? '' : 'glass-pill'}
+                        style={{
+                          padding: '3px 10px',
+                          borderRadius: '999px',
+                          border: isSelected ? '1px solid rgba(255, 255, 255, 0.9)' : undefined,
+                          backgroundColor: isSelected ? 'var(--accent-terracotta)' : undefined,
+                          color: isSelected ? '#FFFFFF' : 'var(--ink-secondary)',
+                          boxShadow: isSelected ? 'var(--neumo-shadow-cta)' : undefined,
+                          fontSize: '0.74rem',
+                          fontWeight: isSelected ? 600 : 500,
+                          cursor: 'pointer',
+                          textTransform: 'capitalize',
+                          transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                        }}
+                      >
+                        {asp}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             ))}

@@ -95,7 +95,7 @@ export function PreviewSoftGarden() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+          src="/memories/hero_portrait.jpg"
           alt="Aanchal"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -125,7 +125,7 @@ export function PreviewSoftGarden() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80"
+            src="/memories/cozy_coffee.jpg"
             alt="Moments"
             style={{ width: '100%', height: '46px', objectFit: 'cover' }}
           />
@@ -143,7 +143,7 @@ export function PreviewSoftGarden() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80"
+            src="/memories/golden_beach.jpg"
             alt="Moments"
             style={{ width: '100%', height: '44px', objectFit: 'cover' }}
           />
@@ -264,7 +264,7 @@ export function PreviewFilmDiary() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+            src="/memories/anniversary_laugh.jpg"
             alt="Film Frame"
             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'contrast(1.1) brightness(0.95)' }}
           />
@@ -301,7 +301,7 @@ export function PreviewFilmDiary() {
         <div style={{ flex: 1, height: '48px', overflow: 'hidden', borderRadius: '1px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80"
+            src="/memories/birthday_cake.jpg"
             alt="Sunset"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -309,7 +309,7 @@ export function PreviewFilmDiary() {
         <div style={{ flex: 1, height: '48px', overflow: 'hidden', borderRadius: '1px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&q=80"
+            src="/memories/friendship_picnic.jpg"
             alt="Candid"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -397,7 +397,7 @@ export function PreviewScrapbook() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+          src="/memories/wildflowers_note.jpg"
           alt="Smile"
           style={{ width: '100%', height: '62px', objectFit: 'cover' }}
         />
@@ -421,7 +421,7 @@ export function PreviewScrapbook() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80"
+          src="/memories/graduation_smile.jpg"
           alt="Happy"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -445,7 +445,7 @@ export function PreviewScrapbook() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=200&q=80"
+          src="/memories/farewell_train.jpg"
           alt="Dog"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -546,7 +546,7 @@ export function PreviewMinimalEditorial() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80"
+          src="/memories/proposal_starlight.jpg"
           alt="Golden glow"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -633,7 +633,7 @@ export function PreviewCuteCozy() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&q=80"
+          src="/memories/hero_portrait.jpg"
           alt="Cute & Cozy"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -771,7 +771,7 @@ export function PreviewVintageNewspaper() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+            src="/memories/cozy_coffee.jpg"
             alt="Newspaper subject"
             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.2)' }}
           />
@@ -892,7 +892,7 @@ export function PreviewDreamyNight() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
+          src="/memories/golden_beach.jpg"
           alt="Night starlight"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -979,7 +979,7 @@ export function PreviewPolaroidWall() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80"
+            src="/memories/anniversary_laugh.jpg"
             alt="Left"
             style={{ width: '100%', height: '54px', objectFit: 'cover' }}
           />
@@ -1002,7 +1002,7 @@ export function PreviewPolaroidWall() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80"
+            src="/memories/birthday_cake.jpg"
             alt="Right"
             style={{ width: '100%', height: '60px', objectFit: 'cover' }}
           />
@@ -1094,7 +1094,7 @@ export function PreviewPinkY2K() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&q=80"
+            src="/memories/friendship_picnic.jpg"
             alt="Y2K photo 1"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -1112,7 +1112,7 @@ export function PreviewPinkY2K() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80"
+            src="/memories/wildflowers_note.jpg"
             alt="Y2K photo 2"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -1208,7 +1208,7 @@ export function PreviewBookLetter() {
         <div style={{ width: '60px', height: '82px', overflow: 'hidden', borderRadius: '1px', boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+            src="/memories/graduation_smile.jpg"
             alt="Keepsake portrait"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />

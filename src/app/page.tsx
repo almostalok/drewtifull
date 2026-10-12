@@ -34,7 +34,7 @@ export default function LandingPage() {
       sub: 'for another trip around the sun',
       icon: '🎂',
       themeClass: 'rose',
-      samplePhoto: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/birthday.jpg',
     },
     {
       id: 'anniversary',
@@ -42,7 +42,7 @@ export default function LandingPage() {
       sub: 'for all the moments between then and now',
       icon: '🕯️',
       themeClass: 'terracotta',
-      samplePhoto: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/anniversary.jpg',
     },
     {
       id: 'proposal',
@@ -50,7 +50,7 @@ export default function LandingPage() {
       sub: 'for the beginning of forever',
       icon: '💍',
       themeClass: 'gold',
-      samplePhoto: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/proposal.jpg',
     },
     {
       id: 'friendship',
@@ -58,7 +58,7 @@ export default function LandingPage() {
       sub: 'for your favorite human',
       icon: '🌿',
       themeClass: 'sage',
-      samplePhoto: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/friendship.jpg',
     },
     {
       id: 'graduation',
@@ -66,7 +66,7 @@ export default function LandingPage() {
       sub: 'for the next chapter',
       icon: '🎓',
       themeClass: 'neutral',
-      samplePhoto: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/graduation.jpg',
     },
     {
       id: 'farewell',
@@ -74,7 +74,7 @@ export default function LandingPage() {
       sub: 'for the memories we’ll keep',
       icon: '✈️',
       themeClass: 'rose',
-      samplePhoto: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/farewell.jpg',
     },
     {
       id: 'just-because',
@@ -82,7 +82,7 @@ export default function LandingPage() {
       sub: 'because you don’t need a reason',
       icon: '💌',
       themeClass: 'gold',
-      samplePhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/just_because.jpg',
     },
     {
       id: 'something-else',
@@ -90,7 +90,7 @@ export default function LandingPage() {
       sub: 'make it yours',
       icon: '✨',
       themeClass: 'sage',
-      samplePhoto: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
+      samplePhoto: '/occasions/parents.jpg',
     },
   ];
 
@@ -134,37 +134,47 @@ export default function LandingPage() {
     SAMPLE_PROJECTS.find((p) => p.id === previewSampleId) || SAMPLE_PROJECTS[0];
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#FAF7F2', position: 'relative' }}>
-      {/* Editorial Top Navigation */}
+    <div style={{ minHeight: '100vh', backgroundColor: 'transparent', position: 'relative' }}>
+      {/* Neumorphic Frosted Glass Sticky Top Navigation */}
       <header
+        className="glass-nav"
         style={{
-          padding: '24px 32px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          padding: '12px 36px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          maxWidth: '1360px',
-          margin: '0 auto',
+          transition: 'all 0.25s ease',
         }}
       >
         <Link
           href="/"
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '1.9rem',
-            color: '#2A2421',
-            letterSpacing: '-0.02em',
+            fontSize: '1.95rem',
+            color: 'var(--ink-primary)',
+            letterSpacing: '-0.025em',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            textDecoration: 'none',
           }}
         >
-          drewtifull
+          <span>drewtifull</span>
+          <span style={{ color: 'var(--accent-terracotta)', fontSize: '1.35rem' }}>♡</span>
         </Link>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '22px' }}>
           <Link
             href="/dashboard"
             style={{
               fontSize: '0.92rem',
-              color: '#5A524B',
+              color: 'var(--ink-secondary)',
               fontWeight: 500,
+              textDecoration: 'none',
+              transition: 'color 0.15s ease',
             }}
           >
             My Gifts
@@ -173,26 +183,21 @@ export default function LandingPage() {
             href="/templates"
             style={{
               fontSize: '0.92rem',
-              color: '#5A524B',
+              color: 'var(--ink-secondary)',
               fontWeight: 500,
               textDecoration: 'none',
+              transition: 'color 0.15s ease',
             }}
           >
             Templates
           </Link>
           <Link
             href="/create"
+            className="glass-cta"
             style={{
-              backgroundColor: '#2A2421',
-              color: '#FFFFFF',
-              borderRadius: '999px',
-              padding: '10px 22px',
-              fontSize: '0.9rem',
-              fontWeight: 500,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              boxShadow: '0 2px 8px rgba(42, 36, 33, 0.15)',
+              padding: '9px 22px',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
             }}
           >
             Create something ♡
@@ -203,7 +208,7 @@ export default function LandingPage() {
       {/* SECTION 1: HERO */}
       <section
         style={{
-          padding: '4.5rem 1.5rem 6rem 1.5rem',
+          padding: '4.5rem 1.5rem 5.5rem 1.5rem',
           maxWidth: '1280px',
           margin: '0 auto',
           position: 'relative',
@@ -220,15 +225,14 @@ export default function LandingPage() {
           {/* Left Hero Statement */}
           <div>
             <div
+              className="glass-badge"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                backgroundColor: '#F9EBE8',
-                color: '#C97A6E',
+                color: 'var(--accent-terracotta)',
                 padding: '6px 16px',
-                borderRadius: '999px',
-                fontSize: '0.92rem',
+                fontSize: '0.95rem',
                 fontFamily: 'var(--font-hand)',
                 marginBottom: '1.5rem',
               }}
@@ -242,13 +246,13 @@ export default function LandingPage() {
                 fontSize: 'clamp(3.2rem, 6.5vw, 5.6rem)',
                 lineHeight: 1.04,
                 fontWeight: 400,
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
                 letterSpacing: '-0.025em',
                 marginBottom: '1.5rem',
               }}
             >
               Make something <br />
-              <span style={{ fontStyle: 'italic', color: '#C97A6E' }}>beautiful</span> for <br />
+              <span style={{ fontStyle: 'italic', color: 'var(--accent-terracotta)' }}>beautiful</span> for <br />
               someone you love.
             </h1>
 
@@ -256,7 +260,7 @@ export default function LandingPage() {
               style={{
                 fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
                 lineHeight: 1.6,
-                color: '#5C544E',
+                color: 'var(--ink-secondary)',
                 maxWidth: '520px',
                 marginBottom: '2.5rem',
               }}
@@ -268,18 +272,11 @@ export default function LandingPage() {
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link
                 href="/create"
+                className="glass-cta"
                 style={{
-                  backgroundColor: '#C97A6E',
-                  color: '#FFFFFF',
-                  borderRadius: '999px',
                   padding: '16px 36px',
                   fontSize: '1.05rem',
-                  fontWeight: 500,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 16px rgba(201, 122, 110, 0.4)',
-                  transition: 'transform 0.2s ease',
+                  textDecoration: 'none',
                 }}
               >
                 <span>Create something ♡</span>
@@ -288,17 +285,11 @@ export default function LandingPage() {
 
               <Link
                 href="/templates"
+                className="glass-pill"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid rgba(60, 45, 35, 0.15)',
-                  color: '#2A2421',
-                  borderRadius: '999px',
-                  padding: '16px 30px',
+                  padding: '15px 30px',
                   fontSize: '1rem',
-                  fontWeight: 500,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
+                  textDecoration: 'none',
                 }}
               >
                 Explore templates
@@ -311,14 +302,14 @@ export default function LandingPage() {
                 marginTop: '2.5rem',
                 fontFamily: 'var(--font-hand)',
                 fontSize: '1.25rem',
-                color: '#8A8077',
+                color: 'var(--ink-muted)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
               }}
             >
               <span>takes less than 3 minutes to publish & send</span>
-              <Heart size={14} fill="#C97A6E" color="#C97A6E" />
+              <Heart size={14} fill="var(--accent-terracotta)" color="var(--accent-terracotta)" />
             </div>
           </div>
 
@@ -356,21 +347,18 @@ export default function LandingPage() {
                 }}
               >
                 <PolaroidFrame
-                  url="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80"
+                  url="/memories/anniversary_laugh.jpg"
                   caption="laughing until sunset"
                   rotation={4}
                   washiColor="gold"
                 />
               </div>
 
-              {/* Main Scrapbook Page Container */}
+              {/* Main Scrapbook Page Container in Neumo-Glass Panel */}
               <div
+                className="glass-panel"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(60, 45, 35, 0.1)',
                   padding: '24px 22px 32px 22px',
-                  boxShadow: '0 20px 50px rgba(40, 30, 25, 0.12)',
                   position: 'relative',
                   zIndex: 5,
                 }}
@@ -382,14 +370,15 @@ export default function LandingPage() {
                   style={{ top: '-10px', left: '30px' }}
                 />
 
-                <div style={{ borderBottom: '1px solid rgba(60, 45, 35, 0.08)', paddingBottom: '12px', marginBottom: '16px' }}>
+                <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.65)', paddingBottom: '12px', marginBottom: '16px' }}>
                   <span
                     style={{
                       fontFamily: 'monospace',
                       fontSize: '0.72rem',
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
-                      color: '#C97A6E',
+                      color: 'var(--accent-terracotta)',
+                      fontWeight: 600,
                     }}
                   >
                     PREVIEW · FOR AANCHAL ♡
@@ -397,8 +386,8 @@ export default function LandingPage() {
                   <h3
                     style={{
                       fontFamily: 'var(--font-serif)',
-                      fontSize: '1.75rem',
-                      color: '#2A2421',
+                      fontSize: '1.85rem',
+                      color: 'var(--ink-primary)',
                       marginTop: '4px',
                     }}
                   >
@@ -409,15 +398,17 @@ export default function LandingPage() {
                 <div
                   style={{
                     height: '240px',
-                    backgroundColor: '#F3EFEA',
-                    borderRadius: '4px',
+                    backgroundColor: 'rgba(235, 227, 218, 0.45)',
+                    borderRadius: '12px',
                     overflow: 'hidden',
                     marginBottom: '16px',
+                    border: '1px solid rgba(255, 255, 255, 0.7)',
+                    boxShadow: 'var(--neumo-shadow-inset)',
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+                    src="/memories/hero_portrait.jpg"
                     alt="Sample microsite cover"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
@@ -426,8 +417,8 @@ export default function LandingPage() {
                 <p
                   style={{
                     fontFamily: 'var(--font-hand)',
-                    fontSize: '1.35rem',
-                    color: '#4A423B',
+                    fontSize: '1.4rem',
+                    color: 'var(--ink-secondary)',
                     lineHeight: 1.4,
                     marginBottom: '14px',
                   }}
@@ -441,18 +432,18 @@ export default function LandingPage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     paddingTop: '12px',
-                    borderTop: '1px dashed rgba(60, 45, 35, 0.15)',
+                    borderTop: '1px dashed rgba(180, 165, 150, 0.35)',
                   }}
                 >
-                  <span style={{ fontSize: '0.8rem', color: '#8A8077', fontFamily: 'monospace' }}>
+                  <span style={{ fontSize: '0.82rem', color: 'var(--ink-muted)', fontFamily: 'monospace' }}>
                     ♫ Acoustic Sunbeams
                   </span>
                   <Link
                     href="/p/aanchal-birthday"
                     target="_blank"
                     style={{
-                      fontSize: '0.82rem',
-                      color: '#C97A6E',
+                      fontSize: '0.84rem',
+                      color: 'var(--accent-terracotta)',
                       fontWeight: 600,
                       display: 'flex',
                       alignItems: 'center',
@@ -471,7 +462,7 @@ export default function LandingPage() {
       {/* SECTION 2: OCCASION SELECTION */}
       <section
         style={{
-          padding: '6rem 1.5rem',
+          padding: '5rem 1.5rem',
           maxWidth: '1240px',
           margin: '0 auto',
         }}
@@ -480,8 +471,8 @@ export default function LandingPage() {
           <span
             style={{
               fontFamily: 'var(--font-hand)',
-              fontSize: '1.4rem',
-              color: '#C97A6E',
+              fontSize: '1.45rem',
+              color: 'var(--accent-terracotta)',
               display: 'block',
               marginBottom: '6px',
             }}
@@ -492,15 +483,15 @@ export default function LandingPage() {
             style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontWeight: 400,
               lineHeight: 1.1,
-              marginBottom: '10px',
+              marginBottom: '12px',
             }}
           >
             What are you making?
           </h2>
-          <p style={{ color: '#7A726A', fontSize: '1.05rem', maxWidth: '580px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--ink-secondary)', fontSize: '1.05rem', maxWidth: '580px', margin: '0 auto' }}>
             Choose an occasion. Each one is curated with dedicated storytelling sequences, editorial layouts,
             and gentle typography.
           </p>
@@ -517,24 +508,13 @@ export default function LandingPage() {
             <Link
               key={occ.id}
               href={`/create?occasion=${occ.id}`}
+              className="glass-card"
               style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                border: '1px solid rgba(60, 45, 35, 0.12)',
                 padding: '24px 20px',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: '0 4px 18px rgba(40, 30, 25, 0.05)',
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
                 position: 'relative',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(40, 30, 25, 0.12)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 18px rgba(40, 30, 25, 0.05)';
+                textDecoration: 'none',
               }}
             >
               <WashiTape
@@ -551,17 +531,19 @@ export default function LandingPage() {
               <div
                 style={{
                   height: '160px',
-                  borderRadius: '8px',
+                  borderRadius: '12px',
                   overflow: 'hidden',
                   marginBottom: '16px',
-                  backgroundColor: '#F3EFEA',
+                  backgroundColor: 'rgba(235, 227, 218, 0.45)',
+                  border: '1px solid rgba(255, 255, 255, 0.7)',
+                  boxShadow: 'var(--neumo-shadow-inset)',
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={occ.samplePhoto}
                   alt={occ.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.35s ease' }}
                 />
               </div>
 
@@ -570,8 +552,8 @@ export default function LandingPage() {
               <h3
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.7rem',
-                  color: '#2A2421',
+                  fontSize: '1.75rem',
+                  color: 'var(--ink-primary)',
                   marginBottom: '4px',
                 }}
               >
@@ -581,8 +563,8 @@ export default function LandingPage() {
               <p
                 style={{
                   fontFamily: 'var(--font-hand)',
-                  fontSize: '1.15rem',
-                  color: '#8A8077',
+                  fontSize: '1.2rem',
+                  color: 'var(--ink-muted)',
                   marginBottom: '16px',
                 }}
               >
@@ -595,7 +577,7 @@ export default function LandingPage() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
-                  color: '#C97A6E',
+                  color: 'var(--accent-terracotta)',
                   fontSize: '0.88rem',
                   fontWeight: 600,
                 }}
@@ -612,7 +594,7 @@ export default function LandingPage() {
       <section
         id="templates"
         style={{
-          padding: '6rem 1.5rem',
+          padding: '5rem 1.5rem',
           maxWidth: '1320px',
           margin: '0 auto',
         }}
@@ -621,8 +603,8 @@ export default function LandingPage() {
           <span
             style={{
               fontFamily: 'var(--font-hand)',
-              fontSize: '1.4rem',
-              color: '#C97A6E',
+              fontSize: '1.45rem',
+              color: 'var(--accent-terracotta)',
               display: 'block',
               marginBottom: '6px',
             }}
@@ -633,15 +615,15 @@ export default function LandingPage() {
             style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontWeight: 400,
               lineHeight: 1.1,
-              marginBottom: '10px',
+              marginBottom: '12px',
             }}
           >
             Pick a feeling.
           </h2>
-          <p style={{ color: '#7A726A', fontSize: '1.05rem', maxWidth: '580px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--ink-secondary)', fontSize: '1.05rem', maxWidth: '580px', margin: '0 auto' }}>
             Browse through 12 bespoke handcrafted concepts. Every template is mobile-first, editorial, and
             infused with warmth.
           </p>
@@ -653,28 +635,34 @@ export default function LandingPage() {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: '8px',
+            gap: '10px',
             marginBottom: '14px',
           }}
         >
-          {occasionFilters.map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setActiveOccasionFilter(f.id)}
-              style={{
-                backgroundColor: activeOccasionFilter === f.id ? '#2A2421' : '#FFFFFF',
-                color: activeOccasionFilter === f.id ? '#FFFFFF' : '#2A2421',
-                border: '1px solid rgba(60, 45, 35, 0.12)',
-                borderRadius: '999px',
-                padding: '8px 18px',
-                fontSize: '0.88rem',
-                fontWeight: 500,
-                transition: 'all 0.2s ease',
-              }}
-            >
-              {f.label}
-            </button>
-          ))}
+          {occasionFilters.map((f) => {
+            const isActive = activeOccasionFilter === f.id;
+            return (
+              <button
+                key={f.id}
+                onClick={() => setActiveOccasionFilter(f.id)}
+                className={`glass-pill ${isActive ? 'active' : ''}`}
+                style={{
+                  padding: '8px 22px',
+                  fontSize: '0.88rem',
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? '#FFFFFF' : 'var(--ink-secondary)',
+                  background: isActive
+                    ? 'linear-gradient(135deg, #DE745D 0%, #BA5540 100%)'
+                    : undefined,
+                  boxShadow: isActive
+                    ? 'inset 2px 2px 4px rgba(0,0,0,0.25), inset -2px -2px 4px rgba(255,255,255,0.25), 0 2px 8px rgba(200, 101, 82, 0.3)'
+                    : undefined,
+                }}
+              >
+                {f.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Aesthetic Filter Pills */}
@@ -683,31 +671,32 @@ export default function LandingPage() {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: '6px',
+            gap: '8px',
             marginBottom: '3.5rem',
           }}
         >
-          {aestheticFilters.map((a) => (
-            <button
-              key={a.id}
-              onClick={() => setActiveAestheticFilter(a.id)}
-              style={{
-                backgroundColor: activeAestheticFilter === a.id ? '#F9EBE8' : 'transparent',
-                color: activeAestheticFilter === a.id ? '#C97A6E' : '#7A726A',
-                border: activeAestheticFilter === a.id ? '1px solid #C97A6E' : '1px solid transparent',
-                borderRadius: '999px',
-                padding: '4px 12px',
-                fontFamily: 'var(--font-hand)',
-                fontSize: '1.05rem',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              #{a.label}
-            </button>
-          ))}
+          {aestheticFilters.map((a) => {
+            const isActive = activeAestheticFilter === a.id;
+            return (
+              <button
+                key={a.id}
+                onClick={() => setActiveAestheticFilter(a.id)}
+                className={`glass-pill ${isActive ? 'active' : ''}`}
+                style={{
+                  padding: '5px 14px',
+                  fontFamily: 'var(--font-hand)',
+                  fontSize: '1.15rem',
+                  color: isActive ? 'var(--accent-terracotta)' : 'var(--ink-muted)',
+                  borderColor: isActive ? 'var(--accent-terracotta)' : undefined,
+                }}
+              >
+                #{a.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Templates Grid */}
+        {/* Templates Grid in Neumo-Glass Cards */}
         <div
           style={{
             display: 'grid',
@@ -718,32 +707,21 @@ export default function LandingPage() {
           {filteredTemplates.map((template) => (
             <div
               key={template.id}
+              className="glass-card"
               style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                border: '1px solid rgba(60, 45, 35, 0.12)',
                 overflow: 'hidden',
-                boxShadow: '0 6px 24px rgba(40, 30, 25, 0.05)',
                 display: 'flex',
                 flexDirection: 'column',
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = '0 18px 40px rgba(40, 30, 25, 0.12)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 6px 24px rgba(40, 30, 25, 0.05)';
               }}
             >
               {/* Preview Image with Aesthetic Badges */}
               <div
                 style={{
                   height: '250px',
-                  backgroundColor: '#F3EFEA',
+                  backgroundColor: 'rgba(235, 227, 218, 0.45)',
                   position: 'relative',
                   overflow: 'hidden',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.7)',
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -755,6 +733,7 @@ export default function LandingPage() {
                     height: '100%',
                     objectFit: 'cover',
                     display: 'block',
+                    transition: 'transform 0.4s ease',
                   }}
                 />
 
@@ -770,16 +749,14 @@ export default function LandingPage() {
                   {template.aesthetic.map((tag, idx) => (
                     <span
                       key={idx}
+                      className="glass-badge"
                       style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                        backdropFilter: 'blur(4px)',
                         padding: '3px 10px',
-                        borderRadius: '999px',
                         fontSize: '0.72rem',
                         textTransform: 'uppercase',
                         letterSpacing: '0.06em',
                         fontWeight: 600,
-                        color: '#2A2421',
+                        color: 'var(--ink-primary)',
                       }}
                     >
                       {tag}
@@ -792,13 +769,14 @@ export default function LandingPage() {
                     position: 'absolute',
                     bottom: '12px',
                     right: '12px',
-                    backgroundColor: 'rgba(42, 36, 33, 0.85)',
-                    backdropFilter: 'blur(4px)',
+                    backgroundColor: 'rgba(37, 32, 29, 0.78)',
+                    backdropFilter: 'blur(6px)',
                     color: '#FAF5ED',
-                    padding: '3px 10px',
+                    padding: '3px 12px',
                     borderRadius: '999px',
                     fontSize: '0.72rem',
                     textTransform: 'uppercase',
+                    fontWeight: 600,
                   }}
                 >
                   {template.occasion}
@@ -810,8 +788,8 @@ export default function LandingPage() {
                 <h3
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.8rem',
-                    color: '#2A2421',
+                    fontSize: '1.85rem',
+                    color: 'var(--ink-primary)',
                     marginBottom: '4px',
                   }}
                 >
@@ -821,8 +799,8 @@ export default function LandingPage() {
                 <p
                   style={{
                     fontFamily: 'var(--font-hand)',
-                    fontSize: '1.25rem',
-                    color: '#C97A6E',
+                    fontSize: '1.3rem',
+                    color: 'var(--accent-terracotta)',
                     marginBottom: '10px',
                   }}
                 >
@@ -831,8 +809,8 @@ export default function LandingPage() {
 
                 <p
                   style={{
-                    fontSize: '0.88rem',
-                    color: '#6E655E',
+                    fontSize: '0.9rem',
+                    color: 'var(--ink-secondary)',
                     lineHeight: 1.55,
                     marginBottom: '20px',
                   }}
@@ -843,19 +821,12 @@ export default function LandingPage() {
                 <div style={{ marginTop: 'auto' }}>
                   <Link
                     href={`/create?template=${template.id}&occasion=${template.occasion}`}
+                    className="glass-cta"
                     style={{
                       width: '100%',
-                      backgroundColor: '#2A2421',
-                      color: '#FFFFFF',
-                      borderRadius: '999px',
                       padding: '12px',
-                      fontSize: '0.92rem',
-                      fontWeight: 500,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      transition: 'background-color 0.2s',
+                      fontSize: '0.94rem',
+                      textDecoration: 'none',
                     }}
                   >
                     <span>Use this template</span>
@@ -871,7 +842,7 @@ export default function LandingPage() {
       {/* SECTION 4: LIVE SHOWCASE INTERACTIVE DEMO */}
       <section
         style={{
-          padding: '6rem 1.5rem',
+          padding: '5rem 1.5rem',
           maxWidth: '1240px',
           margin: '0 auto',
         }}
@@ -880,8 +851,8 @@ export default function LandingPage() {
           <span
             style={{
               fontFamily: 'var(--font-hand)',
-              fontSize: '1.35rem',
-              color: '#C97A6E',
+              fontSize: '1.45rem',
+              color: 'var(--accent-terracotta)',
               display: 'block',
               marginBottom: '6px',
             }}
@@ -892,15 +863,15 @@ export default function LandingPage() {
             style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontWeight: 400,
               lineHeight: 1.1,
-              marginBottom: '10px',
+              marginBottom: '12px',
             }}
           >
             What it feels like to receive one.
           </h2>
-          <p style={{ color: '#7A726A', fontSize: '1rem', maxWidth: '580px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--ink-secondary)', fontSize: '1.02rem', maxWidth: '580px', margin: '0 auto' }}>
             Switch between real published gifts below. Every page is a full interactive microsite
             with ambient soundtrack, wax-sealed letters, and photo memories.
           </p>
@@ -916,65 +887,63 @@ export default function LandingPage() {
             marginBottom: '2.5rem',
           }}
         >
-          {SAMPLE_PROJECTS.map((sample) => (
-            <button
-              key={sample.id}
-              onClick={() => setPreviewSampleId(sample.id)}
-              style={{
-                backgroundColor: previewSampleId === sample.id ? '#2A2421' : '#FFFFFF',
-                color: previewSampleId === sample.id ? '#FFFFFF' : '#2A2421',
-                border: '1px solid rgba(60, 45, 35, 0.15)',
-                borderRadius: '999px',
-                padding: '10px 20px',
-                fontSize: '0.88rem',
-                fontWeight: 500,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              <span>{sample.recipientName} ({sample.occasion})</span>
-            </button>
-          ))}
+          {SAMPLE_PROJECTS.map((sample) => {
+            const isActive = previewSampleId === sample.id;
+            return (
+              <button
+                key={sample.id}
+                onClick={() => setPreviewSampleId(sample.id)}
+                className={`glass-pill ${isActive ? 'active' : ''}`}
+                style={{
+                  padding: '10px 22px',
+                  fontSize: '0.9rem',
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? '#FFFFFF' : 'var(--ink-secondary)',
+                  background: isActive
+                    ? 'linear-gradient(135deg, #322A26 0%, #1F1917 100%)'
+                    : undefined,
+                  boxShadow: isActive
+                    ? 'inset 2px 2px 4px rgba(0,0,0,0.35), inset -2px -2px 4px rgba(255,255,255,0.2), 0 2px 8px rgba(40, 30, 25, 0.25)'
+                    : undefined,
+                }}
+              >
+                <span>{sample.recipientName} ({sample.occasion})</span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Embedded Interactive Viewer Frame */}
+        {/* Embedded Interactive Viewer Frame in Frosted Glass */}
         <div
+          className="glass-panel"
           style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: '24px',
-            border: '1px solid rgba(60, 45, 35, 0.12)',
-            boxShadow: '0 25px 60px rgba(40, 30, 25, 0.12)',
             overflow: 'hidden',
           }}
         >
           {/* Top Browser Bar */}
           <div
             style={{
-              padding: '12px 20px',
-              backgroundColor: '#F8F4EE',
-              borderBottom: '1px solid rgba(60, 45, 35, 0.08)',
+              padding: '14px 24px',
+              backgroundColor: 'rgba(255, 255, 255, 0.4)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.7)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <div style={{ display: 'flex', gap: '6px' }}>
-              <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#E29A8F' }} />
-              <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#EAD292' }} />
-              <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#A2C2A7' }} />
+            <div style={{ display: 'flex', gap: '7px' }}>
+              <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#E29A8F', boxShadow: 'inset 0 1px 1px rgba(0,0,0,0.1)' }} />
+              <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#EAD292', boxShadow: 'inset 0 1px 1px rgba(0,0,0,0.1)' }} />
+              <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#A2C2A7', boxShadow: 'inset 0 1px 1px rgba(0,0,0,0.1)' }} />
             </div>
 
             <div
+              className="glass-input"
               style={{
                 fontFamily: 'monospace',
-                fontSize: '0.82rem',
-                color: '#6A625A',
-                backgroundColor: '#FFFFFF',
-                padding: '4px 18px',
-                borderRadius: '999px',
-                border: '1px solid rgba(60, 45, 35, 0.08)',
+                fontSize: '0.84rem',
+                color: 'var(--ink-secondary)',
+                padding: '5px 22px',
               }}
             >
               drewtifull.com/p/{selectedPreviewProject.slug}
@@ -984,15 +953,15 @@ export default function LandingPage() {
               href={`/p/${selectedPreviewProject.slug}`}
               target="_blank"
               style={{
-                fontSize: '0.82rem',
-                color: '#C97A6E',
+                fontSize: '0.84rem',
+                color: 'var(--accent-terracotta)',
                 fontWeight: 600,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
               }}
             >
-              Full Screen <ExternalLink size={12} />
+              Full Screen <ExternalLink size={13} />
             </Link>
           </div>
 
@@ -1011,103 +980,115 @@ export default function LandingPage() {
       <section
         style={{
           padding: '6rem 1.5rem',
-          maxWidth: '920px',
+          maxWidth: '960px',
           margin: '0 auto',
           textAlign: 'center',
         }}
       >
-        <WashiTape
-          color="rose"
-          rotation={-2}
-          width="130px"
-          style={{ position: 'relative', margin: '0 auto 2rem auto', display: 'block' }}
-        />
-
-        <h2
+        <div
+          className="glass-panel"
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
-            color: '#2A2421',
-            lineHeight: 1.15,
-            fontWeight: 400,
-            marginBottom: '1.5rem',
+            padding: '4rem 2.5rem',
           }}
         >
-          Drewtifull is not where people build websites. <br />
-          <span style={{ fontStyle: 'italic', color: '#C97A6E' }}>
-            It’s where people turn memories into gifts.
-          </span>
-        </h2>
+          <WashiTape
+            color="rose"
+            rotation={-2}
+            width="130px"
+            style={{ position: 'relative', margin: '0 auto 2rem auto', display: 'block' }}
+          />
 
-        <p
-          style={{
-            fontSize: '1.15rem',
-            lineHeight: 1.8,
-            color: '#5C544E',
-            maxWidth: '680px',
-            margin: '0 auto 2.5rem auto',
-          }}
-        >
-          When was the last time someone made you something on the internet that wasn’t a meme,
-          an ad, or a text message? A Drewtifull is an intentional artifact of affection.
-        </p>
+          <h2
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
+              color: 'var(--ink-primary)',
+              lineHeight: 1.15,
+              fontWeight: 400,
+              marginBottom: '1.5rem',
+            }}
+          >
+            Drewtifull is not where people build websites. <br />
+            <span style={{ fontStyle: 'italic', color: 'var(--accent-terracotta)' }}>
+              It’s where people turn memories into gifts.
+            </span>
+          </h2>
 
-        <Link
-          href="/create"
-          style={{
-            backgroundColor: '#2A2421',
-            color: '#FFFFFF',
-            borderRadius: '999px',
-            padding: '16px 36px',
-            fontSize: '1.05rem',
-            fontWeight: 500,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 4px 18px rgba(42, 36, 33, 0.25)',
-          }}
-        >
-          <span>Start making yours now ♡</span>
-          <ArrowRight size={18} />
-        </Link>
+          <p
+            style={{
+              fontSize: '1.15rem',
+              lineHeight: 1.8,
+              color: 'var(--ink-secondary)',
+              maxWidth: '680px',
+              margin: '0 auto 2.5rem auto',
+            }}
+          >
+            When was the last time someone made you something on the internet that wasn’t a meme,
+            an ad, or a text message? A Drewtifull is an intentional artifact of affection.
+          </p>
+
+          <Link
+            href="/create"
+            className="glass-cta"
+            style={{
+              padding: '16px 36px',
+              fontSize: '1.05rem',
+              textDecoration: 'none',
+            }}
+          >
+            <span>Start making yours now ♡</span>
+            <ArrowRight size={18} />
+          </Link>
+        </div>
       </section>
 
       {/* FOOTER */}
       <footer
         style={{
-          padding: '4rem 1.5rem 3rem 1.5rem',
-          borderTop: '1px solid rgba(60, 45, 35, 0.1)',
-          maxWidth: '1240px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '20px',
+          background: 'rgba(247, 243, 237, 0.75)',
+          backdropFilter: 'blur(20px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(160%)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.85)',
+          padding: '4rem 2.5rem 3rem 2.5rem',
         }}
       >
-        <div>
-          <span
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.6rem',
-              color: '#2A2421',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            drewtifull
-          </span>
-          <p style={{ fontSize: '0.85rem', color: '#8A8077', marginTop: '4px' }}>
-            Make something beautiful for someone you love.
-          </p>
-        </div>
+        <div
+          style={{
+            maxWidth: '1240px',
+            margin: '0 auto',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '24px',
+          }}
+        >
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.7rem',
+                  color: 'var(--ink-primary)',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                drewtifull
+              </span>
+              <span style={{ color: 'var(--accent-terracotta)', fontSize: '1.25rem' }}>♡</span>
+            </div>
+            <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', marginTop: '4px' }}>
+              Make something beautiful for someone you love.
+            </p>
+          </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', fontSize: '0.9rem', color: '#6A625A' }}>
-          <Link href="/dashboard" style={{ color: '#6A625A', textDecoration: 'none' }}>My Studio</Link>
-          <Link href="/templates" style={{ color: '#6A625A', textDecoration: 'none' }}>Templates</Link>
-          <Link href="/create" style={{ color: '#6A625A', textDecoration: 'none' }}>Create Gift</Link>
-          <Link href="/privacy" style={{ color: '#6A625A', textDecoration: 'none' }}>Privacy</Link>
-          <Link href="/terms" style={{ color: '#6A625A', textDecoration: 'none' }}>Terms</Link>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '22px', fontSize: '0.92rem', color: 'var(--ink-secondary)' }}>
+            <Link href="/dashboard" style={{ color: 'var(--ink-secondary)', textDecoration: 'none', fontWeight: 500 }}>My Studio</Link>
+            <Link href="/templates" style={{ color: 'var(--ink-secondary)', textDecoration: 'none', fontWeight: 500 }}>Templates</Link>
+            <Link href="/create" style={{ color: 'var(--ink-secondary)', textDecoration: 'none', fontWeight: 500 }}>Create Gift</Link>
+            <Link href="/privacy" style={{ color: 'var(--ink-muted)', textDecoration: 'none' }}>Privacy</Link>
+            <Link href="/terms" style={{ color: 'var(--ink-muted)', textDecoration: 'none' }}>Terms</Link>
+          </div>
         </div>
       </footer>
     </div>

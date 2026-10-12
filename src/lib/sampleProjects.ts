@@ -19,20 +19,20 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p1',
-        url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/hero_portrait.jpg',
         caption: 'your radiant morning light',
         isHero: true,
         aspect: 'portrait',
       },
       {
         id: 'p2',
-        url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80',
+        url: '/memories/wildflowers_note.jpg',
         caption: 'botanical garden day',
         aspect: 'square',
       },
       {
         id: 'p3',
-        url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+        url: '/memories/anniversary_laugh.jpg',
         caption: 'golden hour smile',
         aspect: 'portrait',
       },
@@ -59,7 +59,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p4',
-        url: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/cozy_coffee.jpg',
         caption: 'analog memories',
         isHero: true,
         aspect: 'portrait',
@@ -87,7 +87,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p5',
-        url: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/birthday_cake.jpg',
         caption: 'scrapbook smile',
         isHero: true,
         aspect: 'portrait',
@@ -115,7 +115,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p6',
-        url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/anniversary_laugh.jpg',
         caption: 'cutest sunshine',
         isHero: true,
         aspect: 'portrait',
@@ -143,7 +143,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p7',
-        url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/hero_portrait.jpg',
         caption: 'front page chronicle',
         isHero: true,
         aspect: 'portrait',
@@ -171,7 +171,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p8',
-        url: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/birthday_cake.jpg',
         caption: 'sparkle baby',
         isHero: true,
         aspect: 'portrait',
@@ -199,7 +199,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p9',
-        url: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/golden_beach.jpg',
         caption: 'watching the sunset',
         isHero: true,
         aspect: 'portrait',
@@ -227,7 +227,7 @@ export const SAMPLE_PROJECTS: Project[] = [
     photos: [
       {
         id: 'p10',
-        url: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1000&q=80',
+        url: '/memories/proposal_starlight.jpg',
         caption: 'under the lantern lights',
         isHero: true,
         aspect: 'portrait',

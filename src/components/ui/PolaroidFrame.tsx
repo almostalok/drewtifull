@@ -100,7 +100,7 @@ export function PolaroidFrame({
           {/* Actual image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={hasError ? 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80' : url}
+            src={hasError ? '/memories/hero_portrait.jpg' : url}
             alt={caption || 'Memory photograph'}
             onLoad={() => setImageLoaded(true)}
             onError={() => {
