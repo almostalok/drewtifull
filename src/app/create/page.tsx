@@ -69,94 +69,80 @@ function CreateFlowContent() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#FAF7F2', paddingBottom: '5rem' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'transparent', paddingBottom: '5rem' }}>
       {/* Top Navbar */}
       <header
+        className="glass-nav"
         style={{
-          padding: '16px 24px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          padding: '14px 32px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          borderBottom: '1px solid rgba(60, 45, 35, 0.08)',
-          backgroundColor: '#FFFFFF',
         }}
       >
         <Link
           href="/"
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '1.5rem',
-            color: '#2A2421',
+            fontSize: '1.65rem',
+            color: 'var(--ink-primary)',
             letterSpacing: '-0.02em',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            textDecoration: 'none',
           }}
         >
-          drewtifull
+          <span>drewtifull</span>
+          <span style={{ color: 'var(--accent-terracotta)', fontSize: '1.2rem' }}>♡</span>
         </Link>
 
-        {/* Step indicator */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span
-            style={{
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              backgroundColor: step >= 1 ? '#C97A6E' : '#E2D8CE',
-              color: '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-            }}
-          >
-            1
-          </span>
-          <div style={{ width: '20px', height: '1px', backgroundColor: 'rgba(60, 45, 35, 0.2)' }} />
-          <span
-            style={{
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              backgroundColor: step >= 2 ? '#C97A6E' : '#E2D8CE',
-              color: '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-            }}
-          >
-            2
-          </span>
-          <div style={{ width: '20px', height: '1px', backgroundColor: 'rgba(60, 45, 35, 0.2)' }} />
-          <span
-            style={{
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              backgroundColor: step >= 3 ? '#C97A6E' : '#E2D8CE',
-              color: '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-            }}
-          >
-            3
-          </span>
+        {/* Step indicator in Neumo-Glass circular cushions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {[1, 2, 3].map((s, idx) => (
+            <React.Fragment key={s}>
+              {idx > 0 && (
+                <div style={{ width: '22px', height: '2px', backgroundColor: 'rgba(180, 165, 150, 0.35)', borderRadius: '2px' }} />
+              )}
+              <span
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  background: step >= s
+                    ? 'linear-gradient(135deg, #DE745D 0%, #BA5540 100%)'
+                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 234, 226, 0.7) 100%)',
+                  color: step >= s ? '#FFFFFF' : 'var(--ink-muted)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  boxShadow: step >= s
+                    ? '0 3px 10px rgba(200, 101, 82, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4)'
+                    : 'var(--neumo-shadow-btn)',
+                  border: '1px solid rgba(255, 255, 255, 0.7)',
+                }}
+              >
+                {s}
+              </span>
+            </React.Fragment>
+          ))}
         </div>
       </header>
 
       {/* STEP 1: Choose Occasion */}
       {step === 1 && (
-        <main style={{ maxWidth: '960px', margin: '3rem auto 0 auto', padding: '0 20px' }}>
+        <main style={{ maxWidth: '980px', margin: '3rem auto 0 auto', padding: '0 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span
               style={{
                 fontFamily: 'var(--font-hand)',
-                fontSize: '1.3rem',
-                color: '#C97A6E',
+                fontSize: '1.4rem',
+                color: 'var(--accent-terracotta)',
                 marginBottom: '6px',
                 display: 'block',
               }}
@@ -167,7 +153,7 @@ function CreateFlowContent() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
                 fontWeight: 400,
                 lineHeight: 1.15,
                 marginBottom: '10px',
@@ -175,7 +161,7 @@ function CreateFlowContent() {
             >
               What are you making?
             </h1>
-            <p style={{ color: '#7A726A', fontSize: '1.05rem' }}>
+            <p style={{ color: 'var(--ink-secondary)', fontSize: '1.05rem' }}>
               Every occasion holds a different emotion. Pick where your story begins.
             </p>
           </div>
@@ -184,44 +170,32 @@ function CreateFlowContent() {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-              gap: '18px',
+              gap: '20px',
             }}
           >
             {OCCASIONS.map((occ) => (
               <div
                 key={occ.id}
                 onClick={() => handleNextStep1(occ.id)}
+                className="glass-card"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid rgba(60, 45, 35, 0.12)',
-                  borderRadius: '14px',
                   padding: '24px 20px',
                   cursor: 'pointer',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                   position: 'relative',
-                  boxShadow: '0 2px 10px rgba(40, 30, 25, 0.04)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(40, 30, 25, 0.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 10px rgba(40, 30, 25, 0.04)';
                 }}
               >
-                <div style={{ fontSize: '2rem', marginBottom: '12px' }}>{occ.icon}</div>
+                <div style={{ fontSize: '2.2rem', marginBottom: '12px' }}>{occ.icon}</div>
                 <h3
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.45rem',
-                    color: '#2A2421',
+                    fontSize: '1.5rem',
+                    color: 'var(--ink-primary)',
                     marginBottom: '4px',
                   }}
                 >
                   {occ.title}
                 </h3>
-                <p style={{ fontSize: '0.85rem', color: '#8A8077', lineHeight: 1.4 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--ink-muted)', lineHeight: 1.4 }}>
                   “{occ.subtitle}”
                 </p>
               </div>
@@ -232,17 +206,15 @@ function CreateFlowContent() {
 
       {/* STEP 2: Choose Template */}
       {step === 2 && (
-        <main style={{ maxWidth: '1180px', margin: '3rem auto 0 auto', padding: '0 20px' }}>
+        <main style={{ maxWidth: '1200px', margin: '3rem auto 0 auto', padding: '0 20px' }}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <button
               onClick={() => setStep(1)}
+              className="glass-pill"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                color: '#8A8077',
-                fontSize: '0.85rem',
-                marginBottom: '10px',
+                padding: '6px 16px',
+                fontSize: '0.86rem',
+                marginBottom: '14px',
               }}
             >
               <ArrowLeft size={14} /> Back to occasions
@@ -251,7 +223,7 @@ function CreateFlowContent() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
                 fontWeight: 400,
                 lineHeight: 1.15,
                 marginBottom: '8px',
@@ -259,7 +231,7 @@ function CreateFlowContent() {
             >
               Pick a feeling.
             </h1>
-            <p style={{ color: '#7A726A', fontSize: '1rem' }}>
+            <p style={{ color: 'var(--ink-secondary)', fontSize: '1.02rem' }}>
               Choose a design aesthetic for this {selectedOccasion} gift. You can customize every photo and word.
             </p>
           </div>
@@ -278,30 +250,24 @@ function CreateFlowContent() {
                 <div
                   key={template.id}
                   onClick={() => handleNextStep2(template.id)}
+                  className="glass-card"
                   style={{
-                    backgroundColor: '#FFFFFF',
-                    border: isSelected
-                      ? '2px solid #C97A6E'
-                      : '1px solid rgba(60, 45, 35, 0.12)',
-                    borderRadius: '16px',
                     overflow: 'hidden',
                     cursor: 'pointer',
+                    borderColor: isSelected ? 'var(--accent-terracotta)' : undefined,
                     boxShadow: isSelected
-                      ? '0 16px 36px rgba(201, 122, 110, 0.2)'
-                      : '0 4px 18px rgba(40, 30, 25, 0.05)',
-                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-                    position: 'relative',
+                      ? 'var(--neumo-shadow-card-hover), 0 0 0 2px var(--accent-terracotta)'
+                      : undefined,
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-4px)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
                 >
                   {/* Preview Image */}
                   <div
                     style={{
                       height: '240px',
-                      backgroundColor: '#EBE4DB',
+                      backgroundColor: 'rgba(235, 227, 218, 0.45)',
                       overflow: 'hidden',
                       position: 'relative',
+                      borderBottom: '1px solid rgba(255, 255, 255, 0.7)',
                     }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -327,16 +293,14 @@ function CreateFlowContent() {
                       {template.aesthetic.slice(0, 2).map((tag, idx) => (
                         <span
                           key={idx}
+                          className="glass-badge"
                           style={{
-                            backgroundColor: 'rgba(255,255,255,0.92)',
-                            backdropFilter: 'blur(4px)',
                             padding: '3px 10px',
-                            borderRadius: '999px',
                             fontSize: '0.72rem',
                             textTransform: 'uppercase',
                             letterSpacing: '0.06em',
                             fontWeight: 600,
-                            color: '#2A2421',
+                            color: 'var(--ink-primary)',
                           }}
                         >
                           {tag}
@@ -346,12 +310,12 @@ function CreateFlowContent() {
                   </div>
 
                   {/* Card Content */}
-                  <div style={{ padding: '20px' }}>
+                  <div style={{ padding: '22px' }}>
                     <h3
                       style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: '1.6rem',
-                        color: '#2A2421',
+                        fontSize: '1.65rem',
+                        color: 'var(--ink-primary)',
                         marginBottom: '4px',
                       }}
                     >
@@ -360,8 +324,8 @@ function CreateFlowContent() {
                     <p
                       style={{
                         fontFamily: 'var(--font-hand)',
-                        fontSize: '1.15rem',
-                        color: '#C97A6E',
+                        fontSize: '1.25rem',
+                        color: 'var(--accent-terracotta)',
                         marginBottom: '10px',
                       }}
                     >
@@ -369,10 +333,10 @@ function CreateFlowContent() {
                     </p>
                     <p
                       style={{
-                        fontSize: '0.85rem',
-                        color: '#7A726A',
+                        fontSize: '0.88rem',
+                        color: 'var(--ink-secondary)',
                         lineHeight: 1.5,
-                        marginBottom: '16px',
+                        marginBottom: '18px',
                       }}
                     >
                       {template.description}
@@ -380,18 +344,11 @@ function CreateFlowContent() {
 
                     <button
                       type="button"
+                      className={isSelected ? 'glass-cta' : 'glass-pill'}
                       style={{
                         width: '100%',
-                        padding: '10px',
-                        borderRadius: '999px',
-                        backgroundColor: isSelected ? '#C97A6E' : '#2A2421',
-                        color: '#FFFFFF',
-                        fontSize: '0.88rem',
-                        fontWeight: 500,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px',
+                        padding: '11px',
+                        fontSize: '0.9rem',
                       }}
                     >
                       <span>Use this template</span>
@@ -411,13 +368,11 @@ function CreateFlowContent() {
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <button
               onClick={() => setStep(2)}
+              className="glass-pill"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                color: '#8A8077',
-                fontSize: '0.85rem',
-                marginBottom: '10px',
+                padding: '6px 16px',
+                fontSize: '0.86rem',
+                marginBottom: '14px',
               }}
             >
               <ArrowLeft size={14} /> Back to templates
@@ -426,7 +381,7 @@ function CreateFlowContent() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
                 fontWeight: 400,
                 lineHeight: 1.15,
                 marginBottom: '8px',
@@ -434,30 +389,27 @@ function CreateFlowContent() {
             >
               Who is this gift for?
             </h1>
-            <p style={{ color: '#7A726A', fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--ink-secondary)', fontSize: '0.98rem' }}>
               We will prepare your canvas. You can refine and add photos in the studio.
             </p>
           </div>
 
           <div
+            className="glass-panel"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.12)',
-              borderRadius: '16px',
-              padding: '32px 28px',
-              boxShadow: '0 8px 30px rgba(40, 30, 25, 0.06)',
+              padding: '36px 32px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '20px',
+              gap: '22px',
             }}
           >
             <div>
               <label
                 style={{
                   display: 'block',
-                  fontSize: '0.88rem',
+                  fontSize: '0.9rem',
                   fontWeight: 600,
-                  color: '#2A2421',
+                  color: 'var(--ink-primary)',
                   marginBottom: '8px',
                 }}
               >
@@ -468,14 +420,12 @@ function CreateFlowContent() {
                 value={recipientName}
                 placeholder="e.g. Aanchal"
                 onChange={(e) => setRecipientName(e.target.value)}
+                className="glass-input"
                 style={{
                   width: '100%',
-                  padding: '12px 16px',
-                  borderRadius: '10px',
-                  border: '1px solid rgba(60, 45, 35, 0.15)',
+                  padding: '12px 18px',
+                  borderRadius: '14px',
                   fontSize: '1rem',
-                  color: '#2A2421',
-                  outline: 'none',
                 }}
               />
             </div>
@@ -485,9 +435,9 @@ function CreateFlowContent() {
                 <label
                   style={{
                     display: 'block',
-                    fontSize: '0.88rem',
+                    fontSize: '0.9rem',
                     fontWeight: 600,
-                    color: '#2A2421',
+                    color: 'var(--ink-primary)',
                     marginBottom: '8px',
                   }}
                 >
@@ -498,13 +448,12 @@ function CreateFlowContent() {
                   value={relationship}
                   placeholder="e.g. Girlfriend, Best Friend"
                   onChange={(e) => setRelationship(e.target.value)}
+                  className="glass-input"
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: '1px solid rgba(60, 45, 35, 0.15)',
+                    padding: '12px 18px',
+                    borderRadius: '14px',
                     fontSize: '0.95rem',
-                    color: '#2A2421',
                   }}
                 />
               </div>
@@ -513,9 +462,9 @@ function CreateFlowContent() {
                 <label
                   style={{
                     display: 'block',
-                    fontSize: '0.88rem',
+                    fontSize: '0.9rem',
                     fontWeight: 600,
-                    color: '#2A2421',
+                    color: 'var(--ink-primary)',
                     marginBottom: '8px',
                   }}
                 >
@@ -525,15 +474,15 @@ function CreateFlowContent() {
                   type="text"
                   disabled
                   value={selectedOccasion.toUpperCase()}
+                  className="glass-input"
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: '1px solid rgba(60, 45, 35, 0.1)',
-                    backgroundColor: '#FAF7F2',
+                    padding: '12px 18px',
+                    borderRadius: '14px',
                     fontSize: '0.88rem',
-                    color: '#7A726A',
+                    color: 'var(--ink-muted)',
                     fontWeight: 600,
+                    opacity: 0.8,
                   }}
                 />
               </div>
@@ -543,9 +492,9 @@ function CreateFlowContent() {
               <label
                 style={{
                   display: 'block',
-                  fontSize: '0.88rem',
+                  fontSize: '0.9rem',
                   fontWeight: 600,
-                  color: '#2A2421',
+                  color: 'var(--ink-primary)',
                   marginBottom: '8px',
                 }}
               >
@@ -556,15 +505,13 @@ function CreateFlowContent() {
                 value={customMessage}
                 placeholder="I wanted to make something special for you..."
                 onChange={(e) => setCustomMessage(e.target.value)}
+                className="glass-input"
                 style={{
                   width: '100%',
-                  padding: '12px 16px',
-                  borderRadius: '10px',
-                  border: '1px solid rgba(60, 45, 35, 0.15)',
+                  padding: '12px 18px',
+                  borderRadius: '14px',
                   fontSize: '0.95rem',
-                  color: '#2A2421',
                   lineHeight: 1.5,
-                  fontFamily: 'inherit',
                   resize: 'vertical',
                 }}
               />
@@ -573,19 +520,11 @@ function CreateFlowContent() {
             <button
               type="button"
               onClick={handleCreate}
+              className="glass-cta"
               style={{
-                backgroundColor: '#2A2421',
-                color: '#FFFFFF',
-                borderRadius: '999px',
                 padding: '16px',
                 fontSize: '1.05rem',
-                fontWeight: 500,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
                 marginTop: '10px',
-                boxShadow: '0 4px 16px rgba(42, 36, 33, 0.25)',
               }}
             >
               <span>Create My Drewtifull ♡</span>

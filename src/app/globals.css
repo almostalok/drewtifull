@@ -1,53 +1,72 @@
-/* Drewtifull Bespoke Editorial Design Tokens & Styling */
+/* Drewtifull Bespoke Neumorphic-Glassmorphism Design Tokens & Styling */
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DynaPuff:wght@500;700&family=Gloria+Hallelujah&family=Indie+Flower&family=Patrick+Hand&family=Reenie+Beanie&family=Sacramento&family=Special+Elite&display=swap');
 
 :root {
-  /* Reference Palette Tokens */
-  --bg-ivory: #FFF8F2;
-  --bg-cream: #F8EEE6;
-  --bg-blush: #F5DCD5;
-  --accent-coral: #F28F91;
-  --accent-coral-soft: #FDECEB;
-  --ink-charcoal: #292321;
-  --ink-muted: #81746D;
-  --card-white: #FFFCF9;
-  --border-pale: #EADBD3;
+  /* Non-AI Organic Palette & Neumo-Glass Foundation */
+  --bg-canvas: #EDE7DF;
+  --bg-canvas-subtle: #F4EFE8;
+  --bg-canvas-deep: #E3DBD0;
+  
+  --bg-ivory: #F8F3ED;
+  --bg-cream: #EDE7DF;
+  --bg-blush: #F4DFD8;
+  --card-white: rgba(255, 255, 255, 0.72);
+  --border-pale: rgba(255, 255, 255, 0.65);
 
-  /* Warm editorial palette */
-  --bg-paper: #FDFCF9;
-  --bg-warm: #F4EFEA;
-  --bg-muted: #EFE8DE;
+  /* Glassmorphism Surfaces */
+  --bg-glass: rgba(255, 255, 255, 0.65);
+  --bg-glass-elevated: rgba(255, 255, 255, 0.82);
+  --bg-glass-subtle: rgba(255, 255, 255, 0.45);
+  --bg-glass-card: rgba(255, 255, 255, 0.62);
+  --bg-glass-input: rgba(235, 228, 220, 0.58);
+  --border-glass: rgba(255, 255, 255, 0.78);
+  --border-glass-subtle: rgba(255, 255, 255, 0.45);
+  --border-glass-tinted: rgba(180, 165, 150, 0.24);
+
+  /* Neumorphic Dual-Shadow Profiles (Ambient Soft Depth + Inset Depressed Sculpting) */
+  --neumo-shadow-card: 10px 10px 24px rgba(165, 152, 138, 0.28), -10px -10px 24px rgba(255, 255, 255, 0.95), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  --neumo-shadow-card-hover: 14px 14px 32px rgba(165, 152, 138, 0.38), -14px -14px 32px rgba(255, 255, 255, 1), inset 0 1px 1px rgba(255, 255, 255, 1);
+  --neumo-shadow-btn: 5px 5px 12px rgba(172, 158, 145, 0.3), -5px -5px 12px rgba(255, 255, 255, 0.95), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --neumo-shadow-btn-hover: 7px 7px 16px rgba(172, 158, 145, 0.38), -7px -7px 16px rgba(255, 255, 255, 1), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --neumo-shadow-pressed: inset 3px 3px 7px rgba(160, 146, 134, 0.38), inset -3px -3px 7px rgba(255, 255, 255, 0.95);
+  --neumo-shadow-inset: inset 3px 3px 6px rgba(165, 150, 136, 0.32), inset -3px -3px 6px rgba(255, 255, 255, 0.95);
+  --neumo-shadow-floating: 16px 16px 40px rgba(160, 146, 134, 0.35), -12px -12px 36px rgba(255, 255, 255, 0.95), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  --neumo-shadow-cta: 6px 6px 18px rgba(195, 95, 75, 0.36), -4px -4px 14px rgba(255, 255, 255, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  --neumo-shadow-dark: 6px 6px 18px rgba(42, 34, 30, 0.32), -4px -4px 14px rgba(255, 255, 255, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+
+  /* Non-AI Organic Mineral Inks */
+  --ink-primary: #25201D;
+  --ink-secondary: #524741;
+  --ink-muted: #7D7067;
+  --ink-faint: #B5A89E;
+  --ink-charcoal: #25201D;
+
+  /* Non-AI Earth & Pigment Accents */
+  --accent-terracotta: #C86552;
+  --accent-terracotta-soft: #F7EAE6;
+  --accent-terracotta-deep: #9F4635;
+  --accent-rose: #C86552;
+  --accent-rose-soft: #F7EAE6;
+  --accent-rose-deep: #9F4635;
   
-  --ink-primary: #221F1E;
-  --ink-secondary: #544D47;
-  --ink-muted: #827870;
-  --ink-faint: #B3A9A0;
+  --accent-coral: #E67E6B;
+  --accent-coral-soft: #FCECE8;
   
-  /* Romantic accent colors */
-  --accent-rose: #C97A6E;
-  --accent-rose-soft: #F9EBE8;
-  --accent-rose-deep: #9B463B;
-  --accent-sage: #6B8572;
-  --accent-sage-soft: #EBF2EC;
-  --accent-amber: #B9863B;
-  --accent-amber-soft: #FAF3E6;
-  --accent-terracotta: #B95B3B;
+  --accent-sage: #5F7D67;
+  --accent-sage-soft: #E9F1EB;
   
-  /* Borders and dividers */
-  --border-delicate: rgba(60, 45, 35, 0.1);
-  --border-subtle: rgba(60, 45, 35, 0.05);
-  --border-strong: rgba(60, 45, 35, 0.2);
-  
-  /* Paper & tactile shadows */
-  --shadow-subtle: 0 2px 10px rgba(40, 30, 25, 0.04);
-  --shadow-paper: 0 4px 20px rgba(40, 30, 25, 0.07), 0 1px 3px rgba(40, 30, 25, 0.04);
-  --shadow-polaroid: 0 8px 24px rgba(35, 25, 20, 0.12), 0 2px 6px rgba(35, 25, 20, 0.06);
-  --shadow-floating: 0 20px 40px rgba(40, 30, 25, 0.12), 0 4px 12px rgba(40, 30, 25, 0.06);
-  
-  /* Typography families */
-  --font-serif: var(--font-serif-cormorant), 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  --font-display: var(--font-serif-playfair), 'Playfair Display', Georgia, serif;
+  --accent-amber: #B98B40;
+  --accent-amber-soft: #F7F1E4;
+
+  /* Borders & Dividers */
+  --border-delicate: rgba(255, 255, 255, 0.75);
+  --border-subtle: rgba(180, 165, 150, 0.18);
+  --border-strong: rgba(180, 165, 150, 0.35);
+
+  /* Non-AI Humanist & Editorial Typography Hierarchy */
+  --font-serif: var(--font-serif-fraunces), var(--font-serif-cormorant), 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --font-display: var(--font-serif-fraunces), var(--font-serif-playfair), 'Fraunces', 'Playfair Display', Georgia, serif;
   --font-body: var(--font-sans), 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-hand: var(--font-handwritten), 'Caveat', cursive;
 
@@ -58,11 +77,11 @@
   --font-scribble: 'Reenie Beanie', cursive;
   --font-y2k: 'DynaPuff', cursive;
   --font-typewriter: 'Special Elite', monospace;
-  
+
   /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 }
 
@@ -81,7 +100,13 @@ html {
 body {
   min-height: 100%;
   color: var(--ink-primary);
-  background-color: var(--bg-cream);
+  background-color: var(--bg-canvas);
+  background-image: 
+    radial-gradient(circle at 10% 12%, rgba(228, 160, 145, 0.24) 0%, transparent 40%),
+    radial-gradient(circle at 90% 18%, rgba(195, 218, 202, 0.28) 0%, transparent 45%),
+    radial-gradient(circle at 45% 68%, rgba(240, 218, 185, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 82% 88%, rgba(235, 175, 162, 0.2) 0%, transparent 42%);
+  background-attachment: fixed;
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -90,7 +115,7 @@ body {
   position: relative;
 }
 
-/* Subtle paper texture overlay */
+/* Subtle physical paper grain texture overlay */
 body::before {
   content: "";
   position: fixed;
@@ -100,17 +125,17 @@ body::before {
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Editorial selection */
 ::selection {
-  background: #F2D5CE;
+  background: #F4D3CB;
   color: #381C17;
 }
 
-/* Headings */
+/* Headings with Non-AI Editorial Serif */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 400;
@@ -147,23 +172,224 @@ button {
   background: none;
 }
 
-/* Custom delicate scrollbar */
+/* Custom delicate frosted scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-cream);
+  background: rgba(237, 231, 223, 0.6);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--ink-faint);
+  background: rgba(181, 168, 158, 0.65);
   border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-muted);
+  background: rgba(125, 112, 103, 0.85);
+}
+
+/* ==========================================================
+   NEUMORPHISM + GLASSMORPHISM COMPONENT SYSTEM
+   ========================================================== */
+
+/* Frosted Glass Panels with Neumorphic Ambient Relief */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neumo-shadow-card);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+}
+
+.glass-card {
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neumo-shadow-card);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--neumo-shadow-card-hover);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Floating Neumorphic Frosted Glass Navbars */
+.glass-nav {
+  background: rgba(247, 243, 237, 0.78);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(165, 152, 138, 0.12);
+}
+
+/* Tactile Frosted Glass Pills (Buttons & Filter Tabs) */
+.glass-pill {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 239, 232, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  box-shadow: var(--neumo-shadow-btn);
+  color: var(--ink-secondary);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+}
+
+.glass-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--neumo-shadow-btn-hover);
+  color: var(--ink-primary);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.glass-pill:active,
+.glass-pill.active {
+  transform: translateY(1px);
+  background: linear-gradient(135deg, rgba(234, 226, 217, 0.8) 0%, rgba(248, 243, 237, 0.9) 100%);
+  box-shadow: var(--neumo-shadow-pressed);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-primary);
+}
+
+/* Inset Depressed Neumorphic Fields (Search inputs, text areas) */
+.glass-input {
+  background: var(--bg-glass-input);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--neumo-shadow-inset);
+  border-radius: var(--radius-full);
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.glass-input:focus {
+  border-color: rgba(200, 101, 82, 0.6);
+  box-shadow: var(--neumo-shadow-inset), 0 0 0 3px rgba(200, 101, 82, 0.15);
+  background: rgba(245, 240, 234, 0.75);
+}
+
+/* Primary Non-AI Terracotta/Clay Glass Call-To-Action */
+.glass-cta {
+  background: linear-gradient(135deg, #DE745D 0%, #BA5540 100%);
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-full);
+  box-shadow: var(--neumo-shadow-cta);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-shadow: 0 1px 2px rgba(60, 20, 10, 0.2);
+}
+
+.glass-cta:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #E6826C 0%, #C65E49 100%);
+  box-shadow: 8px 8px 22px rgba(195, 95, 75, 0.46), -4px -4px 16px rgba(255, 255, 255, 0.95);
+}
+
+.glass-cta:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.28), inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Deep Roasted Espresso Glass Call-To-Action */
+.glass-dark-cta {
+  background: linear-gradient(135deg, #322A26 0%, #1F1917 100%);
+  color: #FAF5F0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  box-shadow: var(--neumo-shadow-dark);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-dark-cta:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3E3430 0%, #29211E 100%);
+  box-shadow: 8px 8px 22px rgba(42, 34, 30, 0.42), -4px -4px 14px rgba(255, 255, 255, 0.95);
+}
+
+.glass-dark-cta:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), inset -2px -2px 5px rgba(255, 255, 255, 0.15);
+}
+
+/* Modal Dialog in Frosted Neumo-Glass */
+.glass-modal {
+  background: rgba(252, 249, 245, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  box-shadow: var(--neumo-shadow-floating);
+}
+
+/* Circular Icon Button with Neumo-Glass Cushion */
+.glass-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 239, 232, 0.75) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--neumo-shadow-btn);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.glass-icon-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: var(--neumo-shadow-btn-hover);
+  color: var(--ink-primary);
+}
+
+.glass-icon-btn:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: var(--neumo-shadow-pressed);
+}
+
+/* Badge / Chip in Frosted Glass */
+.glass-badge {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 6px rgba(165, 152, 138, 0.14);
+  border-radius: var(--radius-full);
 }
 
 /* Reusable tactile components */

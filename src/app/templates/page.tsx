@@ -74,8 +74,8 @@ export default function TemplatesCataloguePage() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#FFF8F2',
-        color: '#292321',
+        backgroundColor: 'transparent',
+        color: 'var(--ink-primary)',
         display: 'flex',
         flexDirection: 'column',
       }}

@@ -14,44 +14,43 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
 
   return (
     <header
+      className="glass-nav"
       style={{
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        backgroundColor: 'rgba(255, 248, 242, 0.96)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(234, 219, 211, 0.75)',
-        padding: '8px 44px',
+        padding: '10px 40px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: '52px',
+        height: '62px',
         boxSizing: 'border-box',
-        transition: 'all 0.2s ease',
+        transition: 'all 0.25s ease',
       }}
     >
-      {/* Left: Wordmark with Coral Heart */}
+      {/* Left: Wordmark with Warm Terracotta Heart */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <Link
           href="/"
           style={{
             fontFamily: 'var(--font-serif)',
-            fontSize: '1.65rem',
-            color: '#292321',
+            fontSize: '1.75rem',
+            color: 'var(--ink-primary)',
             letterSpacing: '-0.025em',
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '5px',
+            gap: '6px',
             fontWeight: 400,
             lineHeight: 1,
+            transition: 'transform 0.2s ease',
           }}
         >
           <span>drewtifull</span>
           <span
             style={{
-              color: '#F28F91',
-              fontSize: '1.2rem',
+              color: 'var(--accent-terracotta)',
+              fontSize: '1.25rem',
               transform: 'translateY(-1px)',
               display: 'inline-block',
               fontWeight: 300,
@@ -62,37 +61,37 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         </Link>
       </div>
 
-      {/* Center: Main Navigation Links */}
+      {/* Center: Main Navigation Links with Non-AI Font */}
       <nav
         className="hide-on-mobile"
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '32px',
+          gap: '30px',
         }}
       >
         <Link
           href="/"
           style={{
-            fontSize: '0.9rem',
-            color: '#81746D',
+            fontSize: '0.92rem',
+            color: 'var(--ink-muted)',
             textDecoration: 'none',
-            fontWeight: 400,
+            fontWeight: 500,
             transition: 'color 0.15s ease',
           }}
         >
           Home
         </Link>
 
-        {/* Active "Templates" Link with Coral Underline */}
+        {/* Active "Templates" Link with Terracotta Underline */}
         <div style={{ position: 'relative', display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
           <Link
             href="/templates"
             style={{
-              fontSize: '0.9rem',
-              color: '#292321',
+              fontSize: '0.92rem',
+              color: 'var(--ink-primary)',
               textDecoration: 'none',
-              fontWeight: 500,
+              fontWeight: 600,
               paddingBottom: '3px',
             }}
           >
@@ -103,9 +102,10 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
               position: 'absolute',
               bottom: '-3px',
               width: '100%',
-              height: '2px',
-              backgroundColor: '#F28F91',
-              borderRadius: '2px',
+              height: '2.5px',
+              backgroundColor: 'var(--accent-terracotta)',
+              borderRadius: '999px',
+              boxShadow: '0 1px 4px rgba(200, 101, 82, 0.4)',
             }}
           />
         </div>
@@ -113,10 +113,10 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <Link
           href="/#how-it-works"
           style={{
-            fontSize: '0.9rem',
-            color: '#81746D',
+            fontSize: '0.92rem',
+            color: 'var(--ink-muted)',
             textDecoration: 'none',
-            fontWeight: 400,
+            fontWeight: 500,
             transition: 'color 0.15s ease',
           }}
         >
@@ -126,10 +126,10 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <Link
           href="/#pricing"
           style={{
-            fontSize: '0.9rem',
-            color: '#81746D',
+            fontSize: '0.92rem',
+            color: 'var(--ink-muted)',
             textDecoration: 'none',
-            fontWeight: 400,
+            fontWeight: 500,
             transition: 'color 0.15s ease',
           }}
         >
@@ -137,9 +137,9 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         </Link>
       </nav>
 
-      {/* Right: Search, Gift Icon, Sign In, and Dark Rounded CTA */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        {/* Search Input Box */}
+      {/* Right: Search, Gift Icon, Sign In, and Neumo-Glass CTA */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        {/* Recessed Inset Neumorphic Search Input */}
         <div
           className="hide-on-mobile"
           style={{
@@ -150,42 +150,33 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         >
           <Search
             size={14}
-            color="#A89C94"
-            style={{ position: 'absolute', left: '12px', pointerEvents: 'none' }}
+            color="var(--ink-muted)"
+            style={{ position: 'absolute', left: '14px', pointerEvents: 'none', zIndex: 2 }}
           />
           <input
             type="text"
             placeholder="Search templates..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
+            className="glass-input"
             style={{
-              backgroundColor: '#FFF8F2',
-              border: '1px solid #EADBD3',
-              borderRadius: '999px',
-              padding: '6px 14px 6px 32px',
-              fontSize: '0.82rem',
-              color: '#292321',
-              outline: 'none',
-              width: '180px',
-              transition: 'all 0.2s ease',
+              padding: '8px 16px 8px 36px',
+              fontSize: '0.84rem',
+              width: '190px',
             }}
           />
         </div>
 
-        {/* Gift Icon */}
+        {/* Gift Icon Button in Glass Pill */}
         <Link
-          href="/templates/birthday"
+          href="/templates"
           title="Browse occasions"
-          className="hide-on-mobile"
+          className="hide-on-mobile glass-icon-btn"
           style={{
-            color: '#81746D',
-            padding: '4px',
-            display: 'flex',
-            alignItems: 'center',
             textDecoration: 'none',
           }}
         >
-          <Gift size={17} />
+          <Gift size={16} />
         </Link>
 
         {/* Sign in */}
@@ -193,33 +184,25 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
           href="/login"
           className="hide-on-mobile"
           style={{
-            fontSize: '0.86rem',
-            color: '#292321',
+            fontSize: '0.88rem',
+            color: 'var(--ink-secondary)',
             textDecoration: 'none',
-            fontWeight: 400,
-            marginLeft: '2px',
+            fontWeight: 500,
+            padding: '6px 10px',
+            transition: 'color 0.15s ease',
           }}
         >
           Sign in
         </Link>
 
-        {/* Dark Rounded CTA: Create something ♡ */}
+        {/* Tactile Clay/Terracotta Neumo-Glass CTA */}
         <Link
           href="/create"
-          className="hide-on-mobile"
+          className="hide-on-mobile glass-cta"
           style={{
-            backgroundColor: '#292321',
-            color: '#FFFFFF',
-            borderRadius: '999px',
-            padding: '7px 18px',
-            fontSize: '0.84rem',
-            fontWeight: 500,
+            padding: '9px 20px',
+            fontSize: '0.86rem',
             textDecoration: 'none',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            boxShadow: '0 2px 8px rgba(41, 35, 33, 0.15)',
-            transition: 'background-color 0.15s ease, transform 0.15s ease',
           }}
         >
           <span>Create something ♡</span>
@@ -229,37 +212,29 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="show-on-mobile-only"
+          className="show-on-mobile-only glass-icon-btn"
           style={{
             display: 'none',
-            background: 'none',
-            border: 'none',
-            color: '#292321',
-            cursor: 'pointer',
-            padding: '6px',
-            borderRadius: '6px',
           }}
           aria-label="Toggle mobile menu"
         >
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu in Frosted Neumo-Glass */}
       {mobileMenuOpen && (
         <div
+          className="glass-modal"
           style={{
             position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
-            backgroundColor: '#FFF8F2',
-            borderBottom: '1px solid #EADBD3',
-            padding: '20px 24px',
+            top: 'calc(100% + 8px)',
+            left: '12px',
+            right: '12px',
+            padding: '24px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '14px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.06)',
+            gap: '16px',
             zIndex: 100,
           }}
         >
@@ -268,32 +243,25 @@ export function CatalogueHeader({ searchQuery, onSearchChange }: CatalogueHeader
             placeholder="Search templates..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
+            className="glass-input"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #EADBD3',
-              borderRadius: '999px',
-              padding: '8px 16px',
-              fontSize: '0.88rem',
-              color: '#292321',
-            }}
-          />
-          <Link href="/" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>Home</Link>
-          <Link href="/templates" style={{ color: '#F28F91', fontWeight: 600, textDecoration: 'none', fontSize: '0.95rem' }}>Templates</Link>
-          <Link href="/#how-it-works" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>How it works</Link>
-          <Link href="/#pricing" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>Pricing</Link>
-          <Link href="/login" style={{ color: '#292321', textDecoration: 'none', fontSize: '0.95rem' }}>Sign In</Link>
-          <Link
-            href="/create"
-            style={{
-              backgroundColor: '#292321',
-              color: '#FFFFFF',
-              borderRadius: '999px',
               padding: '10px 18px',
               fontSize: '0.9rem',
-              fontWeight: 500,
+            }}
+          />
+          <Link href="/" style={{ color: 'var(--ink-primary)', textDecoration: 'none', fontSize: '0.96rem', fontWeight: 500 }}>Home</Link>
+          <Link href="/templates" style={{ color: 'var(--accent-terracotta)', fontWeight: 600, textDecoration: 'none', fontSize: '0.96rem' }}>Templates</Link>
+          <Link href="/#how-it-works" style={{ color: 'var(--ink-primary)', textDecoration: 'none', fontSize: '0.96rem', fontWeight: 500 }}>How it works</Link>
+          <Link href="/#pricing" style={{ color: 'var(--ink-primary)', textDecoration: 'none', fontSize: '0.96rem', fontWeight: 500 }}>Pricing</Link>
+          <Link href="/login" style={{ color: 'var(--ink-primary)', textDecoration: 'none', fontSize: '0.96rem', fontWeight: 500 }}>Sign In</Link>
+          <Link
+            href="/create"
+            className="glass-cta"
+            style={{
+              padding: '12px 20px',
+              fontSize: '0.92rem',
               textDecoration: 'none',
               textAlign: 'center',
-              display: 'block',
               marginTop: '4px',
             }}
           >

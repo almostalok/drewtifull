@@ -51,16 +51,18 @@ export default function DashboardPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#FAF7F2', paddingBottom: '6rem' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'transparent', paddingBottom: '6rem' }}>
       {/* Top Navbar */}
       <header
+        className="glass-nav"
         style={{
-          padding: '18px 32px',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          padding: '16px 36px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: '#FFFFFF',
-          borderBottom: '1px solid rgba(60, 45, 35, 0.08)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -68,30 +70,35 @@ export default function DashboardPage() {
             href="/"
             style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: '1.6rem',
-              color: '#2A2421',
+              fontSize: '1.75rem',
+              color: 'var(--ink-primary)',
               letterSpacing: '-0.02em',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              textDecoration: 'none',
             }}
           >
-            drewtifull
+            <span>drewtifull</span>
+            <span style={{ color: 'var(--accent-terracotta)', fontSize: '1.25rem' }}>♡</span>
           </Link>
           <span
             style={{
               fontFamily: 'var(--font-hand)',
-              fontSize: '1.15rem',
-              color: '#C97A6E',
+              fontSize: '1.25rem',
+              color: 'var(--accent-terracotta)',
             }}
           >
             studio
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
           <Link
             href="/templates"
             style={{
-              color: '#544D47',
-              fontSize: '0.88rem',
+              color: 'var(--ink-secondary)',
+              fontSize: '0.9rem',
               textDecoration: 'none',
               fontWeight: 500,
             }}
@@ -101,8 +108,8 @@ export default function DashboardPage() {
           <Link
             href="/settings"
             style={{
-              color: '#544D47',
-              fontSize: '0.88rem',
+              color: 'var(--ink-secondary)',
+              fontSize: '0.9rem',
               textDecoration: 'none',
               fontWeight: 500,
             }}
@@ -111,18 +118,11 @@ export default function DashboardPage() {
           </Link>
           <Link
             href="/create"
+            className="glass-cta"
             style={{
-              backgroundColor: '#2A2421',
-              color: '#FAF5ED',
-              borderRadius: '999px',
-              padding: '10px 22px',
-              fontSize: '0.9rem',
-              fontWeight: 500,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
+              padding: '9px 20px',
+              fontSize: '0.88rem',
               textDecoration: 'none',
-              boxShadow: '0 2px 8px rgba(42, 36, 33, 0.2)',
             }}
           >
             <Plus size={16} /> Create something new ♡
@@ -147,7 +147,7 @@ export default function DashboardPage() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
                 fontWeight: 400,
                 lineHeight: 1.1,
                 marginBottom: '6px',
@@ -155,7 +155,7 @@ export default function DashboardPage() {
             >
               My Drewtifulls
             </h1>
-            <p style={{ color: '#7A726A', fontSize: '1rem' }}>
+            <p style={{ color: 'var(--ink-secondary)', fontSize: '1.02rem' }}>
               Your digital keepsakes, letters, and memories made for the people you love.
             </p>
           </div>
@@ -163,16 +163,10 @@ export default function DashboardPage() {
           <button
             type="button"
             onClick={handleResetDefaults}
+            className="glass-pill"
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '0.82rem',
-              color: '#8A8077',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.1)',
-              padding: '6px 14px',
-              borderRadius: '999px',
+              padding: '6px 16px',
+              fontSize: '0.84rem',
             }}
             title="Reload showcase examples"
           >
@@ -183,10 +177,8 @@ export default function DashboardPage() {
         {/* Empty State */}
         {projects.length === 0 ? (
           <div
+            className="glass-panel"
             style={{
-              backgroundColor: '#FFFFFF',
-              borderRadius: '16px',
-              border: '1px solid rgba(60, 45, 35, 0.1)',
               padding: '80px 20px',
               textAlign: 'center',
               maxWidth: '540px',
@@ -198,34 +190,29 @@ export default function DashboardPage() {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: '2rem',
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
                 marginBottom: '8px',
               }}
             >
               Nothing here yet.
             </h3>
-            <p style={{ color: '#7A726A', marginBottom: '24px' }}>
+            <p style={{ color: 'var(--ink-secondary)', marginBottom: '24px' }}>
               Let’s make something worth remembering for someone you love.
             </p>
             <Link
               href="/create"
+              className="glass-cta"
               style={{
-                backgroundColor: '#C97A6E',
-                color: '#FFFFFF',
-                borderRadius: '999px',
                 padding: '12px 28px',
-                fontSize: '0.95rem',
-                fontWeight: 500,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
+                fontSize: '0.96rem',
+                textDecoration: 'none',
               }}
             >
               <Heart size={16} fill="#FFFFFF" /> Create your first Drewtifull ♡
             </Link>
           </div>
         ) : (
-          /* Visual Editorial Cards Grid */
+          /* Visual Editorial Cards Grid in Neumo-Glass */
           <div
             style={{
               display: 'grid',
@@ -251,33 +238,22 @@ export default function DashboardPage() {
               return (
                 <div
                   key={project.id}
+                  className="glass-card"
                   style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(60, 45, 35, 0.12)',
                     overflow: 'hidden',
-                    boxShadow: '0 4px 20px rgba(40, 30, 25, 0.05)',
                     display: 'flex',
                     flexDirection: 'column',
-                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
                     position: 'relative',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 16px 36px rgba(40, 30, 25, 0.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 20px rgba(40, 30, 25, 0.05)';
                   }}
                 >
                   {/* Card Thumbnail */}
                   <div
                     style={{
                       height: '220px',
-                      backgroundColor: '#EBE4DB',
+                      backgroundColor: 'rgba(235, 227, 218, 0.45)',
                       overflow: 'hidden',
                       position: 'relative',
+                      borderBottom: '1px solid rgba(255, 255, 255, 0.7)',
                     }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -300,24 +276,22 @@ export default function DashboardPage() {
                       style={{ top: '8px', right: '14px' }}
                     />
 
-                    {/* Status Pill */}
+                    {/* Status Pill in Frosted Glass */}
                     <div
+                      className="glass-badge"
                       style={{
                         position: 'absolute',
                         top: '12px',
                         left: '12px',
-                        backgroundColor: isPublished ? 'rgba(42, 36, 33, 0.9)' : 'rgba(255, 255, 255, 0.95)',
-                        color: isPublished ? '#FAF5ED' : '#6A625A',
-                        backdropFilter: 'blur(4px)',
+                        color: isPublished ? 'var(--accent-sage)' : 'var(--ink-secondary)',
                         padding: '4px 12px',
-                        borderRadius: '999px',
                         fontSize: '0.75rem',
                         fontWeight: 600,
                         textTransform: 'uppercase',
                         letterSpacing: '0.06em',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '5px',
+                        gap: '6px',
                       }}
                     >
                       {isPublished ? '● Published' : '○ Draft'}
@@ -332,7 +306,7 @@ export default function DashboardPage() {
                           fontSize: '0.78rem',
                           textTransform: 'uppercase',
                           letterSpacing: '0.08em',
-                          color: '#C97A6E',
+                          color: 'var(--accent-terracotta)',
                           fontWeight: 600,
                         }}
                       >
@@ -342,13 +316,13 @@ export default function DashboardPage() {
                         style={{
                           fontFamily: 'var(--font-serif)',
                           fontSize: '1.75rem',
-                          color: '#2A2421',
+                          color: 'var(--ink-primary)',
                           marginTop: '2px',
                         }}
                       >
                         <Link
                           href={`/dashboard/projects/${project.id}`}
-                          style={{ color: '#2A2421', textDecoration: 'none' }}
+                          style={{ color: 'var(--ink-primary)', textDecoration: 'none' }}
                         >
                           For {project.recipientName}
                         </Link>
@@ -356,8 +330,8 @@ export default function DashboardPage() {
                       <p
                         style={{
                           fontFamily: 'var(--font-hand)',
-                          fontSize: '1.15rem',
-                          color: '#8A8077',
+                          fontSize: '1.2rem',
+                          color: 'var(--ink-muted)',
                         }}
                       >
                         {template.name} theme · {project.photos.length} memories
@@ -368,45 +342,40 @@ export default function DashboardPage() {
                       style={{
                         marginTop: 'auto',
                         paddingTop: '16px',
-                        borderTop: '1px solid rgba(60, 45, 35, 0.08)',
+                        borderTop: '1px solid rgba(255, 255, 255, 0.6)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                       }}
                     >
-                      {/* Left: Edit button */}
+                      {/* Left: Open Studio button */}
                       <Link
                         href={`/editor/${project.id}`}
+                        className="glass-pill"
                         style={{
-                          backgroundColor: '#FAF7F2',
-                          border: '1px solid rgba(60, 45, 35, 0.12)',
-                          color: '#2A2421',
-                          padding: '8px 16px',
-                          borderRadius: '999px',
-                          fontSize: '0.85rem',
-                          fontWeight: 500,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '6px',
+                          padding: '8px 18px',
+                          fontSize: '0.86rem',
+                          textDecoration: 'none',
                         }}
                       >
                         <Edit3 size={14} /> Open Studio
                       </Link>
 
-                      {/* Right: Actions menu */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      {/* Right: Actions menu with Neumo-Glass circular buttons */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         {isPublished && (
                           <Link
                             href={`/p/${project.slug}`}
                             target="_blank"
                             title="View published gift"
+                            className="glass-icon-btn"
                             style={{
-                              padding: '8px',
-                              color: '#7A726A',
-                              borderRadius: '50%',
+                              width: '34px',
+                              height: '34px',
+                              textDecoration: 'none',
                             }}
                           >
-                            <ExternalLink size={16} />
+                            <ExternalLink size={15} />
                           </Link>
                         )}
 
@@ -414,48 +383,53 @@ export default function DashboardPage() {
                           type="button"
                           onClick={() => setActiveShareProject(project)}
                           title="Share link"
+                          className="glass-icon-btn"
                           style={{
-                            padding: '8px',
-                            color: '#7A726A',
+                            width: '34px',
+                            height: '34px',
                           }}
                         >
-                          <Share2 size={16} />
+                          <Share2 size={15} />
                         </button>
 
                         <button
                           type="button"
                           onClick={() => setActiveQrProject(project)}
                           title="Printable QR card"
+                          className="glass-icon-btn"
                           style={{
-                            padding: '8px',
-                            color: '#7A726A',
+                            width: '34px',
+                            height: '34px',
                           }}
                         >
-                          <QrCode size={16} />
+                          <QrCode size={15} />
                         </button>
 
                         <button
                           type="button"
                           onClick={() => handleDuplicate(project.id)}
                           title="Duplicate this project"
+                          className="glass-icon-btn"
                           style={{
-                            padding: '8px',
-                            color: '#7A726A',
+                            width: '34px',
+                            height: '34px',
                           }}
                         >
-                          <Copy size={16} />
+                          <Copy size={15} />
                         </button>
 
                         <button
                           type="button"
                           onClick={() => handleDelete(project.id, project.recipientName)}
                           title="Let this one go (Delete)"
+                          className="glass-icon-btn"
                           style={{
-                            padding: '8px',
-                            color: '#B5ACA4',
+                            width: '34px',
+                            height: '34px',
+                            color: 'var(--accent-terracotta)',
                           }}
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={15} />
                         </button>
                       </div>
                     </div>

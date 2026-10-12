@@ -57,9 +57,9 @@ export function ContentTab({
         <label
           style={{
             display: 'block',
-            fontSize: '0.85rem',
+            fontSize: '0.84rem',
             fontWeight: 600,
-            color: '#2A2421',
+            color: 'var(--ink-primary)',
             marginBottom: '6px',
           }}
         >
@@ -67,6 +67,7 @@ export function ContentTab({
         </label>
         <input
           type="text"
+          className="glass-input"
           value={project.recipientName}
           placeholder="e.g. Aanchal"
           onChange={(e) => {
@@ -76,13 +77,8 @@ export function ContentTab({
           }}
           style={{
             width: '100%',
-            padding: '10px 14px',
-            borderRadius: '8px',
-            border: '1px solid rgba(60, 45, 35, 0.15)',
-            backgroundColor: '#FFFFFF',
-            fontSize: '0.95rem',
-            color: '#2A2421',
-            outline: 'none',
+            padding: '11px 16px',
+            fontSize: '0.94rem',
           }}
         />
       </div>
@@ -92,9 +88,9 @@ export function ContentTab({
         <label
           style={{
             display: 'block',
-            fontSize: '0.85rem',
+            fontSize: '0.84rem',
             fontWeight: 600,
-            color: '#2A2421',
+            color: 'var(--ink-primary)',
             marginBottom: '6px',
           }}
         >
@@ -102,6 +98,7 @@ export function ContentTab({
         </label>
         <input
           type="text"
+          className="glass-input"
           value={project.creatorName || ''}
           placeholder="e.g. Alok ♡"
           onChange={(e) => {
@@ -114,13 +111,8 @@ export function ContentTab({
           }}
           style={{
             width: '100%',
-            padding: '10px 14px',
-            borderRadius: '8px',
-            border: '1px solid rgba(60, 45, 35, 0.15)',
-            backgroundColor: '#FFFFFF',
-            fontSize: '0.95rem',
-            color: '#2A2421',
-            outline: 'none',
+            padding: '11px 16px',
+            fontSize: '0.94rem',
           }}
         />
       </div>
@@ -131,9 +123,9 @@ export function ContentTab({
           <label
             style={{
               display: 'block',
-              fontSize: '0.85rem',
+              fontSize: '0.84rem',
               fontWeight: 600,
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               marginBottom: '6px',
             }}
           >
@@ -141,17 +133,14 @@ export function ContentTab({
           </label>
           <input
             type="text"
+            className="glass-input"
             value={project.relationship || ''}
             placeholder="e.g. Partner, Best Friend"
             onChange={(e) => onChange({ relationship: e.target.value })}
             style={{
               width: '100%',
               padding: '10px 14px',
-              borderRadius: '8px',
-              border: '1px solid rgba(60, 45, 35, 0.15)',
-              backgroundColor: '#FFFFFF',
-              fontSize: '0.92rem',
-              color: '#2A2421',
+              fontSize: '0.9rem',
             }}
           />
         </div>
@@ -160,9 +149,9 @@ export function ContentTab({
           <label
             style={{
               display: 'block',
-              fontSize: '0.85rem',
+              fontSize: '0.84rem',
               fontWeight: 600,
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               marginBottom: '6px',
             }}
           >
@@ -170,6 +159,7 @@ export function ContentTab({
           </label>
           <input
             type="text"
+            className="glass-input"
             value={project.date || ''}
             placeholder="e.g. 06 October"
             onChange={(e) => {
@@ -179,11 +169,7 @@ export function ContentTab({
             style={{
               width: '100%',
               padding: '10px 14px',
-              borderRadius: '8px',
-              border: '1px solid rgba(60, 45, 35, 0.15)',
-              backgroundColor: '#FFFFFF',
-              fontSize: '0.92rem',
-              color: '#2A2421',
+              fontSize: '0.9rem',
             }}
           />
         </div>
@@ -194,9 +180,9 @@ export function ContentTab({
         <label
           style={{
             display: 'block',
-            fontSize: '0.85rem',
+            fontSize: '0.84rem',
             fontWeight: 600,
-            color: '#2A2421',
+            color: 'var(--ink-primary)',
             marginBottom: '6px',
           }}
         >
@@ -205,14 +191,12 @@ export function ContentTab({
         <select
           value={project.occasion}
           onChange={(e) => onChange({ occasion: e.target.value as Occasion })}
+          className="glass-input"
           style={{
             width: '100%',
-            padding: '10px 14px',
-            borderRadius: '8px',
-            border: '1px solid rgba(60, 45, 35, 0.15)',
-            backgroundColor: '#FFFFFF',
+            padding: '11px 14px',
             fontSize: '0.92rem',
-            color: '#2A2421',
+            cursor: 'pointer',
           }}
         >
           {occasions.map((occ) => (
@@ -231,14 +215,14 @@ export function ContentTab({
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '6px',
+              marginBottom: '8px',
             }}
           >
             <label
               style={{
-                fontSize: '0.85rem',
+                fontSize: '0.84rem',
                 fontWeight: 600,
-                color: '#2A2421',
+                color: 'var(--ink-primary)',
               }}
             >
               Your Heartfelt Message
@@ -247,16 +231,16 @@ export function ContentTab({
             <button
               type="button"
               onClick={() => setIsAiModalOpen(true)}
+              className="glass-pill"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '4px',
+                gap: '5px',
                 fontSize: '0.78rem',
-                color: '#C97A6E',
-                backgroundColor: '#F9EBE8',
-                padding: '4px 10px',
-                borderRadius: '999px',
-                fontWeight: 500,
+                color: 'var(--accent-terracotta)',
+                padding: '4px 12px',
+                fontWeight: 600,
+                cursor: 'pointer',
               }}
             >
               <Sparkles size={12} /> ✨ Help me write this
@@ -264,20 +248,16 @@ export function ContentTab({
           </div>
 
           <textarea
-            rows={6}
+            rows={7}
+            className="glass-input"
             value={letterBody}
             placeholder="Write from the heart... separate paragraphs with blank lines."
             onChange={(e) => handleLetterChange(e.target.value)}
             style={{
               width: '100%',
-              padding: '12px 14px',
-              borderRadius: '8px',
-              border: '1px solid rgba(60, 45, 35, 0.15)',
-              backgroundColor: '#FFFFFF',
+              padding: '14px 16px',
               fontSize: '0.92rem',
-              lineHeight: 1.6,
-              color: '#2A2421',
-              fontFamily: 'inherit',
+              lineHeight: 1.65,
               resize: 'vertical',
             }}
           />

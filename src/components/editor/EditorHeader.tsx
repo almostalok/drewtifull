@@ -44,10 +44,9 @@ export function EditorHeader({
 }: EditorHeaderProps) {
   return (
     <header
+      className="glass-nav"
       style={{
-        backgroundColor: '#FFFFFF',
-        borderBottom: '1px solid rgba(60, 45, 35, 0.1)',
-        padding: '10px 20px',
+        padding: '10px 24px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -55,50 +54,57 @@ export function EditorHeader({
         top: 0,
         zIndex: 100,
         flexWrap: 'wrap',
-        gap: '8px',
+        gap: '12px',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.65)',
+        boxShadow: '0 8px 24px -4px rgba(45, 36, 28, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.85)',
       }}
     >
       {/* Left: Brand + Back + Project Details */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
         <Link
           href="/dashboard"
+          className="glass-pill"
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            color: '#8A8077',
-            fontSize: '0.88rem',
+            color: 'var(--ink-secondary)',
+            fontSize: '0.84rem',
+            padding: '6px 14px',
             textDecoration: 'none',
-            transition: 'color 0.2s',
           }}
           title="Return to My Studio"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={15} />
           <span className="hide-on-mobile">Studio</span>
         </Link>
 
         <div style={{ height: '22px', width: '1px', backgroundColor: 'rgba(60, 45, 35, 0.12)' }} />
 
-        <div>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
           <Link
             href="/"
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.35rem',
-              fontWeight: 400,
-              color: '#2A2421',
+              fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+              fontSize: '1.4rem',
+              fontWeight: 600,
+              color: 'var(--ink-primary)',
               letterSpacing: '-0.02em',
               textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '3px',
             }}
           >
             drewtifull
+            <span style={{ color: 'var(--accent-terracotta)', fontSize: '1rem', lineHeight: 1 }}>♡</span>
           </Link>
           <span
             style={{
-              marginLeft: '8px',
               fontFamily: 'var(--font-hand)',
-              fontSize: '1.05rem',
-              color: '#C97A6E',
+              fontSize: '1.1rem',
+              color: 'var(--accent-terracotta)',
+              fontWeight: 500,
             }}
           >
             for {project.recipientName || 'Someone Special'}
@@ -107,74 +113,92 @@ export function EditorHeader({
       </div>
 
       {/* Center: Device Viewport Switcher + Undo / Redo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
         {/* Undo & Redo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            background: 'rgba(235, 227, 218, 0.65)',
+            boxShadow: 'var(--neumo-shadow-inset)',
+            borderRadius: '10px',
+            padding: '3px',
+            border: '1px solid rgba(255, 255, 255, 0.4)',
+          }}
+        >
           <button
             type="button"
             onClick={onUndo}
             disabled={!canUndo}
             style={{
-              background: 'transparent',
-              border: 'none',
+              background: canUndo ? 'rgba(255, 255, 255, 0.85)' : 'transparent',
+              border: canUndo ? '1px solid rgba(255, 255, 255, 0.9)' : 'none',
+              boxShadow: canUndo ? '1px 2px 5px rgba(45, 36, 28, 0.08)' : 'none',
               cursor: canUndo ? 'pointer' : 'not-allowed',
-              padding: '6px',
-              borderRadius: '6px',
-              color: canUndo ? '#2A2421' : '#C7BFB7',
+              padding: '6px 8px',
+              borderRadius: '7px',
+              color: canUndo ? 'var(--ink-primary)' : 'rgba(120, 105, 95, 0.4)',
               display: 'flex',
               alignItems: 'center',
+              transition: 'all 0.15s ease',
             }}
             title="Undo (Ctrl+Z)"
           >
-            <Undo2 size={16} />
+            <Undo2 size={15} />
           </button>
           <button
             type="button"
             onClick={onRedo}
             disabled={!canRedo}
             style={{
-              background: 'transparent',
-              border: 'none',
+              background: canRedo ? 'rgba(255, 255, 255, 0.85)' : 'transparent',
+              border: canRedo ? '1px solid rgba(255, 255, 255, 0.9)' : 'none',
+              boxShadow: canRedo ? '1px 2px 5px rgba(45, 36, 28, 0.08)' : 'none',
               cursor: canRedo ? 'pointer' : 'not-allowed',
-              padding: '6px',
-              borderRadius: '6px',
-              color: canRedo ? '#2A2421' : '#C7BFB7',
+              padding: '6px 8px',
+              borderRadius: '7px',
+              color: canRedo ? 'var(--ink-primary)' : 'rgba(120, 105, 95, 0.4)',
               display: 'flex',
               alignItems: 'center',
+              transition: 'all 0.15s ease',
             }}
             title="Redo (Ctrl+Y)"
           >
-            <Redo2 size={16} />
+            <Redo2 size={15} />
           </button>
         </div>
 
-        {/* Viewport switch */}
+        {/* Viewport switch with Neumorphic Inset Capsule */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            backgroundColor: '#FAF7F2',
-            border: '1px solid rgba(60, 45, 35, 0.1)',
+            backgroundColor: 'rgba(235, 227, 218, 0.65)',
+            boxShadow: 'var(--neumo-shadow-inset)',
+            border: '1px solid rgba(255, 255, 255, 0.4)',
             borderRadius: '999px',
             padding: '3px',
+            gap: '2px',
           }}
         >
           <button
             type="button"
             onClick={() => onChangeViewport('mobile')}
             style={{
-              padding: '5px 10px',
+              padding: '5px 12px',
               borderRadius: '999px',
-              backgroundColor: viewportMode === 'mobile' ? '#FFFFFF' : 'transparent',
-              color: viewportMode === 'mobile' ? '#2A2421' : '#8A8077',
-              boxShadow: viewportMode === 'mobile' ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
-              border: 'none',
+              backgroundColor: viewportMode === 'mobile' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+              color: viewportMode === 'mobile' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+              boxShadow: viewportMode === 'mobile' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+              border: viewportMode === 'mobile' ? '1px solid rgba(255, 255, 255, 0.8)' : '1px solid transparent',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '5px',
               fontSize: '0.78rem',
-              fontWeight: 500,
+              fontWeight: viewportMode === 'mobile' ? 600 : 500,
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             title="Mobile preview"
           >
@@ -186,18 +210,19 @@ export function EditorHeader({
             type="button"
             onClick={() => onChangeViewport('tablet')}
             style={{
-              padding: '5px 10px',
+              padding: '5px 12px',
               borderRadius: '999px',
-              backgroundColor: viewportMode === 'tablet' ? '#FFFFFF' : 'transparent',
-              color: viewportMode === 'tablet' ? '#2A2421' : '#8A8077',
-              boxShadow: viewportMode === 'tablet' ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
-              border: 'none',
+              backgroundColor: viewportMode === 'tablet' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+              color: viewportMode === 'tablet' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+              boxShadow: viewportMode === 'tablet' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+              border: viewportMode === 'tablet' ? '1px solid rgba(255, 255, 255, 0.8)' : '1px solid transparent',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '5px',
               fontSize: '0.78rem',
-              fontWeight: 500,
+              fontWeight: viewportMode === 'tablet' ? 600 : 500,
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             title="Tablet preview"
           >
@@ -209,18 +234,19 @@ export function EditorHeader({
             type="button"
             onClick={() => onChangeViewport('desktop')}
             style={{
-              padding: '5px 10px',
+              padding: '5px 12px',
               borderRadius: '999px',
-              backgroundColor: viewportMode === 'desktop' ? '#FFFFFF' : 'transparent',
-              color: viewportMode === 'desktop' ? '#2A2421' : '#8A8077',
-              boxShadow: viewportMode === 'desktop' ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
-              border: 'none',
+              backgroundColor: viewportMode === 'desktop' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+              color: viewportMode === 'desktop' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+              boxShadow: viewportMode === 'desktop' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+              border: viewportMode === 'desktop' ? '1px solid rgba(255, 255, 255, 0.8)' : '1px solid transparent',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '5px',
               fontSize: '0.78rem',
-              fontWeight: 500,
+              fontWeight: viewportMode === 'desktop' ? 600 : 500,
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             title="Desktop view"
           >
@@ -236,14 +262,17 @@ export function EditorHeader({
           className="hide-on-mobile"
           style={{
             fontFamily: 'var(--font-hand)',
-            fontSize: '0.98rem',
-            color: isSaving ? '#C97A6E' : '#8A8077',
+            fontSize: '1rem',
+            color: isSaving ? 'var(--accent-terracotta)' : 'var(--accent-sage)',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '4px',
+            gap: '5px',
+            padding: '4px 10px',
+            borderRadius: '999px',
+            backgroundColor: isSaving ? 'rgba(200, 101, 82, 0.08)' : 'rgba(95, 125, 103, 0.1)',
           }}
         >
-          {isSaving ? <Loader2 size={13} className="animate-spin" /> : <Check size={13} color="#2F683D" />}
+          {isSaving ? <Loader2 size={13} className="animate-spin" /> : <Check size={13} color="var(--accent-sage)" />}
           {isSaving ? 'saving memories...' : 'all changes saved ♡'}
         </span>
 
@@ -251,16 +280,14 @@ export function EditorHeader({
         <Link
           href={`/preview/${project.id}`}
           target="_blank"
+          className="glass-pill"
           style={{
-            backgroundColor: '#FAF7F2',
-            border: '1px solid rgba(60, 45, 35, 0.15)',
-            borderRadius: '999px',
-            padding: '7px 14px',
-            fontSize: '0.82rem',
-            color: '#2A2421',
-            display: 'flex',
+            padding: '7px 16px',
+            fontSize: '0.84rem',
+            color: 'var(--ink-primary)',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '5px',
+            gap: '6px',
             textDecoration: 'none',
             fontWeight: 500,
           }}
@@ -273,16 +300,14 @@ export function EditorHeader({
           <button
             type="button"
             onClick={onOpenShareModal}
+            className="glass-pill"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.15)',
-              borderRadius: '999px',
-              padding: '7px 14px',
-              fontSize: '0.82rem',
-              color: '#2A2421',
-              display: 'flex',
+              padding: '7px 16px',
+              fontSize: '0.84rem',
+              color: 'var(--ink-primary)',
+              display: 'inline-flex',
               alignItems: 'center',
-              gap: '5px',
+              gap: '6px',
               fontWeight: 500,
               cursor: 'pointer',
             }}
@@ -294,20 +319,15 @@ export function EditorHeader({
         <button
           type="button"
           onClick={onPublish}
+          className="glass-cta"
           style={{
-            backgroundColor: '#C97A6E',
-            color: '#FFFFFF',
-            borderRadius: '999px',
-            padding: '7px 18px',
+            padding: '8px 20px',
             fontSize: '0.88rem',
-            fontWeight: 500,
-            border: 'none',
+            fontWeight: 600,
             cursor: 'pointer',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '6px',
-            boxShadow: '0 2px 8px rgba(201, 122, 110, 0.35)',
-            transition: 'background-color 0.2s',
+            gap: '7px',
           }}
         >
           <Heart size={14} fill="#FFFFFF" />

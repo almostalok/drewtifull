@@ -37,25 +37,11 @@ export function TemplateCard({
 
   return (
     <article
+      className="glass-card"
       style={{
-        backgroundColor: '#FFFCF9',
-        border: '1px solid #EADBD3',
-        borderRadius: '16px',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 2px 6px rgba(41, 35, 33, 0.04)',
-        transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-3px)';
-        e.currentTarget.style.boxShadow = '0 10px 24px rgba(41, 35, 33, 0.09)';
-        e.currentTarget.style.borderColor = '#DBCAC0';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 6px rgba(41, 35, 33, 0.04)';
-        e.currentTarget.style.borderColor = '#EADBD3';
       }}
     >
       {/* 1. Large Visual Template Preview Container */}
@@ -64,8 +50,8 @@ export function TemplateCard({
           position: 'relative',
           width: '100%',
           aspectRatio: '184 / 170',
-          backgroundColor: '#F5ECE5',
-          borderBottom: '1px solid #EADBD3',
+          backgroundColor: 'rgba(235, 227, 218, 0.45)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.65)',
           cursor: 'pointer',
           overflow: 'hidden',
         }}
@@ -80,12 +66,12 @@ export function TemplateCard({
             height: '100%',
             objectFit: 'cover',
             display: 'block',
-            transition: 'transform 0.3s ease',
+            transition: 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)',
           }}
           loading="eager"
         />
 
-        {/* 2. Floating Favorite Heart Button precisely aligned with reference badge */}
+        {/* 2. Floating Tactile Favorite Heart Button in Neumo-Glass Cushion */}
         <button
           type="button"
           onClick={(e) => {
@@ -93,34 +79,21 @@ export function TemplateCard({
             onToggleFavorite(template.id);
           }}
           aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
+          className="glass-icon-btn"
           style={{
             position: 'absolute',
-            top: '7px',
-            right: '7px',
+            top: '8px',
+            right: '8px',
             zIndex: 10,
-            width: '26px',
-            height: '26px',
-            borderRadius: '50%',
-            backgroundColor: '#FFFFFF',
-            border: '1px solid rgba(234, 219, 211, 0.95)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: '0 2px 5px rgba(41, 35, 33, 0.12)',
-            transition: 'transform 0.15s ease, background-color 0.15s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)';
+            width: '30px',
+            height: '30px',
+            boxShadow: '0 3px 10px rgba(165, 150, 136, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.95)',
           }}
         >
           <Heart
-            size={13}
-            color={isFavorited ? '#F28F91' : '#292321'}
-            fill={isFavorited ? '#F28F91' : 'none'}
+            size={14}
+            color={isFavorited ? 'var(--accent-terracotta)' : 'var(--ink-secondary)'}
+            fill={isFavorited ? 'var(--accent-terracotta)' : 'none'}
             strokeWidth={isFavorited ? 2.5 : 1.6}
           />
         </button>
@@ -129,7 +102,7 @@ export function TemplateCard({
       {/* Card Body: Info and Actions */}
       <div
         style={{
-          padding: '8px 10px 10px 10px',
+          padding: '10px 12px 12px 12px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -137,14 +110,14 @@ export function TemplateCard({
         }}
       >
         <div>
-          {/* 3. Template Number and Name */}
+          {/* 3. Template Number and Name in Non-AI Editorial Serif */}
           <h3
             style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: '0.92rem',
+              fontSize: '0.98rem',
               fontWeight: 600,
-              color: '#292321',
-              margin: '0 0 2px 0',
+              color: 'var(--ink-primary)',
+              margin: '0 0 3px 0',
               letterSpacing: '-0.01em',
               lineHeight: 1.25,
             }}
@@ -155,10 +128,10 @@ export function TemplateCard({
           {/* 4. One-line Description */}
           <p
             style={{
-              fontSize: '0.72rem',
-              color: '#81746D',
-              margin: '0 0 5px 0',
-              lineHeight: 1.25,
+              fontSize: '0.74rem',
+              color: 'var(--ink-muted)',
+              margin: '0 0 6px 0',
+              lineHeight: 1.3,
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -168,26 +141,25 @@ export function TemplateCard({
             {template.description}
           </p>
 
-          {/* 5. Small Style Tags */}
+          {/* 5. Small Style Tags with Frosted Glass Badge */}
           <div
             style={{
               display: 'flex',
               gap: '4px',
               flexWrap: 'wrap',
-              marginBottom: '8px',
+              marginBottom: '10px',
             }}
           >
             {template.tags.map((tag) => (
               <span
                 key={tag}
+                className="glass-badge"
                 style={{
-                  fontSize: '0.66rem',
-                  backgroundColor: '#F8EEE6',
-                  color: '#544D47',
-                  padding: '1px 6px',
-                  borderRadius: '999px',
-                  fontWeight: 400,
-                  lineHeight: 1.35,
+                  fontSize: '0.67rem',
+                  color: 'var(--ink-secondary)',
+                  padding: '2px 8px',
+                  fontWeight: 500,
+                  lineHeight: 1.3,
                 }}
               >
                 {tag}
@@ -201,7 +173,7 @@ export function TemplateCard({
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: '8px',
             marginTop: 'auto',
           }}
         >
@@ -209,59 +181,32 @@ export function TemplateCard({
           <button
             type="button"
             onClick={() => onOpenPreview(template)}
+            className="glass-pill"
             style={{
               flex: '1 1 0',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #EADBD3',
-              borderRadius: '999px',
-              padding: '5px 0',
-              fontSize: '0.74rem',
+              padding: '6px 0',
+              fontSize: '0.75rem',
               fontWeight: 500,
-              color: '#292321',
-              cursor: 'pointer',
               textAlign: 'center',
-              transition: 'all 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#F8EEE6';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#FFFFFF';
             }}
           >
             Preview
           </button>
 
-          {/* Primary "Use this template →" Button */}
+          {/* Primary "Use this template →" Button in Terracotta Glass CTA */}
           <Link
             href={`/create?template=${template.id}&occasion=${template.occasion}`}
+            className="glass-cta"
             style={{
               flex: '1.45 1 0',
-              backgroundColor: '#292321',
-              border: '1px solid #292321',
-              borderRadius: '999px',
-              padding: '5px 0',
-              fontSize: '0.74rem',
-              fontWeight: 500,
-              color: '#FFF8F2',
+              padding: '6px 0',
+              fontSize: '0.75rem',
               textDecoration: 'none',
               textAlign: 'center',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '3px',
-              transition: 'background-color 0.15s ease, transform 0.15s ease',
-              boxShadow: '0 2px 6px rgba(41, 35, 33, 0.12)',
               whiteSpace: 'nowrap',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#4A3E39';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#292321';
-            }}
           >
-            <span>Use this template</span>
+            <span>Use template</span>
             <span style={{ fontSize: '0.84rem' }}>→</span>
           </Link>
         </div>

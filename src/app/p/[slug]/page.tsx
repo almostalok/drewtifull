@@ -54,30 +54,57 @@ export default function PublishedGiftPage({
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'var(--bg-canvas)',
           textAlign: 'center',
-          padding: '20px',
+          padding: '24px',
         }}
       >
         <div
+          className="glass-panel"
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '2rem',
-            color: '#2A2421',
-            marginBottom: '8px',
+            padding: '40px 48px',
+            maxWidth: '460px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
           }}
         >
-          opening a little corner of the internet...
+          <div
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(200, 101, 82, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--accent-terracotta)',
+              fontSize: '1.4rem',
+            }}
+          >
+            ♡
+          </div>
+          <div
+            style={{
+              fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+              fontSize: '1.6rem',
+              color: 'var(--ink-primary)',
+              lineHeight: 1.3,
+            }}
+          >
+            opening a little corner of the internet...
+          </div>
+          <p
+            style={{
+              fontFamily: 'var(--font-hand)',
+              fontSize: '1.35rem',
+              color: 'var(--accent-terracotta)',
+            }}
+          >
+            made with love on drewtifull ♡
+          </p>
         </div>
-        <p
-          style={{
-            fontFamily: 'var(--font-hand)',
-            fontSize: '1.4rem',
-            color: '#C97A6E',
-          }}
-        >
-          made with love on drewtifull ♡
-        </p>
       </div>
     );
   }
@@ -91,38 +118,49 @@ export default function PublishedGiftPage({
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'var(--bg-canvas)',
           padding: '30px',
           textAlign: 'center',
         }}
       >
-        <span style={{ fontSize: '3rem', marginBottom: '1rem' }}>💌</span>
-        <h1
+        <div
+          className="glass-panel"
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '2.5rem',
-            color: '#2A2421',
-            marginBottom: '8px',
+            padding: '44px 40px',
+            maxWidth: '460px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          A quiet mystery.
-        </h1>
-        <p style={{ color: '#6E655E', maxWidth: '420px', marginBottom: '24px' }}>
-          We could not find this exact digital gift. It might have been moved or unpublished by its creator.
-        </p>
-        <Link
-          href="/"
-          style={{
-            backgroundColor: '#2A2421',
-            color: '#FFFFFF',
-            padding: '12px 28px',
-            borderRadius: '999px',
-            fontSize: '0.92rem',
-            textDecoration: 'none',
-          }}
-        >
-          Explore Drewtifull ♡
-        </Link>
+          <span style={{ fontSize: '3rem', marginBottom: '12px' }}>💌</span>
+          <h1
+            style={{
+              fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+              fontSize: '2.2rem',
+              color: 'var(--ink-primary)',
+              marginBottom: '8px',
+              fontWeight: 600,
+            }}
+          >
+            A quiet mystery.
+          </h1>
+          <p style={{ color: 'var(--ink-secondary)', maxWidth: '380px', marginBottom: '24px', lineHeight: 1.5 }}>
+            We could not find this exact digital gift. It might have been moved or unpublished by its creator.
+          </p>
+          <Link
+            href="/"
+            className="glass-cta"
+            style={{
+              padding: '12px 28px',
+              fontSize: '0.94rem',
+              textDecoration: 'none',
+              fontWeight: 600,
+            }}
+          >
+            Explore Drewtifull ♡
+          </Link>
+        </div>
       </div>
     );
   }

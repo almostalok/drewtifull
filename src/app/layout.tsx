@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Playfair_Display, Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import { Cormorant_Garamond, Playfair_Display, Plus_Jakarta_Sans, Caveat, Fraunces } from "next/font/google";
 import "./globals.css";
+
+const fraunces = Fraunces({
+  variable: "--font-serif-fraunces",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif-cormorant",
@@ -50,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${playfair.variable} ${sans.variable} ${caveat.variable}`}
+      className={`${fraunces.variable} ${cormorant.variable} ${playfair.variable} ${sans.variable} ${caveat.variable}`}
     >
       <body>{children}</body>
     </html>

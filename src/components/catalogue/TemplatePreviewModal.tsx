@@ -52,50 +52,48 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
         position: 'fixed',
         inset: 0,
         zIndex: 200,
-        backgroundColor: 'rgba(41, 35, 33, 0.65)',
-        backdropFilter: 'blur(8px)',
+        backgroundColor: 'rgba(37, 32, 29, 0.48)',
+        backdropFilter: 'blur(16px) saturate(140%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(140%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '20px',
-        animation: 'fadeIn 0.2s ease',
+        animation: 'fadeIn 0.22s ease',
       }}
       onClick={onClose}
     >
       <div
+        className="glass-modal"
         style={{
-          backgroundColor: '#FFFDF9',
-          borderRadius: '24px',
-          border: '1px solid #EADBD3',
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.2)',
           maxWidth: '540px',
           width: '100%',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
           maxHeight: '92vh',
-          animation: 'scaleUp 0.22s ease',
+          animation: 'scaleUp 0.24s cubic-bezier(0.2, 0.8, 0.2, 1)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
         <div
           style={{
-            padding: '16px 20px',
-            borderBottom: '1px solid #EADBD3',
+            padding: '18px 24px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.7)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            backgroundColor: '#FFF8F2',
+            background: 'rgba(255, 255, 255, 0.45)',
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <h2
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.25rem',
-                  color: '#292321',
+                  fontSize: '1.35rem',
+                  color: 'var(--ink-primary)',
                   margin: 0,
                   fontWeight: 600,
                 }}
@@ -103,19 +101,18 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
                 {template.fullName}
               </h2>
               <span
+                className="glass-badge"
                 style={{
-                  fontSize: '0.72rem',
-                  backgroundColor: '#F5DCD5',
-                  color: '#A84D58',
-                  borderRadius: '999px',
-                  padding: '2px 8px',
-                  fontWeight: 500,
+                  fontSize: '0.74rem',
+                  color: 'var(--accent-terracotta)',
+                  padding: '3px 10px',
+                  fontWeight: 600,
                 }}
               >
                 Birthday
               </span>
             </div>
-            <p style={{ margin: '3px 0 0 0', fontSize: '0.82rem', color: '#81746D' }}>
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.84rem', color: 'var(--ink-muted)' }}>
               {template.description}
             </p>
           </div>
@@ -123,52 +120,39 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
           <button
             type="button"
             onClick={onClose}
+            className="glass-icon-btn"
             style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: '#81746D',
-              padding: '6px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'background-color 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#F8EEE6';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
+              width: '34px',
+              height: '34px',
             }}
             aria-label="Close modal"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
         {/* Modal Preview Body */}
         <div
           style={{
-            padding: '20px',
+            padding: '24px',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '16px',
-            backgroundColor: '#FAF5ED',
+            gap: '18px',
+            background: 'rgba(240, 234, 226, 0.35)',
           }}
         >
-          {/* Card preview image in crisp large view */}
+          {/* Card preview image in crisp large view with soft depth */}
           <div
             style={{
               width: '100%',
-              maxWidth: '360px',
+              maxWidth: '380px',
               aspectRatio: '184 / 170',
-              borderRadius: '16px',
+              borderRadius: '20px',
               overflow: 'hidden',
-              boxShadow: '0 12px 32px rgba(41, 35, 33, 0.12)',
-              border: '1px solid #EADBD3',
+              boxShadow: 'var(--neumo-shadow-card)',
+              border: '1px solid rgba(255, 255, 255, 0.85)',
               backgroundColor: '#FFFFFF',
             }}
           >
@@ -185,18 +169,17 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
             />
           </div>
 
-          {/* Tags list */}
-          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {/* Tags list with Frosted Glass Badges */}
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
             {template.tags.map((t) => (
               <span
                 key={t}
+                className="glass-badge"
                 style={{
                   fontSize: '0.78rem',
-                  color: '#544D47',
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #EADBD3',
-                  borderRadius: '999px',
-                  padding: '3px 10px',
+                  color: 'var(--ink-secondary)',
+                  padding: '4px 12px',
+                  fontWeight: 500,
                 }}
               >
                 {t}
@@ -208,44 +191,34 @@ export function TemplatePreviewModal({ template, onClose }: TemplatePreviewModal
         {/* Modal Footer Actions */}
         <div
           style={{
-            padding: '14px 20px',
-            borderTop: '1px solid #EADBD3',
+            padding: '16px 24px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.7)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            backgroundColor: '#FFF8F2',
+            background: 'rgba(255, 255, 255, 0.5)',
           }}
         >
           <Link
             href={`/templates/birthday/${template.id}`}
+            className="glass-pill"
             style={{
-              color: '#544D47',
+              padding: '8px 18px',
               fontSize: '0.86rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
               textDecoration: 'none',
-              fontWeight: 500,
             }}
           >
-            <span>Open live demo</span>
-            <ExternalLink size={14} />
+            <span>Live demo</span>
+            <ExternalLink size={13} />
           </Link>
 
           <Link
             href={`/create?template=${template.id}&occasion=${template.occasion}`}
+            className="glass-cta"
             style={{
-              backgroundColor: '#292321',
-              color: '#FFF8F2',
-              borderRadius: '999px',
-              padding: '9px 20px',
-              fontSize: '0.86rem',
-              fontWeight: 500,
+              padding: '10px 24px',
+              fontSize: '0.88rem',
               textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              boxShadow: '0 4px 12px rgba(41, 35, 33, 0.2)',
             }}
           >
             <span>Use this template</span>

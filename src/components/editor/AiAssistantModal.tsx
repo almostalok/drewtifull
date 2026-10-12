@@ -58,8 +58,9 @@ export function AiAssistantModal({
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: 'rgba(30, 25, 20, 0.6)',
-        backdropFilter: 'blur(6px)',
+        backgroundColor: 'rgba(30, 24, 20, 0.55)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         zIndex: 1000,
         display: 'flex',
         alignItems: 'center',
@@ -69,33 +70,30 @@ export function AiAssistantModal({
       onClick={onClose}
     >
       <div
+        className="glass-modal"
         style={{
-          backgroundColor: '#FAF7F2',
-          border: '1px solid rgba(60, 45, 35, 0.15)',
-          borderRadius: '16px',
           width: '100%',
           maxWidth: '560px',
-          padding: '28px',
-          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.25)',
+          padding: '32px 28px',
           position: 'relative',
         }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
+          className="glass-icon-btn"
           style={{
             position: 'absolute',
             top: '18px',
             right: '18px',
-            color: '#8A8077',
-            background: 'none',
-            border: 'none',
+            color: 'var(--ink-secondary)',
+            cursor: 'pointer',
           }}
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '22px' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -103,23 +101,25 @@ export function AiAssistantModal({
               gap: '6px',
               fontFamily: 'var(--font-hand)',
               fontSize: '1.25rem',
-              color: '#C97A6E',
-              marginBottom: '4px',
+              color: 'var(--accent-terracotta)',
+              marginBottom: '6px',
             }}
           >
-            <Sparkles size={16} /> AI Writing Assistant
+            <Sparkles size={16} /> Heartfelt Writing Companion
           </div>
           <h3
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.8rem',
-              color: '#2A2421',
-              fontWeight: 500,
+              fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+              fontSize: '1.75rem',
+              color: 'var(--ink-primary)',
+              fontWeight: 600,
+              lineHeight: 1.2,
+              marginBottom: '6px',
             }}
           >
             Find the right words for {recipientName || 'your loved one'}
           </h3>
-          <p style={{ fontSize: '0.88rem', color: '#6A625A' }}>
+          <p style={{ fontSize: '0.88rem', color: 'var(--ink-secondary)' }}>
             Choose a tone or feeling. We will never overwrite your draft without your confirmation.
           </p>
         </div>
@@ -130,47 +130,45 @@ export function AiAssistantModal({
             display: 'flex',
             flexWrap: 'wrap',
             gap: '8px',
-            marginBottom: '20px',
+            marginBottom: '22px',
           }}
         >
-          {tones.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => {
-                setSelectedTone(t.id);
-                handleGenerate(t.id);
-              }}
-              style={{
-                backgroundColor: selectedTone === t.id ? '#C97A6E' : '#FFFFFF',
-                color: selectedTone === t.id ? '#FFFFFF' : '#2A2421',
-                border:
-                  selectedTone === t.id
-                    ? '1px solid #C97A6E'
-                    : '1px solid rgba(60, 45, 35, 0.12)',
-                borderRadius: '999px',
-                padding: '6px 14px',
-                fontSize: '0.85rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              <span>{t.icon}</span>
-              <span>{t.label}</span>
-            </button>
-          ))}
+          {tones.map((t) => {
+            const isSelected = selectedTone === t.id;
+            return (
+              <button
+                key={t.id}
+                onClick={() => {
+                  setSelectedTone(t.id);
+                  handleGenerate(t.id);
+                }}
+                className={isSelected ? 'glass-cta' : 'glass-pill'}
+                style={{
+                  padding: '7px 14px',
+                  fontSize: '0.82rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  cursor: 'pointer',
+                  fontWeight: isSelected ? 600 : 500,
+                }}
+              >
+                <span>{t.icon}</span>
+                <span>{t.label}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Diff / Suggestion Card */}
         <div
+          className="glass-card"
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid rgba(60, 45, 35, 0.1)',
-            borderRadius: '12px',
-            padding: '18px',
+            boxShadow: 'var(--neumo-shadow-inset)',
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+            padding: '20px',
             minHeight: '140px',
-            marginBottom: '20px',
+            marginBottom: '22px',
           }}
         >
           <div
@@ -188,7 +186,7 @@ export function AiAssistantModal({
                 fontSize: '0.78rem',
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
-                color: '#8A8077',
+                color: 'var(--ink-secondary)',
                 fontWeight: 600,
               }}
             >
@@ -199,7 +197,7 @@ export function AiAssistantModal({
                 style={{
                   fontFamily: 'var(--font-hand)',
                   fontSize: '1rem',
-                  color: '#C97A6E',
+                  color: 'var(--accent-terracotta)',
                 }}
               >
                 crafting...
@@ -209,10 +207,10 @@ export function AiAssistantModal({
 
           <p
             style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.96rem',
+              fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+              fontSize: '1.02rem',
               lineHeight: 1.65,
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontStyle: 'italic',
             }}
           >
@@ -224,23 +222,22 @@ export function AiAssistantModal({
         </div>
 
         {/* Actions */}
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '12px' }}>
           <button
             onClick={() => handleGenerate()}
             disabled={isGenerating}
+            className="glass-pill"
             style={{
               flex: 1,
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.2)',
-              borderRadius: '999px',
               padding: '12px',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontSize: '0.9rem',
-              fontWeight: 500,
+              fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
+              cursor: isGenerating ? 'wait' : 'pointer',
             }}
           >
             <Wand2 size={16} /> Try another idea
@@ -254,19 +251,18 @@ export function AiAssistantModal({
               }
             }}
             disabled={!suggestion}
+            className={suggestion ? 'glass-cta' : 'glass-pill'}
             style={{
               flex: 1,
-              backgroundColor: suggestion ? '#2A2421' : '#B5ACA4',
-              color: '#FFFFFF',
-              borderRadius: '999px',
               padding: '12px',
               fontSize: '0.9rem',
-              fontWeight: 500,
+              fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
               cursor: suggestion ? 'pointer' : 'not-allowed',
+              opacity: suggestion ? 1 : 0.6,
             }}
           >
             <Check size={16} /> Use this message

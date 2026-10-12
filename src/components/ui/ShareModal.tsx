@@ -70,8 +70,9 @@ export function ShareModal({
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: 'rgba(30, 25, 20, 0.65)',
-        backdropFilter: 'blur(8px)',
+        backgroundColor: 'rgba(30, 24, 20, 0.55)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         zIndex: 1000,
         display: 'flex',
         alignItems: 'center',
@@ -81,14 +82,11 @@ export function ShareModal({
       onClick={onClose}
     >
       <div
+        className="glass-modal"
         style={{
-          backgroundColor: '#FAF7F2',
-          border: '1px solid rgba(60, 45, 35, 0.15)',
-          borderRadius: '20px',
           width: '100%',
-          maxWidth: '480px',
-          padding: '32px 28px',
-          boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.3)',
+          maxWidth: '490px',
+          padding: '36px 30px',
           position: 'relative',
           textAlign: 'center',
         }}
@@ -96,43 +94,43 @@ export function ShareModal({
       >
         <button
           onClick={onClose}
+          className="glass-icon-btn"
           style={{
             position: 'absolute',
             top: '18px',
             right: '18px',
-            color: '#8A8077',
-            background: 'none',
-            border: 'none',
+            color: 'var(--ink-secondary)',
+            cursor: 'pointer',
           }}
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         {/* Heart Stamp Badge */}
         <div
+          className="glass-badge"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            backgroundColor: '#F9EBE8',
-            color: '#C97A6E',
+            color: 'var(--accent-terracotta)',
             padding: '6px 14px',
-            borderRadius: '999px',
-            fontSize: '0.9rem',
+            fontSize: '0.88rem',
             fontFamily: 'var(--font-hand)',
-            marginBottom: '12px',
+            marginBottom: '14px',
           }}
         >
-          <Heart size={15} fill="#C97A6E" /> It’s ready to send
+          <Heart size={14} fill="var(--accent-terracotta)" /> It’s ready to send
         </div>
 
         <h3
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '2.2rem',
-            color: '#2A2421',
+            fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+            fontSize: '2.1rem',
+            color: 'var(--ink-primary)',
             lineHeight: 1.15,
             marginBottom: '8px',
+            fontWeight: 600,
           }}
         >
           Send It Into The World ♡
@@ -140,28 +138,30 @@ export function ShareModal({
 
         <p
           style={{
-            fontSize: '0.95rem',
-            color: '#6A625A',
+            fontSize: '0.94rem',
+            color: 'var(--ink-secondary)',
             maxWidth: '380px',
             margin: '0 auto 24px auto',
+            lineHeight: 1.5,
           }}
         >
-          Your gift for <strong>{recipientName}</strong> is published. Send them this link or give them a
+          Your gift for <strong style={{ color: 'var(--ink-primary)' }}>{recipientName}</strong> is published. Send them this link or give them a
           printed QR card.
         </p>
 
-        {/* Link Copy Box */}
+        {/* Link Copy Box: Inset Neumo Track */}
         <div
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid rgba(60, 45, 35, 0.12)',
-            borderRadius: '12px',
-            padding: '8px 8px 8px 16px',
+            backgroundColor: 'rgba(235, 227, 218, 0.65)',
+            boxShadow: 'var(--neumo-shadow-inset)',
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+            borderRadius: '14px',
+            padding: '6px 6px 6px 16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '8px',
-            marginBottom: '20px',
+            marginBottom: '22px',
           }}
         >
           <input
@@ -172,29 +172,27 @@ export function ShareModal({
               border: 'none',
               outline: 'none',
               background: 'none',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontSize: '0.88rem',
               width: '100%',
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'inherit',
+              fontWeight: 500,
             }}
           />
           <button
             onClick={copyToClipboard}
+            className={copied ? 'glass-pill' : 'glass-cta'}
             style={{
-              backgroundColor: copied ? '#4E7A5A' : '#C97A6E',
-              color: '#FFFFFF',
-              borderRadius: '8px',
-              padding: '10px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '0.85rem',
-              fontWeight: 500,
-              transition: 'background-color 0.2s ease',
+              padding: '9px 18px',
+              fontSize: '0.84rem',
+              fontWeight: 600,
+              cursor: 'pointer',
               whiteSpace: 'nowrap',
+              backgroundColor: copied ? 'rgba(95, 125, 103, 0.15)' : undefined,
+              color: copied ? 'var(--accent-sage)' : undefined,
             }}
           >
-            {copied ? <Check size={16} /> : <Copy size={16} />}
+            {copied ? <Check size={15} /> : <Copy size={15} />}
             {copied ? 'Copied!' : 'Copy Link'}
           </button>
         </div>
@@ -212,18 +210,17 @@ export function ShareModal({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            className="glass-card"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.1)',
-              borderRadius: '12px',
-              padding: '12px 8px',
+              padding: '14px 8px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               gap: '6px',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontSize: '0.82rem',
-              transition: 'transform 0.2s ease, border-color 0.2s ease',
+              fontWeight: 500,
+              textDecoration: 'none',
             }}
           >
             <Send size={20} color="#25D366" />
@@ -232,20 +229,20 @@ export function ShareModal({
 
           <button
             onClick={handleNativeShare}
+            className="glass-card"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.1)',
-              borderRadius: '12px',
-              padding: '12px 8px',
+              padding: '14px 8px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               gap: '6px',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontSize: '0.82rem',
+              fontWeight: 500,
+              cursor: 'pointer',
             }}
           >
-            <Share2 size={20} color="#C97A6E" />
+            <Share2 size={20} color="var(--accent-terracotta)" />
             <span>Device Share</span>
           </button>
 
@@ -255,42 +252,41 @@ export function ShareModal({
                 onOpenQrCode();
               }
             }}
+            className="glass-card"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid rgba(60, 45, 35, 0.1)',
-              borderRadius: '12px',
-              padding: '12px 8px',
+              padding: '14px 8px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               gap: '6px',
-              color: '#2A2421',
+              color: 'var(--ink-primary)',
               fontSize: '0.82rem',
+              fontWeight: 500,
+              cursor: 'pointer',
             }}
           >
-            <QrCode size={20} color="#B9863B" />
+            <QrCode size={20} color="var(--accent-amber)" />
             <span>Print QR Card</span>
           </button>
         </div>
 
         {/* View published button */}
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
+            className="glass-cta"
             style={{
-              flex: 1,
-              backgroundColor: '#2A2421',
-              color: '#FFFFFF',
-              borderRadius: '999px',
+              width: '100%',
               padding: '14px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '8px',
               fontSize: '0.95rem',
-              fontWeight: 500,
+              fontWeight: 600,
+              textDecoration: 'none',
             }}
           >
             <ExternalLink size={16} /> Open Published Gift

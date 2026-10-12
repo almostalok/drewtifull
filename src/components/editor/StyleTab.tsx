@@ -108,8 +108,9 @@ export function StyleTab({
             fontSize: '0.82rem',
             textTransform: 'uppercase',
             letterSpacing: '0.08em',
-            color: '#8A8077',
+            color: 'var(--ink-secondary)',
             marginBottom: '12px',
+            fontWeight: 600,
           }}
         >
           Color Atmosphere
@@ -126,31 +127,33 @@ export function StyleTab({
                 key={palette.id}
                 type="button"
                 onClick={() => onChangeTheme(palette.theme)}
+                className="glass-card"
                 style={{
-                  backgroundColor: '#FFFFFF',
                   border: isSelected
-                    ? '2px solid #C97A6E'
-                    : '1px solid rgba(60, 45, 35, 0.12)',
-                  borderRadius: '10px',
-                  padding: '12px 14px',
+                    ? '2px solid var(--accent-terracotta)'
+                    : undefined,
+                  boxShadow: isSelected ? 'var(--neumo-shadow-card), 0 0 0 1px var(--accent-terracotta)' : undefined,
+                  padding: '14px 16px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                  textAlign: 'left',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ display: 'flex', gap: '4px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', gap: '5px' }}>
                     {palette.previewColors.map((col, idx) => (
                       <span
                         key={idx}
                         style={{
-                          width: '18px',
-                          height: '18px',
+                          width: '20px',
+                          height: '20px',
                           borderRadius: '50%',
                           backgroundColor: col,
-                          border: '1px solid rgba(0,0,0,0.1)',
+                          border: '1.5px solid rgba(255,255,255,0.8)',
+                          boxShadow: '0 2px 5px rgba(0,0,0,0.12)',
                           display: 'inline-block',
                         }}
                       />
@@ -158,17 +161,31 @@ export function StyleTab({
                   </div>
                   <span
                     style={{
-                      fontFamily: 'var(--font-serif)',
-                      fontSize: '1rem',
-                      fontWeight: 500,
-                      color: '#2A2421',
+                      fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+                      fontSize: '1.02rem',
+                      fontWeight: 600,
+                      color: 'var(--ink-primary)',
                     }}
                   >
                     {palette.name}
                   </span>
                 </div>
 
-                {isSelected && <Check size={18} color="#C97A6E" />}
+                {isSelected && (
+                  <div
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(200, 101, 82, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Check size={16} color="var(--accent-terracotta)" />
+                  </div>
+                )}
               </button>
             );
           })}
@@ -182,44 +199,45 @@ export function StyleTab({
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
-            marginBottom: '12px',
+            marginBottom: '10px',
           }}
         >
-          <Music size={15} color="#C97A6E" />
+          <Music size={15} color="var(--accent-terracotta)" />
           <h5
             style={{
               fontSize: '0.82rem',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
-              color: '#8A8077',
+              color: 'var(--ink-secondary)',
+              fontWeight: 600,
             }}
           >
             Background Soundtrack
           </h5>
         </div>
 
-        <p style={{ fontSize: '0.82rem', color: '#6A625A', marginBottom: '12px' }}>
+        <p style={{ fontSize: '0.82rem', color: 'var(--ink-secondary)', marginBottom: '14px' }}>
           When they open your gift, a discreet music badge allows them to play this ambient melody.
         </p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {CURATED_MUSIC_TRACKS.map((track) => {
             const isSelected = currentMusicId === track.id;
 
             return (
               <div
                 key={track.id}
+                className="glass-card"
                 style={{
-                  backgroundColor: isSelected ? '#FAF3E6' : '#FFFFFF',
                   border: isSelected
-                    ? '1.5px solid #C97A6E'
-                    : '1px solid rgba(60, 45, 35, 0.1)',
-                  borderRadius: '10px',
-                  padding: '10px 14px',
+                    ? '1.5px solid var(--accent-terracotta)'
+                    : undefined,
+                  boxShadow: isSelected ? 'var(--neumo-shadow-card)' : undefined,
+                  padding: '12px 16px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  gap: '10px',
+                  gap: '12px',
                 }}
               >
                 <div
@@ -230,12 +248,13 @@ export function StyleTab({
                     style={{
                       fontWeight: 600,
                       fontSize: '0.92rem',
-                      color: '#2A2421',
+                      color: 'var(--ink-primary)',
+                      marginBottom: '2px',
                     }}
                   >
                     {track.title}
                   </p>
-                  <p style={{ fontSize: '0.78rem', color: '#8A8077' }}>
+                  <p style={{ fontSize: '0.78rem', color: 'var(--ink-secondary)' }}>
                     {track.artist} · {track.genre}
                   </p>
                 </div>
@@ -243,17 +262,15 @@ export function StyleTab({
                 <button
                   type="button"
                   onClick={() => onChangeMusic(isSelected ? null : track)}
+                  className={isSelected ? 'glass-cta' : 'glass-pill'}
                   style={{
-                    backgroundColor: isSelected ? '#C97A6E' : '#FAF7F2',
-                    color: isSelected ? '#FFFFFF' : '#2A2421',
-                    border: 'none',
-                    borderRadius: '999px',
-                    padding: '6px 12px',
+                    padding: '6px 14px',
                     fontSize: '0.78rem',
-                    fontWeight: 500,
+                    fontWeight: 600,
+                    cursor: 'pointer',
                   }}
                 >
-                  {isSelected ? 'Active' : 'Select'}
+                  {isSelected ? 'Active ♡' : 'Select'}
                 </button>
               </div>
             );
@@ -263,10 +280,13 @@ export function StyleTab({
             type="button"
             onClick={() => onChangeMusic(null)}
             style={{
-              padding: '8px',
-              fontSize: '0.8rem',
-              color: '#8A8077',
+              padding: '10px',
+              fontSize: '0.82rem',
+              color: 'var(--ink-secondary)',
               textAlign: 'center',
+              cursor: 'pointer',
+              background: 'transparent',
+              border: 'none',
               textDecoration: 'underline',
             }}
           >

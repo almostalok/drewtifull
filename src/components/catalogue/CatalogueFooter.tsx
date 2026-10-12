@@ -7,15 +7,17 @@ export function CatalogueFooter() {
   return (
     <footer
       style={{
-        backgroundColor: '#F8EEE6',
-        borderTop: '1px solid #EADBD3',
-        padding: '48px 36px 36px 36px',
+        background: 'rgba(247, 243, 237, 0.72)',
+        backdropFilter: 'blur(20px) saturate(160%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(160%)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.85)',
+        padding: '48px 40px 36px 40px',
         marginTop: 'auto',
       }}
     >
       <div
         style={{
-          maxWidth: '1560px',
+          maxWidth: '1440px',
           margin: '0 auto',
           display: 'flex',
           justifyContent: 'space-between',
@@ -29,33 +31,33 @@ export function CatalogueFooter() {
             <span
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.45rem',
-                color: '#292321',
+                fontSize: '1.5rem',
+                color: 'var(--ink-primary)',
               }}
             >
               drewtifull
             </span>
-            <span style={{ color: '#F28F91', fontSize: '1.1rem' }}>♡</span>
+            <span style={{ color: 'var(--accent-terracotta)', fontSize: '1.15rem' }}>♡</span>
           </div>
-          <p style={{ margin: 0, fontSize: '0.84rem', color: '#81746D', maxWidth: '380px' }}>
+          <p style={{ margin: 0, fontSize: '0.86rem', color: 'var(--ink-muted)', maxWidth: '380px' }}>
             Turn your memories into a little corner of the internet that feels just like them.
           </p>
         </div>
 
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <Link href="/" style={{ color: '#544D47', fontSize: '0.86rem', textDecoration: 'none' }}>
+          <Link href="/" style={{ color: 'var(--ink-secondary)', fontSize: '0.88rem', textDecoration: 'none', fontWeight: 500 }}>
             Home
           </Link>
-          <Link href="/templates" style={{ color: '#544D47', fontSize: '0.86rem', textDecoration: 'none' }}>
+          <Link href="/templates" style={{ color: 'var(--ink-secondary)', fontSize: '0.88rem', textDecoration: 'none', fontWeight: 500 }}>
             Templates
           </Link>
-          <Link href="/create" style={{ color: '#544D47', fontSize: '0.86rem', textDecoration: 'none' }}>
+          <Link href="/create" style={{ color: 'var(--ink-secondary)', fontSize: '0.88rem', textDecoration: 'none', fontWeight: 500 }}>
             Create
           </Link>
-          <Link href="/privacy" style={{ color: '#81746D', fontSize: '0.82rem', textDecoration: 'none' }}>
+          <Link href="/privacy" style={{ color: 'var(--ink-muted)', fontSize: '0.84rem', textDecoration: 'none' }}>
             Privacy
           </Link>
-          <Link href="/terms" style={{ color: '#81746D', fontSize: '0.82rem', textDecoration: 'none' }}>
+          <Link href="/terms" style={{ color: 'var(--ink-muted)', fontSize: '0.84rem', textDecoration: 'none' }}>
             Terms
           </Link>
         </div>
@@ -63,17 +65,17 @@ export function CatalogueFooter() {
 
       <div
         style={{
-          maxWidth: '1560px',
+          maxWidth: '1440px',
           margin: '28px auto 0 auto',
           paddingTop: '20px',
-          borderTop: '1px solid rgba(234, 219, 211, 0.6)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.55)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '12px',
-          fontSize: '0.78rem',
-          color: '#A89C94',
+          fontSize: '0.8rem',
+          color: 'var(--ink-muted)',
         }}
       >
         <span>© {new Date().getFullYear()} drewtifull. All rights reserved.</span>

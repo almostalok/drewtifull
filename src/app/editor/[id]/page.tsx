@@ -128,13 +128,47 @@ export default function EditorPage({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#FAF7F2',
-          fontFamily: 'var(--font-serif)',
-          fontSize: '1.4rem',
-          color: '#2A2421',
+          backgroundColor: 'var(--bg-canvas)',
+          padding: '24px',
         }}
       >
-        opening your memories...
+        <div
+          className="glass-panel"
+          style={{
+            padding: '36px 48px',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+          }}
+        >
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(200, 101, 82, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--accent-terracotta)',
+              fontSize: '1.2rem',
+            }}
+          >
+            ♡
+          </div>
+          <p
+            style={{
+              fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+              fontSize: '1.35rem',
+              color: 'var(--ink-primary)',
+              fontWeight: 500,
+            }}
+          >
+            opening your memories...
+          </p>
+        </div>
       </div>
     );
   }
@@ -174,7 +208,7 @@ export default function EditorPage({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#C97A6E', '#F4D4CD', '#D4AF37', '#FAF7F2'],
+      colors: ['#C86552', '#DE745D', '#BA8B42', '#EDE7DF'],
     });
 
     setIsShareModalOpen(true);
@@ -186,7 +220,7 @@ export default function EditorPage({
       : `https://drewtifull.com/p/${project.slug}`;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden', backgroundColor: 'var(--bg-canvas)' }}>
       <EditorHeader
         project={project}
         viewportMode={viewportMode}
@@ -201,15 +235,18 @@ export default function EditorPage({
       />
 
       {/* Main Workspace: Left Controls + Center Live Preview */}
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', backgroundColor: '#F3EFEA', position: 'relative' }}>
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
         {/* Left Side: Editorial Creator Controls */}
         <aside
           className="editor-sidebar"
           style={{
             width: '420px',
             maxWidth: '100%',
-            backgroundColor: '#FAF7F2',
-            borderRight: '1px solid rgba(60, 45, 35, 0.1)',
+            backgroundColor: 'rgba(247, 242, 235, 0.8)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRight: '1px solid rgba(255, 255, 255, 0.7)',
+            boxShadow: '4px 0 24px rgba(45, 36, 28, 0.04)',
             display: isMobilePanelOpen ? 'flex' : 'none',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -217,86 +254,106 @@ export default function EditorPage({
             zIndex: 20,
           }}
         >
-          {/* Tabs navigation */}
+          {/* Tabs navigation: Tactile Neumorphic Inset Track */}
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              borderBottom: '1px solid rgba(60, 45, 35, 0.1)',
-              backgroundColor: '#FFFFFF',
+              padding: '12px 16px',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+              background: 'rgba(235, 227, 218, 0.35)',
             }}
           >
-            <button
-              type="button"
-              onClick={() => setActiveTab('content')}
+            <div
               style={{
-                padding: '12px 6px',
-                border: 'none',
-                backgroundColor: 'transparent',
-                borderBottom: activeTab === 'content' ? '2px solid #C97A6E' : 'none',
-                color: activeTab === 'content' ? '#C97A6E' : '#7A726A',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-                textAlign: 'center',
-                cursor: 'pointer',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: '4px',
+                padding: '3px',
+                backgroundColor: 'rgba(224, 215, 203, 0.6)',
+                boxShadow: 'var(--neumo-shadow-inset)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.45)',
               }}
             >
-              Words
-            </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('content')}
+                style={{
+                  padding: '8px 4px',
+                  border: activeTab === 'content' ? '1px solid rgba(255, 255, 255, 0.85)' : '1px solid transparent',
+                  borderRadius: '9px',
+                  backgroundColor: activeTab === 'content' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+                  boxShadow: activeTab === 'content' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+                  color: activeTab === 'content' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+                  fontSize: '0.82rem',
+                  fontWeight: activeTab === 'content' ? 600 : 500,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                Words
+              </button>
 
-            <button
-              type="button"
-              onClick={() => setActiveTab('photos')}
-              style={{
-                padding: '12px 6px',
-                border: 'none',
-                backgroundColor: 'transparent',
-                borderBottom: activeTab === 'photos' ? '2px solid #C97A6E' : 'none',
-                color: activeTab === 'photos' ? '#C97A6E' : '#7A726A',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-                textAlign: 'center',
-                cursor: 'pointer',
-              }}
-            >
-              Photos
-            </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('photos')}
+                style={{
+                  padding: '8px 4px',
+                  border: activeTab === 'photos' ? '1px solid rgba(255, 255, 255, 0.85)' : '1px solid transparent',
+                  borderRadius: '9px',
+                  backgroundColor: activeTab === 'photos' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+                  boxShadow: activeTab === 'photos' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+                  color: activeTab === 'photos' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+                  fontSize: '0.82rem',
+                  fontWeight: activeTab === 'photos' ? 600 : 500,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                Photos
+              </button>
 
-            <button
-              type="button"
-              onClick={() => setActiveTab('sections')}
-              style={{
-                padding: '12px 6px',
-                border: 'none',
-                backgroundColor: 'transparent',
-                borderBottom: activeTab === 'sections' ? '2px solid #C97A6E' : 'none',
-                color: activeTab === 'sections' ? '#C97A6E' : '#7A726A',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-                textAlign: 'center',
-                cursor: 'pointer',
-              }}
-            >
-              Story
-            </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('sections')}
+                style={{
+                  padding: '8px 4px',
+                  border: activeTab === 'sections' ? '1px solid rgba(255, 255, 255, 0.85)' : '1px solid transparent',
+                  borderRadius: '9px',
+                  backgroundColor: activeTab === 'sections' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+                  boxShadow: activeTab === 'sections' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+                  color: activeTab === 'sections' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+                  fontSize: '0.82rem',
+                  fontWeight: activeTab === 'sections' ? 600 : 500,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                Story
+              </button>
 
-            <button
-              type="button"
-              onClick={() => setActiveTab('style')}
-              style={{
-                padding: '12px 6px',
-                border: 'none',
-                backgroundColor: 'transparent',
-                borderBottom: activeTab === 'style' ? '2px solid #C97A6E' : 'none',
-                color: activeTab === 'style' ? '#C97A6E' : '#7A726A',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-                textAlign: 'center',
-                cursor: 'pointer',
-              }}
-            >
-              Aesthetic
-            </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('style')}
+                style={{
+                  padding: '8px 4px',
+                  border: activeTab === 'style' ? '1px solid rgba(255, 255, 255, 0.85)' : '1px solid transparent',
+                  borderRadius: '9px',
+                  backgroundColor: activeTab === 'style' ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+                  boxShadow: activeTab === 'style' ? '0 2px 8px rgba(45, 36, 28, 0.08), -1px -1px 3px rgba(255, 255, 255, 0.9)' : 'none',
+                  color: activeTab === 'style' ? 'var(--accent-terracotta)' : 'var(--ink-secondary)',
+                  fontSize: '0.82rem',
+                  fontWeight: activeTab === 'style' ? 600 : 500,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                Aesthetic
+              </button>
+            </div>
           </div>
 
           {/* Active Tab Content Scrollable Area */}
@@ -340,7 +397,7 @@ export default function EditorPage({
           style={{
             flex: 1,
             overflowY: 'auto',
-            padding: viewportMode === 'desktop' ? '0' : '40px 20px',
+            padding: viewportMode === 'desktop' ? '0' : '40px 24px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'flex-start',
@@ -356,7 +413,11 @@ export default function EditorPage({
                   : viewportMode === 'tablet'
                   ? '768px'
                   : '100%',
-              transition: 'max-width 0.3s cubic-bezier(0.2, 0, 0, 1)',
+              borderRadius: viewportMode === 'desktop' ? '0' : '28px',
+              overflow: 'hidden',
+              boxShadow: viewportMode === 'desktop' ? 'none' : 'var(--neumo-shadow-card), 0 20px 50px rgba(45, 36, 28, 0.15)',
+              border: viewportMode === 'desktop' ? 'none' : '8px solid rgba(255, 255, 255, 0.85)',
+              transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
             <TemplateRenderer

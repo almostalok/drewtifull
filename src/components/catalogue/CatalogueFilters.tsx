@@ -46,8 +46,9 @@ export function CatalogueFilters({ activeFilter, onFilterChange }: CatalogueFilt
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
+          gap: '10px',
           minWidth: 'max-content',
+          padding: '4px 2px',
         }}
       >
         {CATALOGUE_FILTERS.map((f) => {
@@ -57,32 +58,20 @@ export function CatalogueFilters({ activeFilter, onFilterChange }: CatalogueFilt
               key={f.id}
               type="button"
               onClick={() => onFilterChange(f.id)}
+              className={`glass-pill ${isActive ? 'active' : ''}`}
               style={{
-                borderRadius: '999px',
-                padding: '5px 15px',
-                fontSize: '0.82rem',
-                fontWeight: isActive ? 500 : 400,
-                color: isActive ? '#FFF8F2' : '#4A3E39',
-                backgroundColor: isActive ? '#292321' : '#FFF8F2',
-                border: isActive ? '1px solid #292321' : '1px solid #EADBD3',
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
+                padding: '6px 18px',
+                fontSize: '0.84rem',
+                fontWeight: isActive ? 600 : 400,
+                color: isActive ? '#FFFFFF' : 'var(--ink-secondary)',
+                background: isActive
+                  ? 'linear-gradient(135deg, #DE745D 0%, #BA5540 100%)'
+                  : undefined,
                 boxShadow: isActive
-                  ? '0 2px 6px rgba(41, 35, 33, 0.18)'
-                  : '0 1px 2px rgba(41, 35, 33, 0.02)',
+                  ? 'inset 2px 2px 4px rgba(0,0,0,0.25), inset -2px -2px 4px rgba(255,255,255,0.25), 0 2px 8px rgba(200, 101, 82, 0.3)'
+                  : undefined,
+                borderColor: isActive ? 'rgba(255, 255, 255, 0.4)' : undefined,
                 whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = '#F8EEE6';
-                  e.currentTarget.style.borderColor = '#DBCAC0';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = '#FFF8F2';
-                  e.currentTarget.style.borderColor = '#EADBD3';
-                }
               }}
             >
               {f.label}

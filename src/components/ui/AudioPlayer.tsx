@@ -72,33 +72,30 @@ export function AudioPlayer({
 
       {floating ? (
         <div
+          className="glass-panel"
           style={{
-            backgroundColor: 'rgba(253, 251, 247, 0.94)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(60, 45, 35, 0.12)',
             borderRadius: '999px',
-            boxShadow: '0 8px 30px rgba(35, 25, 20, 0.12)',
-            padding: '8px 16px',
+            boxShadow: 'var(--neumo-shadow-card), 0 12px 36px rgba(45, 36, 28, 0.12)',
+            padding: '8px 18px',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
-            transition: 'all 0.3s ease',
+            gap: '12px',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            border: '1px solid rgba(255, 255, 255, 0.85)',
           }}
         >
           <button
             onClick={togglePlay}
+            className="glass-cta"
             style={{
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: '50%',
-              backgroundColor: '#C97A6E',
-              color: '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: 'none',
-              boxShadow: '0 2px 8px rgba(201, 122, 110, 0.4)',
-              transition: 'transform 0.2s ease',
+              padding: 0,
+              cursor: 'pointer',
             }}
             title={isPlaying ? 'Pause music' : 'Play background melody'}
           >
@@ -111,11 +108,11 @@ export function AudioPlayer({
           >
             <p
               style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '0.95rem',
+                fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+                fontSize: '0.96rem',
                 fontWeight: 600,
-                color: '#2A2421',
-                lineHeight: 1.1,
+                color: 'var(--ink-primary)',
+                lineHeight: 1.15,
               }}
             >
               {track.title}
@@ -123,8 +120,8 @@ export function AudioPlayer({
             <p
               style={{
                 fontFamily: 'var(--font-hand)',
-                fontSize: '0.85rem',
-                color: '#8A8077',
+                fontSize: '0.9rem',
+                color: 'var(--ink-secondary)',
               }}
             >
               {isPlaying ? '♫ playing quietly...' : '♫ tap to play soundtrack'}
@@ -133,21 +130,19 @@ export function AudioPlayer({
 
           {/* Equalizer animation when playing */}
           {isPlaying && (
-            <div style={{ display: 'flex', gap: '3px', alignItems: 'flex-end', height: '14px', marginLeft: '4px' }}>
-              <div style={{ width: '3px', height: '100%', backgroundColor: '#C97A6E', borderRadius: '1px', animation: 'pulseGlow 1.2s ease-in-out infinite' }} />
-              <div style={{ width: '3px', height: '60%', backgroundColor: '#C97A6E', borderRadius: '1px', animation: 'pulseGlow 0.8s ease-in-out infinite alternate' }} />
-              <div style={{ width: '3px', height: '80%', backgroundColor: '#C97A6E', borderRadius: '1px', animation: 'pulseGlow 1s ease-in-out infinite' }} />
+            <div style={{ display: 'flex', gap: '3px', alignItems: 'flex-end', height: '14px', marginLeft: '6px' }}>
+              <div style={{ width: '3px', height: '100%', backgroundColor: 'var(--accent-terracotta)', borderRadius: '2px', animation: 'pulse 1.2s ease-in-out infinite' }} />
+              <div style={{ width: '3px', height: '60%', backgroundColor: 'var(--accent-terracotta)', borderRadius: '2px', animation: 'pulse 0.8s ease-in-out infinite alternate' }} />
+              <div style={{ width: '3px', height: '80%', backgroundColor: 'var(--accent-terracotta)', borderRadius: '2px', animation: 'pulse 1s ease-in-out infinite' }} />
             </div>
           )}
         </div>
       ) : (
         /* Inline Editor Player */
         <div
+          className="glass-card"
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid rgba(60, 45, 35, 0.1)',
-            borderRadius: '12px',
-            padding: '12px 16px',
+            padding: '12px 18px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -157,22 +152,33 @@ export function AudioPlayer({
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button
               onClick={togglePlay}
+              className="glass-cta"
               style={{
                 width: '38px',
                 height: '38px',
                 borderRadius: '50%',
-                backgroundColor: '#2A2421',
-                color: '#FFFFFF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                padding: 0,
+                cursor: 'pointer',
               }}
             >
               {isPlaying ? <Pause size={16} /> : <Play size={16} style={{ marginLeft: '2px' }} />}
             </button>
             <div>
-              <p style={{ fontWeight: 600, fontSize: '0.92rem', color: '#2A2421' }}>{track.title}</p>
-              <p style={{ fontSize: '0.8rem', color: '#8A8077' }}>
+              <p
+                style={{
+                  fontFamily: 'var(--font-serif-fraunces, var(--font-serif))',
+                  fontWeight: 600,
+                  fontSize: '0.94rem',
+                  color: 'var(--ink-primary)',
+                  marginBottom: '2px',
+                }}
+              >
+                {track.title}
+              </p>
+              <p style={{ fontSize: '0.78rem', color: 'var(--ink-secondary)' }}>
                 {track.artist} · {track.genre}
               </p>
             </div>
@@ -181,7 +187,14 @@ export function AudioPlayer({
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <button
               onClick={() => setIsMuted(!isMuted)}
-              style={{ color: '#8A8077' }}
+              style={{
+                color: 'var(--ink-secondary)',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+              }}
               title={isMuted ? 'Unmute' : 'Mute'}
             >
               {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
@@ -196,7 +209,7 @@ export function AudioPlayer({
                 setVolume(parseFloat(e.target.value));
                 setIsMuted(false);
               }}
-              style={{ width: '70px', accentColor: '#C97A6E' }}
+              style={{ width: '70px', accentColor: 'var(--accent-terracotta)', cursor: 'pointer' }}
             />
           </div>
         </div>
