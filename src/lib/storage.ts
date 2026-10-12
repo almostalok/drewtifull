@@ -2,7 +2,7 @@ import { Project, Occasion, SectionData } from './templates/types';
 import { SAMPLE_PROJECTS } from './sampleProjects';
 import { TEMPLATES } from './templates';
 
-const STORAGE_KEY = 'drewtifull_projects_v1';
+const STORAGE_KEY = 'drewtifull_projects_v2';
 
 export function getStoredProjects(): Project[] {
   if (typeof window === 'undefined') {
